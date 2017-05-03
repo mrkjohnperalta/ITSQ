@@ -8,6 +8,10 @@ class Login extends CI_Controller
 	{
 		parent::__construct();
 		$this->load->library('form_validation');
+		if ( isset( $_SESSION['logged_in'] ) )
+		{
+			redirect('SADU/Dashboard', 'refresh');
+	    }     
 	}
 
 	function index()
