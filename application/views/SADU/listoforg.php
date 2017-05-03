@@ -40,7 +40,7 @@
                             <i class=" icon-layers font-green"></i>
                             <span class="caption-subject font-green bold uppercase">RECOGNIZED STUDENT ORGANIZATION</span>
                         </div>
-                        <button class="btn green pull-right" data-toggle="modal" href="#basic"> Add Organization </button>
+                        <button class="btn green pull-right" data-toggle="modal" href="#add_org"> Add Organization </button>
                     </div>
                     <div class="portlet-body">
                         <div class="note note-info">
@@ -221,7 +221,8 @@
 </div>
 <!-- END CONTENT -->
 
- <div class="modal fade" id="basic" tabindex="-1" role="basic" aria-hidden="true">
+<!--BEGIN OF MODAL for Add Organization-->
+<div class="modal fade" id="add_org" tabindex="-1" role="basic" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
