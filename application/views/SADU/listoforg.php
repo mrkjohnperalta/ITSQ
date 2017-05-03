@@ -254,8 +254,11 @@
                     </div>
                     <div class="row">
                         <div class="col-lg-12 col-md-4 col-sm-6 col-xs-12">
-                            <div class="note note-info">
-                                <h4>NOTE:</h4>
+                            <div class="note note-info font-gray">
+                                <div class="caption">
+                                    <i class="fa fa-sticky-note-o font-green"></i>
+                                    <span class="caption-subject font-green bold uppercase">NOTE</span>
+                                </div>
                                 <p> <b> Username </b> and <b> Password </b> are automatically generate. </p>
                                 <p> <b> Username: </b> FEU_TECH_Organization Abbreviation </p>
                                 <p> <b> Password: </b> feu_tech_rso </p>
