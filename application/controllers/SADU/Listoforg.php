@@ -11,7 +11,7 @@ class Listoforg extends CI_Controller
 			redirect('Login', 'refresh');
 		}
 		// $this->load->library('form_validation');
-	   	// $this->load->model('login_model');
+	   	$this->load->model('sadu_model');
 	   	
 	}
 
@@ -20,6 +20,44 @@ class Listoforg extends CI_Controller
 		$this->load->view('includes/header');
 		$this->load->view('SADU/listoforg');
 		$this->load->view('includes/footer');
+	}
+
+	function Add_Organization()
+	{
+		$this->load->library('form_validation');
+  
+	    $this->form_validation->set_rules('org_name', 'Organization Name', 'required');
+	    $this->form_validation->set_rules('org_abbreviation', 'Organization Abbreviation', 'required');
+	  
+	    if($this->form_validation->run() == FALSE)
+	    {
+	        //Field validation failed.  User redirected to login page
+	      	$this->load->view('includes/header');
+			$this->load->view('SADU/listoforg');
+			$this->load->view('includes/footer');
+	    }
+	    else
+	    {
+	      	//Go to private area
+	    	$org_name 	= $this->input->post('org_name');
+	    	$org_abb 	= $this->input->post('org_abbreviation');
+	    	$username 	= "FEU_TECH_" . $org_abb;
+	    	$password 	= "feu_tech_rso";
+
+	    	$data 		= array(
+	    					'organization_name' 		=> $org_name,
+	    					'organization_abbreviation' => $org_abb,
+	    					'org_username'				=> $username,
+	    					'org_password' 				=> $password
+	    				  );
+
+	    	$this->sadu_model->add_organization($data);
+	    	$this->session->set_flashdata("added_org", "<font size='2px'>Successfully Added an Organization.</font>");
+	      	
+	      	$this->load->view('includes/header');
+			$this->load->view('SADU/listoforg');
+			$this->load->view('includes/footer');
+	    }	
 	}
 }
 ?>
