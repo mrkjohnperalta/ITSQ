@@ -14,6 +14,7 @@ class Login extends CI_Controller
 	{
 
 		//something neww here
+		//NEW COMMENT HERE
 		$this->load->helper(array('form'));
 		$this->load->view('login_page');
 	}
