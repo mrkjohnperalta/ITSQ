@@ -34,7 +34,7 @@
                                         <i class=" icon-layers font-green"></i>
                                         <span class="caption-subject font-green bold uppercase">RECOGNIZED STUDENT ORGANIZATION</span>
                                     </div>
-                                    <button class="btn green pull-right"> Add Organization </button>
+                                    <button class="btn green pull-right" data-target="#static" data-toggle="modal"> Add Organization </button>
                                 </div>
                                 <div class="portlet-body">
                                     <div class="note note-info">
@@ -216,4 +216,15 @@
             <!-- END CONTENT -->
 
 
-            
+
+
+<div id="static" class="modal fade" tabindex="-1" data-backdrop="static" data-keyboard="false">
+    <div class="modal-body">
+        <p> Would you like to continue with some arbitrary task? </p>
+    </div>
+    <div class="modal-footer">
+        <button type="button" data-dismiss="modal" class="btn btn-outline dark">Cancel</button>
+        <button type="button" data-dismiss="modal" class="btn green">Continue Task</button>
+    </div>
+</div>
+

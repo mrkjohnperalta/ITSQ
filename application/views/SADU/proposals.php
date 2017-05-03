@@ -47,7 +47,7 @@ BEGIN CONTENT -->
                                     <option>Option 5</option>
                                 </select>
                                 <span class="input-group-btn">
-                                    <button class="btn blue btn-sm" type="button">Submit</button>
+                                    <button class="btn blue btn-sm" type="button" >Submit</button>
                                 </span>
                             </div>
                             <!-- /input-group -->
@@ -245,4 +245,4 @@ BEGIN CONTENT -->
         </div>
         <!-- END CONTENT BODY -->
     </div>
-<!-- END CONTENT
+<!-- END CONTENT -->
