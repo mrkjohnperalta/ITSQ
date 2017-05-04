@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: May 04, 2017 at 05:56 AM
+-- Generation Time: May 04, 2017 at 08:26 AM
 -- Server version: 5.6.25
 -- PHP Version: 5.6.11
 
@@ -29,6 +29,7 @@ SET time_zone = "+00:00";
 CREATE TABLE IF NOT EXISTS `activity_proposals` (
   `prop_id` int(11) NOT NULL,
   `proposal` varchar(30) NOT NULL,
+  `proposal_title` varchar(255) NOT NULL,
   `general_objective` text NOT NULL,
   `specific_objective` text NOT NULL,
   `proposed_budget` int(11) NOT NULL,
@@ -40,22 +41,23 @@ CREATE TABLE IF NOT EXISTS `activity_proposals` (
   `sdas_status` int(11) NOT NULL DEFAULT '0',
   `accounting_status` int(11) NOT NULL DEFAULT '0',
   `edo_status` int(11) NOT NULL DEFAULT '0'
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `activity_proposals`
 --
 
-INSERT INTO `activity_proposals` (`prop_id`, `proposal`, `general_objective`, `specific_objective`, `proposed_budget`, `sent_by`, `date_sent`, `date_approved`, `scc_approve`, `sadu_status`, `sdas_status`, `accounting_status`, `edo_status`) VALUES
-(2, 'CSCVersion.txt', '', '', 0, '201310871', '2017-04-30', NULL, 1, 0, 0, 0, 0),
-(3, 'SW_Configuration.xml', '', '', 0, '201310871', '2017-05-01', NULL, 1, 0, 0, 0, 0),
-(4, 'SW_Configuration.xml', '', '', 0, '201310871', '2017-05-01', NULL, 1, 0, 0, 0, 0),
-(5, 'CSCVersion.txt', '', '', 0, '201310871', '2017-05-01', NULL, 1, 0, 0, 0, 0),
-(6, 'CSCVersion.txt', '', '', 0, '201310871', '2017-05-01', NULL, 1, 0, 0, 0, 0),
-(7, 'SW_Configuration.xml', '', '', 0, '201310871', '2017-05-01', NULL, 1, 0, 0, 0, 0),
-(8, 'SW_Configuration.xml', '', '', 0, '201310871', '2017-05-01', NULL, 1, 0, 0, 0, 0),
-(9, 'SW_Configuration.xml', '', '', 0, '201310871', '2017-05-01', NULL, 1, 0, 0, 0, 0),
-(10, 'SW_Configuration.xml', '', '', 0, '201310871', '2017-05-01', NULL, 1, 0, 0, 0, 0);
+INSERT INTO `activity_proposals` (`prop_id`, `proposal`, `proposal_title`, `general_objective`, `specific_objective`, `proposed_budget`, `sent_by`, `date_sent`, `date_approved`, `scc_approve`, `sadu_status`, `sdas_status`, `accounting_status`, `edo_status`) VALUES
+(2, 'CSCVersion.txt', '', '', '', 0, '201310871', '2017-04-30', NULL, 1, 0, 0, 0, 0),
+(3, 'SW_Configuration.xml', '', '', '', 0, '201310871', '2017-05-01', NULL, 1, 0, 0, 0, 0),
+(4, 'SW_Configuration.xml', '', '', '', 0, '201310871', '2017-05-01', NULL, 1, 0, 0, 0, 0),
+(5, 'CSCVersion.txt', '', '', '', 0, '201310871', '2017-05-01', NULL, 1, 0, 0, 0, 0),
+(6, 'CSCVersion.txt', '', '', '', 0, '201310871', '2017-05-01', NULL, 1, 0, 0, 0, 0),
+(7, 'SW_Configuration.xml', '', '', '', 0, '201310871', '2017-05-01', NULL, 1, 0, 0, 0, 0),
+(8, 'SW_Configuration.xml', '', '', '', 0, '201310871', '2017-05-01', NULL, 1, 0, 0, 0, 0),
+(9, 'SW_Configuration.xml', '', '', '', 0, '201310871', '2017-05-01', NULL, 1, 0, 0, 0, 0),
+(10, 'SW_Configuration.xml', '', '', '', 0, '201310871', '2017-05-01', NULL, 1, 0, 0, 0, 0),
+(11, 'abc.docx', '', 'Objective is cheness', 'Specific Objective is cheness', 2500, '1', '2017-05-04', NULL, 1, 0, 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -116,11 +118,20 @@ CREATE TABLE IF NOT EXISTS `organizations` (
   `org_id` int(11) NOT NULL,
   `org_username` varchar(30) NOT NULL,
   `org_password` varchar(30) NOT NULL,
-  `organization_name` varchar(40) NOT NULL,
+  `organization_name` varchar(100) NOT NULL,
   `organization_abbreviation` varchar(30) NOT NULL,
   `org_mission` text,
   `org_vision` text
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `organizations`
+--
+
+INSERT INTO `organizations` (`org_id`, `org_username`, `org_password`, `organization_name`, `organization_abbreviation`, `org_mission`, `org_vision`) VALUES
+(1, 'FEU_TECH_AITS', 'feu_tech_rso', 'Alliance of Information Technology Students', 'AITS', NULL, NULL),
+(2, 'FEU_TECH_ACES', 'feu_tech_rso', 'Association of Civil Engineering Students', 'ACES', NULL, NULL),
+(3, 'FEU_TECH_AC', 'feu_tech_rso', 'Artist Connection', 'AC', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -138,7 +149,7 @@ CREATE TABLE IF NOT EXISTS `proposal_status` (
 --
 
 INSERT INTO `proposal_status` (`id_status`, `status`) VALUES
-(1, 'Pending'),
+(1, 'For Review'),
 (2, 'With Comments'),
 (3, 'Approve');
 
@@ -246,14 +257,15 @@ CREATE TABLE IF NOT EXISTS `users` (
   `office_name` varchar(255) NOT NULL,
   `office_abbreviation` varchar(30) NOT NULL,
   `user_picture` varchar(100) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `users`
 --
 
 INSERT INTO `users` (`id`, `username`, `password`, `office_name`, `office_abbreviation`, `user_picture`) VALUES
-(2, 'FEU_TECH_SADU', 'sadu_1234', 'Student Affairs and Development Unit', 'SADU', '');
+(2, 'FEU_TECH_SADU', 'sadu_1234', 'Student Affairs and Development Unit', 'SADU', 'sadu_logo.png'),
+(3, 'FEU_TECH_SCC', 'scc_password', 'Student Coordinating Council', 'SCC', 'scc_logo.png');
 
 --
 -- Indexes for dumped tables
@@ -334,7 +346,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `activity_proposals`
 --
 ALTER TABLE `activity_proposals`
-  MODIFY `prop_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=11;
+  MODIFY `prop_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=12;
 --
 -- AUTO_INCREMENT for table `comments`
 --
@@ -354,7 +366,7 @@ ALTER TABLE `offices`
 -- AUTO_INCREMENT for table `organizations`
 --
 ALTER TABLE `organizations`
-  MODIFY `org_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `org_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `proposal_status`
 --
@@ -384,7 +396,7 @@ ALTER TABLE `room`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(30) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+  MODIFY `id` int(30) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
