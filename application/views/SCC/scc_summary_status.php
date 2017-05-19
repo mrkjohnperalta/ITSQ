@@ -1,6 +1,6 @@
 <?php
     $list_of_org = $this->admin_model->get_ListOfOrg();
-
+    // $comment     = $this->sadu_model->get_comments();
     $user_id     = $_SESSION['logged_in']['id'];
 ?>
 
@@ -12,8 +12,8 @@
             <div class="page-head">
                 <!-- BEGIN PAGE TITLE -->
                 <div class="page-title">
-                    <h1>SADU Other Navigations
-                        <small>Student Affairs and Development Unit</small>
+                    <h1>SCC Dashboard
+                        <small>Student Coordinating Council</small>
                     </h1>
                 </div>
                 <!-- END PAGE TITLE -->
@@ -30,7 +30,7 @@
                     <i class="fa fa-circle"></i>
                 </li>
                 <li>
-                    <span class="active">Pending</span>
+                    <span class="active">Summary Status </span>
                 </li>
             </ul>
             <!-- END PAGE BREADCRUMB -->
@@ -42,14 +42,14 @@
                         <div class="portlet-title">
                             <div class="caption">
                                 <i class=" icon-doc font-green"></i>
-                                <span class="caption-subject font-green bold uppercase">RSO's PENDING ACTIVITY PROPOSAL</span>
+                                <span class="caption-subject font-green bold uppercase">RSO's ACTIVITY PROPOSAL SUMMARY</span>
                                 <div class="caption-desc font-grey-cascade"> Select Organization to view their <pre class="mt-code">"Activity Proposal"</pre></div>
                             </div>
                         </div>
                         <div class="portlet-body">
                             <div class="col-md-6">
                                 <div class="input-group">
-                                    <select class="form-control input-sm" id="listoforg" onchange="get_organization(this)">
+                                    <select class="form-control input-sm" id="listoforg_2" onchange="get_organization_list(this)">
                                         <option value="0">Select Organization</option>
                                         <?php
                                         foreach($list_of_org as $org_list)
@@ -72,26 +72,26 @@
                                 }
                             </style>
                             <div class="portlet-body">
-                                <!-- /.col-md-6 -->
-                                <div id="tab_hidden" style="display:none;">
+                                <div id="tab_hidden_2" style="display:none;">
                                     <div class="mt-element-list">
-                                        <div id="org_name_div" style="display: none;">
+                                        <div id="org_name_div_2" style="display: block;">
                                             <div class="mt-list-head list-simple ext-1 font-white bg-blue-chambray">
                                                 <div class="list-head-title-container">
                                                     <div class="list-date"></div>
-                                                    <h3 class="list-title" id="Orgnization_Name"></h3>
+                                                    <h3 class="list-title" id="Orgnization_Name_2"></h3>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div id="SampleID"></div>
+                                        
+                                        <div id="SampleID_2"></div>
                                     </div>
                                 </div>
-                                <div id="tab_init" style="display:block;">
+                                <div id="tab_init_2" style="display:block;">
                                     <center>
                                         <div class='caption-desc font-grey-cascade'> <h3>Select an Organization to View their Proposal</h3> </div>
                                     </center>
                                 </div>
-                                <div id="result_div" style="display:none;">
+                                <div id="result_div_2" style="display:none;">
                                     <center>
                                         <div class='caption-desc font-grey-cascade'> <h3>No Results Found</h3> </div>
                                     </center>
@@ -107,57 +107,138 @@
         <!-- END CONTENT BODY -->
     </div>
 <!-- END CONTENT -->
+<!--<?php $comment = $this->sadu_model->get_All_Proposal_Comment('12');
+
+    foreach($comment as $activity_comment){
+        echo $activity_comment['comment'];
+    }
+
+?>-->
 
 <script type="text/javascript">
-    function get_organization(value)
+    function getvalue(value)
     {
-        var user_id = <?php $_SESSION['logged_in']['id'] ?>
-        // var content = "";
-        $('#SampleID').empty();
-        var value = document.getElementById('listoforg').value;
+        var value = document.getElementById('status').value;
+
+        if(value == 2)
+        {
+            document.getElementById('comments').style.display = "block";
+            document.getElementById('savebtn').style.display = "none";
+        }
+        else
+        {
+            document.getElementById('comments').style.display = "none";
+            document.getElementById('savebtn').style.display = "block";
+        }
+    }
+
+    function comment_func(event)
+    {
+        $comment_text = document.getElementById('comment_section').value;
+        if($comment_text != "")
+        {
+            document.getElementById('comment_btn').disabled = false;
+        }
+        else
+        {
+            document.getElementById('comment_btn').disabled = true;
+        }
+    }
+
+    function save_button_comment()
+    {
+        var author  = document.getElementById('hidden_user_id').value;
+        var comment = document.getElementById('comment_section').value;
+        var prop_id = document.getElementById('proposal_id').value;
+        // alert(value);
+        // alert(prop_id);
+        $.ajax({
+            url:"<?php echo base_url() . 'SADU/Proposal/Save_Proposal_Comment'?>",
+            dataType:'json',
+            data: '&proposal_id='+prop_id+'&author='+author+'&activity_comment='+comment,
+            type:"POST",
+            success: function(result)    
+            {
+                console.log(result);
+            }
+        });
+    }
+
+    function save_button()
+    {
+        var value   = document.getElementById('status').value;
+        var prop_id = document.getElementById('proposal_id').value;
+        alert(value);
+        alert(prop_id);
+        $.ajax({
+            url:"<?php echo base_url() . 'SADU/Proposal/Save_Proposal_Status'?>",
+            dataType:'json',
+            data: '&selected_status='+value+'&proposal_id='+prop_id,
+            type:"POST",
+            success: function(result)
+            {
+                console.log(result);
+            }
+        });
+    }
+
+    
+</script>
+
+<script type="text/javascript">
+    function get_organization_list(value)
+    {
+        var value = document.getElementById('listoforg_2').value;
         if(value != 0)
         {
-            document.getElementById('tab_hidden').style.display = "block";
-            document.getElementById('tab_init').style.display = "none";
-            
-            // alert(value);
+            $('#SampleID_2').empty();
+            document.getElementById('tab_hidden_2').style.display = "block";
+            document.getElementById('tab_init_2').style.display = "none";
+
             console.log(value);
             $.ajax({
-                url:"<?php echo base_url() . 'SADU/Proposal/get_Org_Porposals'?>",
+                url:"<?php echo base_url() . 'SADU/Proposal/get_Org_Porposals_Status'?>",
                 dataType:'json',
                 data: '&selected_value='+value,
                 type:"POST",
-                success: function(result){
-                    // var obj = $.parseJSON(result);
+                success: function(result)
+                {
+                   
                     console.log(result);
-                    // var length = result.length();
-                    // console.log(length);
                     var result_length = Object.keys(result['details']).length;
-                    console.log(result_length);
                     if(result_length != 0)
                     {
-                        document.getElementById('result_div').style.display = "none";
+                        
+                        document.getElementById('result_div_2').style.display = "none";
                         for(var i = 0 ; i < result_length ; i++)
                         {
-                            document.getElementById('org_name_div').style.display = "block"
-                            document.getElementById('Orgnization_Name').innerHTML = "";
-                            document.getElementById('Orgnization_Name').innerHTML = result['details'][i].organization_name;
+                            document.getElementById('org_name_div_2').style.display = "block"
+                            document.getElementById('Orgnization_Name_2').innerHTML = "";
+                            document.getElementById('Orgnization_Name_2').innerHTML = result['details'][i].organization_name;
                         }
 
                         for(var i = 0 ; i < result_length ; i++)
                         {
                             if(result['details'][i].scc_approve == 2 || result['details'][i].edo_status == 2 ||
                                 result['details'][i].sadu_status == 2 || result['details'][i].sdas_status == 2 || result['details'][i].accounting_status == 2)
-                            {
-                                var btn_status = "<button class='btn red' id='commentbtn' onclick='getcomments("+result['details'][i].prop_id+")'> View Comment </button>";
+                            {   
+                                var btn_status = "<center><button class='btn red' id='commentbtn' onclick='getcomments("+result['details'][i].prop_id+")'> View Comment </button></center>";
                             }
                             else
                             {
                                  var btn_status = "";
                             }
-                            var prop      = result['details'][i].proposal;
-                            var all_prop  = prop.split(',');
 
+                            var prop_id = result['details'][i].prop_id;
+                            // comment(prop_id);
+                            if(result['details'][i].edo_status != 3)
+                            {
+                                var act_status = "PENDING";
+                            }
+                            else
+                            {
+                                var act_status = "APPROVED"
+                            }
                             // SCC STEPS
                                 if(result['details'][i].scc_approve == 0)
                                 {
@@ -186,6 +267,7 @@
                             // SADU STEPS
                                 if(result['details'][i].sadu_status == 0)
                                 {
+                                    var sadu_status = "";
                                     var sadu_icon   = "fa fa-spinner";
                                     var sadu_text   = "...";                    
                                 }
@@ -193,27 +275,25 @@
                                 {
                                     var sadu_status = "active";
                                     var sadu_icon   = "fa fa-commenting-o";
-                                    var sadu_text   = "FOR REVIEW";
-                                    var sadu_val    = "1";
+                                    var sadu_text   = "FOR REVIEW";              
                                 }
                                 if(result['details'][i].sadu_status == 2)
                                 {
                                     var sadu_status = "error";
                                     var sadu_icon    = "fa fa-exclamation-triangle";
-                                    var sadu_text   = "WITH COMMENT";
-                                    var sadu_val    = "2";  
+                                    var sadu_text   = "WITH COMMENT";      
                                 }
                                 if(result['details'][i].sadu_status == 3)
                                 {
                                     var sadu_status = "done";
                                     var sadu_icon    = "fa fa-check";
-                                    var sadu_text   = "APPROVED";
-                                    var sadu_val    = "3";                
+                                    var sadu_text   = "APPROVED";                
                                 }
                             
                             // SDAS STEPS
                                 if(result['details'][i].sdas_status == 0)
                                 {
+                                    var sdas_status = "";
                                     var sdas_icon   = "fa fa-spinner";
                                     var sdas_text   = "...";                    
                                 }
@@ -239,6 +319,7 @@
                             // AO STEPS
                                 if(result['details'][i].accounting_status == 0)
                                 {
+                                    var ao_status = "";
                                     var ao_icon   = "fa fa-spinner";
                                     var ao_text   = "...";                      
                                 }
@@ -264,33 +345,36 @@
                             // EDO STEPS
                                 if(result['details'][i].edo_status == 0)
                                 {
+                                    var edo_status = "";
                                     var edo_icon   = "fa fa-spinner";
                                     var edo_text   = "...";                     
                                 }
-                                if(result['details'][i].edo_status == 1)
+                                else if(result['details'][i].edo_status == 1)
                                 {
                                     var edo_status = "active";
                                     var edo_icon   = "fa fa-commenting-o";
                                     var edo_text   = "FOR REVIEW";              
                                 }
-                                if(result['details'][i].edo_status == 2)
+                                else if(result['details'][i].edo_status == 2)
                                 {
                                     var edo_status = "error";
                                     var edo_icon   = "fa fa-exclamation-triangle";
                                     var edo_text   = "WITH COMMENT";            
                                 }
-                                if(result['details'][i].edo_status == 3)
+                                else
                                 {
                                     var edo_status = "done";
                                     var edo_icon   = "fa fa-check";
                                     var edo_text   = "APPROVED";                
                                 }
                             var content = "";
+                            var sample = result['details'][i].prop_id;
+                            
                             var content = 
                             "<div class='mt-list-container list-simple ext-1 group'>" +
                                     "<a class='list-toggle-container' data-toggle='collapse' href='#completed-simple"+ result['details'][i].prop_id +"' aria-expanded='false'>" +
                                         "<div class='list-toggle done uppercase'>" + result['details'][i].proposal_title +
-                                            "<span class='badge badge-default pull-right bg-white font-green bold'>Pending</span>" +
+                                            "<span class='badge badge-default pull-right bg-white font-green bold'>"+ act_status +"</span>" +
                                         "</div>" +
                                     "</a>"+
                                     "<div class='panel-collapse collapse' id='completed-simple"+ result['details'][i].prop_id +"'>" +
@@ -298,31 +382,6 @@
                                             "<div class='tabbable-line'>" +
                                                 "<div id='box-content'>" +
                                                     "<div class='tab-content'>" +
-                                                        "<div class='row'>"+
-                                                            "<div class='col-lg-8 col-xs-12 col-sm-12'>"+
-                                                                "<div class='caption'>"+
-                                                                    "<i class='fa fa-quote-right font-black'></i>"+
-                                                                    "<span class='caption-subject font-black bold uppercase'> General Objective</span>"+
-                                                                "</div>"+
-                                                                "<p>" + result['details'][i].general_objective + "</p>" +
-                                                                "<br>"+
-                                                                "<div class='caption'>"+
-                                                                    "<i class='fa fa-quote-right font-black'></i>"+
-                                                                    "<span class='caption-subject font-black bold uppercase'> Specific Objective</span>"+
-                                                                "</div>"+
-                                                                "<p>" + result['details'][i].specific_objective + "</p>"+
-                                                                "<br>"+
-                                                                "<div class='caption'>"+
-                                                                    "<i class='fa fa-money font-black'></i>"+
-                                                                    "<span class='caption-subject font-black bold uppercase'> Proposed Budget </span>"+
-                                                                "</div>"+
-                                                                "<p> P " + result['details'][i].proposed_budget + " </p>"+
-                                                            "</div>"+
-                                                            "<div class='col-lg-4 col-xs-12 col-sm-12'>"+
-                                                                "<p> <b> UPLOADED ACTIVITY PROPOSAL </b> </p>"+
-                                                                "<div class='caption-desc font-grey-cascade'>"+result['details'][i].proposal+"</div>"+
-                                                            "</div>"+
-                                                        "</div>"+
                                                         "<div class='mt-element-step'>"+
                                                             "<div class='row step-line'>"+
                                                                 "<div class='col-md-3 mt-step-col first "+ scc_status +"'>"+
@@ -332,22 +391,13 @@
                                                                     "<div class='mt-step-title uppercase font-grey-cascade'>SCC</div>"+
                                                                     "<div class='mt-step-content font-grey-cascade uppercase'>"+ scc_text +"</div>"+
                                                                 "</div>"+
-                                                                "<div id='icon_status' class='col-md-2 mt-step-col "+sadu_status+" '>"+
-                                                                    "<div id='initial_icons' style='display: block;'> "+
-                                                                        "<div class='mt-step-number bg-white'>"+
-                                                                            "<i class='"+ sadu_icon +"'></i>"+
-                                                                        "</div>"+
-                                                                    "</div>"+
-                                                                    "<div id='dynamic_icons' style='display: none;'> "+
-                                                                        "<div id='content'></div>"+
-                                                                    "</div>"+
+                                                                "<div class='col-md-2 mt-step-col "+ sadu_status +"'>"+
+                                                                    "<div class='mt-step-number bg-white'>"+
+                                                                        "<i class='"+ sadu_icon +"'></i>"+
+                                                                    " </div>"+
                                                                     "<div class='mt-step-title uppercase font-grey-cascade'>SADU</div>"+
-                                                                    "<select class='form-control input-sm' id='status' style='text-align-last:center;' onchange='getvalue(this);'>"+
-                                                                        "<option value='"+sadu_val+"'>"+sadu_text+"</option>"+
-                                                                        "<option value='1'>FOR REVIEW</option>"+
-                                                                        "<option value='2'>WITH COMMENTS</option>"+
-                                                                        "<option value='3'>APPROVE</option>"+
-                                                                    "</select>"+
+                                                                    "<div class='mt-step-content font-grey-cascade uppercase'>"+ sadu_text +"</div>"+
+                                                                        
                                                                 "</div>"+
                                                                 "<input type='hidden' value='"+ result['details'][i].prop_id +"' id='proposal_id'>"+
                                                                 "<div class='col-md-2 mt-step-col "+ sdas_status +"'>"+
@@ -355,49 +405,41 @@
                                                                         "<i class='"+ sdas_icon +"'></i>"+
                                                                     "</div>"+
                                                                     "<div class='mt-step-title uppercase font-grey-cascade'>SDAS</div>"+
-                                                                    "<div class='mt-step-content font-grey-cascade'>...</div>"+
+                                                                    "<div class='mt-step-content font-grey-cascade'>"+ sdas_text +"</div>"+
                                                                 "</div>"+
                                                                 "<div class='col-md-2 mt-step-col  "+ ao_status +"''>"+
                                                                     "<div class='mt-step-number bg-white'>"+
                                                                         "<i class='"+ ao_icon +"'></i>"+
                                                                     "</div>"+
                                                                     "<div class='mt-step-title uppercase font-grey-cascade'>ACCOUNTING</div>"+
-                                                                    "<div class='mt-step-content font-grey-cascade'>...</div>"+
+                                                                    "<div class='mt-step-content font-grey-cascade'>"+ao_text+"</div>"+
                                                                 "</div>"+
                                                                 "<div class='col-md-3 mt-step-col last "+ edo_status +"''>"+
                                                                     "<div class='mt-step-number bg-white'>"+
                                                                         "<i class='"+ edo_icon +"'></i>"+
                                                                     "</div>"+
                                                                     "<div class='mt-step-title uppercase font-grey-cascade'>EDO</div>"+
-                                                                    "<div class='mt-step-content font-grey-cascade'>...</div>"+
+                                                                    "<div class='mt-step-content font-grey-cascade'>"+ edo_text +"</div>"+
                                                                 "</div>"+
-                                                        " </div>"+
-                                                    "</div>"+
-                                                    "<div id='comments' style='display: none;'>"+
-                                                        "<p><b>Enter your comment below:</b></p>"+
-                                                        "<textarea class='form-control' rows='3' id='comment_section' onkeyup='comment_func()'></textarea>"+
-                                                        "<input type='hidden' id='hidden_user_id' value='"+ <?php echo $user_id?> +"'>"+
-                                                        "<br>"+
-                                                        "<center><button type='button' class='btn green' style='margin-right:5px;' id='comment_btn' onclick='save_button_comment()' disabled>SAVE</button>"+btn_status+"</center>"+
-                                                    "</div>"+
-                                                    "<div id='savebtn' style='display: block'>"+
-                                                        
-                                                        "<center><button type='button' class='btn green' style='margin-right:5px;' onclick='save_button()'>SAVE</button>"+btn_status+"</center>"+
+                                                            "</div>"+
+                                                        "</div>"+
+                                                        // "<input type='type' value='"+ sample +"' id='proposal_id'>"+
+                                                        btn_status+
+                                                        "<div id='Testing_Display'></div>"+
                                                     "</div>"+
                                                 "</div>"+
                                             "</div>"+
                                         "</div>"+
                                     "</div>"+
-                                "</div>"+
-                            "</div>";
+                                "</div>";
                             
-                            $('#SampleID').append(content);
+                            $('#SampleID_2').append(content);
                         }
                     }
                     else
                     {        
-                        document.getElementById('org_name_div').style.display = "none";
-                        document.getElementById('result_div').style.display = "block";
+                        document.getElementById('org_name_div_2').style.display = "none";
+                        document.getElementById('result_div_2').style.display = "block";
                     } 
                 }
             })
@@ -405,138 +447,16 @@
         }
         else
         {
-            document.getElementById('tab_hidden').style.display = "none";
-            document.getElementById('tab_init').style.display   = "block";
-            document.getElementById('result_div').style.display = "none";
+            document.getElementById('tab_hidden_2').style.display = "none";
+            document.getElementById('tab_init_2').style.display   = "block";
+            document.getElementById('result_div_2').style.display = "none";
         }
-    }
-
-    function getvalue(value)
-    {
-        $('#content').empty();
-        var value = document.getElementById('status').value;
-        
-
-        if(value == 1)
-        {
-            var content = "<div class='mt-step-number bg-white'>"+
-                                "<i class='fa fa-commenting-o'></i>"+
-                          "</div>";
-        
-            var d = document.getElementById("icon_status");
-            d.className += " active";
-            $("#icon_status").removeClass("done");
-            $("#icon_status").removeClass("error");
-            
-            document.getElementById('dynamic_icons').style.display = "block";
-            document.getElementById('initial_icons').style.display = "none";
-            $('#content').append(content);
-            
-        }
-        else if(value == 2)
-        {
-            var content = "<div class='mt-step-number bg-white'>"+
-                                "<i class='fa fa-exclamation-triangle'></i>"+
-                          "</div>";
-
-            var d = document.getElementById("icon_status");
-            d.className += " error";
-            $("#icon_status").removeClass("done");
-            $("#icon_status").removeClass("active");
-
-            document.getElementById('comments').style.display = "block";
-            document.getElementById('savebtn').style.display = "none";
-
-            document.getElementById('dynamic_icons').style.display = "block";
-            document.getElementById('initial_icons').style.display = "none";
-            $('#content').append(content);
-        }
-        else
-        {
-            var content = "<div class='mt-step-number bg-white'>"+
-                                "<i class='fa fa-check'></i>"+
-                          "</div>";
-
-            var d = document.getElementById("icon_status");
-            d.className += " done";
-            $("#icon_status").removeClass("error");
-            $("#icon_status").removeClass("active");
-
-            document.getElementById('comments').style.display = "none";
-            document.getElementById('savebtn').style.display = "block";
-            
-            document.getElementById('dynamic_icons').style.display = "block";
-            document.getElementById('initial_icons').style.display = "none";
-            $('#content').append(content);
-            // var sadu_status = "done";
-        }
-    }
-
-    function comment_func(event)
-    {
-        $comment_text = document.getElementById('comment_section').value;
-        if($comment_text != "")
-        {
-            document.getElementById('comment_btn').disabled = false;
-        }
-        else
-        {
-            document.getElementById('comment_btn').disabled = true;
-        }
-    }
-
-    function save_button_comment()
-    {
-        var author  = document.getElementById('hidden_user_id').value;
-        var comment = document.getElementById('comment_section').value;
-        var prop_id = document.getElementById('proposal_id').value;x
-        $.ajax({
-            url:"<?php echo base_url() . 'SADU/Proposal/Save_Proposal_Comment'?>",
-            dataType:'json',
-            data: '&proposal_id='+prop_id+'&author='+author+'&activity_comment='+comment,
-            type:"POST",
-            success: function(result)    
-            {
-                console.log(result);
-                 if(result == true)
-                {
-                    toastr.success('Changes has been successfully saved');
-                }
-                else
-                {
-                    toastr.error('Oopss! Something went wrong. Your comment has already been saved.');
-                }
-            }
-        });
-    }
-
-    function save_button()
-    {
-        var value   = document.getElementById('status').value;
-        var prop_id = document.getElementById('proposal_id').value;
-        $.ajax({
-            url:"<?php echo base_url() . 'SADU/Proposal/Save_Proposal_Status'?>",
-            dataType:'json',
-            data: '&selected_status='+value+'&proposal_id='+prop_id,
-            type:"POST",
-            success: function(result)
-            {
-                console.log(result);
-
-                if(result == true)
-                {
-                    toastr.success('Changes has been successfully saved');
-                }
-                else
-                {
-                    toastr.error('Oopss! Something went wrong.');
-                }
-            }
-        });
     }
 
     function getcomments(proposalID)
     {
+        // var proposalID =  document.getElementById('commentbtn').value;
+        // alert(proposalID);
         $('#display_comment').empty();
         $('#author').empty();
         $.ajax({
@@ -562,6 +482,8 @@
 </script>
 
 
+
+<!--BEGIN OF MODAL for Add Organization-->
 <div class="modal fade" id="view_comment" tabindex="-1" role="basic" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -588,8 +510,12 @@
                 </table>
             </div>
             <div class="modal-footer">
+                <!--<button type="submit" class="btn green">Register</button>-->
                 <button type="button" class="btn dark btn-outline" data-dismiss="modal">Close</button>
             </div>
         </div>
+        <!-- /.modal-content -->
     </div>
+    <!-- /.modal-dialog -->
 </div>
+<!-- /.modal -->

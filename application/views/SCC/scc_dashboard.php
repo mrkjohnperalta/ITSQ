@@ -6,8 +6,8 @@
             <div class="page-head">
                 <!-- BEGIN PAGE TITLE -->
                 <div class="page-title">
-                    <h1>SADU Dashboard
-                        <small>Student Affairs and Development Unit</small>
+                    <h1>SCC Dashboard
+                        <small>Student Coordinating Council</small>
                     </h1>
                 </div>
                 <!-- END PAGE TITLE -->
@@ -50,4 +50,3 @@
         <!-- END CONTENT BODY -->
     </div>
 <!-- END CONTENT -->
-

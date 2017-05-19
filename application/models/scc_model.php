@@ -1,21 +1,15 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Sadu_model extends CI_Model
+class Scc_model extends CI_Model
 {
 	function __construct()
 	{
 		parent:: __construct();
 	}
 
-	function add_organization($data)
-	{
-		$this->db->insert('organizations',$data);
-	}
-
 	function get_Activity_Proposal($selected)
     {
-
 		$query = $this->db->query("
 		SELECT activity_proposals.*, organizations.*,proposal_status.*
 		FROM activity_proposals
@@ -46,25 +40,14 @@ class Sadu_model extends CI_Model
 
 	function Save_Prop_Comment($data, $comment)
 	{
-		$this->db->select('*');
-        $this->db->from('comments');
-        $this->db->where('comment', $comment['comment']);
-		$query = $this->db->get();
-		if($query->num_rows() == 0)
+		if($data['sadu_status'] == 2)
 		{
-			if($data['sadu_status'] == 2)
-			{
-				$this->db->insert('comments', $comment);
+			$this->db->insert('comments', $comment);
 
-				$this->db->where('prop_id', $comment['actprop_id']);
-				$this->db->update('activity_proposals', $data);
-				
-				return true;
-			}
-			else
-			{
-				return false;
-			}
+			$this->db->where('prop_id', $comment['actprop_id']);
+			$this->db->update('activity_proposals', $data);
+			
+			return true;
 		}
 		else
 		{
@@ -85,36 +68,14 @@ class Sadu_model extends CI_Model
 
 	function get_All_Proposal_Comment($id)
 	{
-		$this->db->select('comments.*, users.*');
+		$this->db->select('comments.*, users.*,activity_proposals.*');
 		$this->db->join('users', 'comments.author = users.id');
+		$this->db->join('useactivity_proposalsrs', 'comments.actprop = activity_proposals.id');
         $this->db->from('comments');
         $this->db->where('actprop_id', $id );
         
         $query = $this->db->get();
         return $query->result_array();
-	}
-	
-	function upload_template($file_data)
-	{
-		$this->db->insert('proposal_template', $file_data);
-	}
-
-	function get_templates()
-	{
-		$this->db->select('*');
-        $this->db->from('proposal_template');
-        
-        $query = $this->db->get();
-        return $query->result_array();
-	}
-
-	function delete_temp_selected($template_selected)
-	{
-		for($i = 0 ; $i < sizeof($template_selected) ; $i++)
-		{
-			$this->db->where('template_id', $template_selected[$i]);
-			$this->db->delete('proposal_template');
-		}
 	}
 }
 ?>
