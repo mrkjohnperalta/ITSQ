@@ -237,41 +237,41 @@
             </div>
             <?php echo form_open('SADU/Listoforg/Add_Organization');?>
             <div class="modal-body">
-                    <div class="row">
-                        <div class="col-lg-8 col-md-4 col-sm-6 col-xs-12">
-                            <div class="form-group form-md-line-input has-success form-md-floating-label">
-                                <div class="input-icon right">
-                                    <input type="text" class="form-control" name="org_name">
-                                    <label for="form_control_1">Organization Name</label>
-                                    <span class="help-block"></span>
-                                    <i class="icon-credit-card"></i>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                            <div class="form-group form-md-line-input has-success form-md-floating-label">
-                                <div class="input-icon right">
-                                    <input type="text" class="form-control" name="org_abbreviation">
-                                    <label for="form_control_1">Abbreviation</label>
-                                    <span class="help-block"></span>
-                                    <i class="icon-credit-card"></i>
-                                </div>
+                <div class="row">
+                    <div class="col-lg-8 col-md-4 col-sm-6 col-xs-12">
+                        <div class="form-group form-md-line-input has-success form-md-floating-label">
+                            <div class="input-icon right">
+                                <input type="text" class="form-control" name="org_name">
+                                <label for="form_control_1">Organization Name</label>
+                                <span class="help-block"></span>
+                                <i class="icon-credit-card"></i>
                             </div>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-lg-12 col-md-4 col-sm-6 col-xs-12">
-                            <div class="note note-info font-gray">
-                                <div class="caption">
-                                    <i class="fa fa-sticky-note-o font-green"></i>
-                                    <span class="caption-subject font-green bold uppercase">NOTE</span>
-                                </div>
-                                <p> <b> Username </b> and <b> Password </b> are automatically generated. </p>
-                                <p> <b> Username: </b> FEU_TECH_Organization Abbreviation </p>
-                                <p> <b> Password: </b> feu_tech_rso </p>
+                    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                        <div class="form-group form-md-line-input has-success form-md-floating-label">
+                            <div class="input-icon right">
+                                <input type="text" class="form-control" name="org_abbreviation">
+                                <label for="form_control_1">Abbreviation</label>
+                                <span class="help-block"></span>
+                                <i class="icon-credit-card"></i>
                             </div>
                         </div>
                     </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12 col-md-4 col-sm-6 col-xs-12">
+                        <div class="note note-info font-gray">
+                            <div class="caption">
+                                <i class="fa fa-sticky-note-o font-green"></i>
+                                <span class="caption-subject font-green bold uppercase">NOTE</span>
+                            </div>
+                            <p> <b> Username </b> and <b> Password </b> are automatically generated. </p>
+                            <p> <b> Username: </b> FEU_TECH_Organization Abbreviation </p>
+                            <p> <b> Password: </b> feu_tech_rso </p>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="modal-footer">
                 <button type="submit" class="btn green">Register</button>

@@ -40,7 +40,7 @@ class Listoforg extends CI_Controller
 	    else
 	    {
 			$org_id = sha1($_SESSION['logged_in']['id']);
-	      	//to check if theres a folder of the user
+	      	// to check if theres a folder of the user
 			// if (!file_exists('C:/xampp/htdocs/ITSQ/files/proposals/'.$org_id.'/')) 
 			// {
 			// 	mkdir("C:/xampp/htdocs/ITSQ/files/proposals/".$org_id,0755);
