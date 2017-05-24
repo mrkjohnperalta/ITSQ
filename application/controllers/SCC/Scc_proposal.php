@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Proposal extends CI_Controller
+class Scc_proposal extends CI_Controller
 {
 	function __construct()
 	{
@@ -17,14 +17,14 @@ class Proposal extends CI_Controller
 	function index()
 	{
 		$this->load->view('includes/header');
-		$this->load->view('SADU/proposals');
+		$this->load->view('SCC/scc_proposals');
 		$this->load->view('includes/footer');
 	}
 
 	function Proposal_summary()
 	{
 		$this->load->view('includes/header');
-		$this->load->view('SADU/summary_status');
+		$this->load->view('SCC/scc_summary_status');
 		$this->load->view('includes/footer');
 	}
 

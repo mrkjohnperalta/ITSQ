@@ -1,14 +1,12 @@
-<!-- BEGIN FOOTER -->
-<div class="page-footer">
-    <div class="page-footer-inner"> 2016 &copy; Metronic Theme By
-        <a target="_blank" href="http://keenthemes.com/">Keenthemes</a> &nbsp;|&nbsp;
-        <a href="http://themeforest.net/item/metronic-responsive-admin-dashboard-template/4021469?ref=keenthemes" title="Purchase Metronic just for 27$ and get lifetime updates for free" target="_blank">Purchase Metronic!</a>
+    <!-- BEGIN FOOTER -->
+    <div class="page-footer">
+        <div class="page-footer-inner"> 2017 &copy; FEU Institute of Technology &nbsp;|&nbsp; Activity Proposal Monitoring System
+        </div>
+        <div class="scroll-to-top">
+            <button class="btn dark btn-lg"><span class="icon-arrow-up"></span></button>
+        </div>
     </div>
-    <div class="scroll-to-top">
-        <i class="icon-arrow-up"></i>
-    </div>
-</div>
-<!-- END FOOTER -->
+    <!-- END FOOTER -->
 
     <!-- BEGIN CORE PLUGINS -->
     <script src="<?php echo base_url() . 'js/jquery.min.js'?>" type="text/javascript"></script>
@@ -22,13 +20,17 @@
     <script src="<?php echo base_url() . 'js/moment.min.js'?>" type="text/javascript"></script>
     <script src="<?php echo base_url() . 'js/fullcalendar.min.js'?>" type="text/javascript"></script>
     <script src="<?php echo base_url() . 'js/jquery-ui.min.js'?>" type="text/javascript"></script>
+    <script src="<?php echo base_url() . 'js/toastr.min.js'?>" type="text/javascript"></script>
     <!-- END PAGE LEVEL PLUGINS -->
     <!-- BEGIN THEME GLOBAL SCRIPTS -->
     <script src="<?php echo base_url() . 'js/app.min.js'?>" type="text/javascript"></script>
     <!-- END THEME GLOBAL SCRIPTS -->
     <!-- BEGIN PAGE LEVEL SCRIPTS -->
-    <script src="<?php echo base_url() . 'js/calendar.min.js'?>" type="text/javascript"></script>
+    <!--<script src="<?php echo base_url() . 'js/calendar.min.js'?>" type="text/javascript"></script>-->
     <script src="<?php echo base_url() . 'js/lock.min.js'?>" type="text/javascript"></script>
+    <script src="<?php echo base_url() . 'js/bootstrap-fileinput.js'?>" type="text/javascript"></script>
+    <script src="<?php echo base_url() . 'js/pnotify.js'?>" type="text/javascript"></script>
+    <script src="<?php echo base_url() . 'js/ui-toastr.min.js'?>" type="text/javascript"></script>
     <!-- END PAGE LEVEL SCRIPTS -->
     <!-- BEGIN THEME LAYOUT SCRIPTS -->
     <script src="<?php echo base_url() . 'js/layout.min.js'?>" type="text/javascript"></script>
@@ -36,6 +38,8 @@
     <script src="<?php echo base_url() . 'js/quick-sidebar.min.js'?>" type="text/javascript"></script>
     <script src="<?php echo base_url() . 'js/quick-nav.min.js'?>" type="text/javascript"></script>
     <!-- END THEME LAYOUT SCRIPTS -->
+    <!-- DROPZONE -->
+    <script src="<?php echo base_url() . 'js/dropzone.js'?>"></script>\
     <script>
         $(document).ready(function()
         {
@@ -45,25 +49,63 @@
             });
         })
     </script>
-    <!-- Google Code for Universal Analytics -->
     <script>
-      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-      })(window,document,'script','../../../../../www.google-analytics.com/analytics.js','ga');
-      ga('create', 'UA-37564768-1', 'auto');
-      ga('send', 'pageview');
-    </script>
-    <!-- End -->
+        $(document).ready(function() {
 
-    <!-- Google Tag Manager -->
-    <noscript><iframe src="http://www.googletagmanager.com/ns.html?id=GTM-W276BJ"
-    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    '../../../../../www.googletagmanager.com/gtm5445.html?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-W276BJ');</script>
-    <!-- End -->
+            $.ajax({
+                url: '../process.php',
+                type: 'POST',
+                data: 'type=fetch',
+                async: false,
+                success: function(response){
+                    json_events = response;
+                    console.log(json_events);
+                }
+            });
+
+            /* initialize the calendar
+            -----------------------------------------------------------------*/
+            var date = new Date();
+            var d = date.getDate();
+            var m = date.getMonth();
+            var y = date.getFullYear();
+
+            $('#calendar').fullCalendar({
+                header: {
+                    left: 'prev,next today',
+                    center: 'title',
+                    right: 'month,agendaWeek,agendaDay'
+                },
+                editable: false,
+                events: JSON.parse(json_events),
+                eventClick: function(event, jsEvent, view) {
+                    
+                    // $.ajax({
+                    //     url: 'process.php',
+                    //     data: 'type=changetitle&title='+title+'&eventid='+event.id,
+                    //     type: 'POST',
+                    //     dataType: 'json',
+                    //     success: function(response){	
+                    //         if(response.status == 'success')			    			
+                    //             $('#calendar').fullCalendar('updateEvent',event);
+                    //     },
+                    //     error: function(e){
+                    //         alert('Error processing your request: '+e.responseText);
+                    //     }
+                    // });
+                    
+                    // alert(event.title);
+                    // document.getElementById('modal-title').innerHTML     = event.title + " details";
+                    document.getElementById('event-organizer').innerHTML = event.org;
+                    document.getElementById('event-title').innerHTML     = event.title;
+                    document.getElementById('event-startdate').innerHTML     = event.start;
+                    document.getElementById('event-enddate').innerHTML     = event.end;
+                    $('#event_details').modal('show');
+                },
+            });
+
+
+        });
+    </script>
 </body>
 </html>

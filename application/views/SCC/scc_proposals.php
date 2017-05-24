@@ -111,6 +111,7 @@
 <script type="text/javascript">
     function get_organization(value)
     {
+        var user_id = <?php $_SESSION['logged_in']['id'] ?>
         // var content = "";
         $('#SampleID').empty();
         var value = document.getElementById('listoforg').value;
@@ -155,23 +156,6 @@
                                  var btn_status = "";
                             }
 
-                            if(result['details'][i].proposal != "")
-                            {
-                                var filesbtn = "<button class='btn dark' id='proposals' value='"+result['details'][i].proposal+"' onclick='displayproposal()'> View Proposal </button>";
-                            }
-                            else
-                            {
-                                var filesbtn = "";
-                            }
-                            
-
-                            // for(var x = 0 ; x < 2 ; x++)
-                            // {
-                            //     // document.getElementById('uploaded_files').innerHTML = "prop";
-                            //     // $('#uploaded_files')append(prop);
-                            //     var testing = "<button class='btn red' id='commentbtn' onclick='getcomments("+result['details'][i].prop_id+")'> View Comment </button>";
-                            // }
-
                             // SCC STEPS
                                 if(result['details'][i].scc_approve == 0)
                                 {
@@ -208,21 +192,18 @@
                                     var sadu_status = "active";
                                     var sadu_icon   = "fa fa-commenting-o";
                                     var sadu_text   = "FOR REVIEW";
-                                    var sadu_val    = "1";
                                 }
                                 if(result['details'][i].sadu_status == 2)
                                 {
                                     var sadu_status = "error";
                                     var sadu_icon    = "fa fa-exclamation-triangle";
-                                    var sadu_text   = "WITH COMMENT";
-                                    var sadu_val    = "2";  
+                                    var sadu_text   = "WITH COMMENT";      
                                 }
                                 if(result['details'][i].sadu_status == 3)
                                 {
                                     var sadu_status = "done";
                                     var sadu_icon    = "fa fa-check";
-                                    var sadu_text   = "APPROVED";
-                                    var sadu_val    = "3";                
+                                    var sadu_text   = "APPROVED";                
                                 }
                             
                             // SDAS STEPS
@@ -333,8 +314,8 @@
                                                                 "<p> P " + result['details'][i].proposed_budget + " </p>"+
                                                             "</div>"+
                                                             "<div class='col-lg-4 col-xs-12 col-sm-12'>"+
-                                                                "<p> <b> UPLOADED ACTIVITY PROPOSAL </b> </p>"+
-                                                                "<div class='caption-desc font-grey-cascade'>"+filesbtn+"</div>"+
+                                                                "<p> <b> UPLOADED FILES GOES HERE </b> </p>"+
+                                                                "<div class='caption-desc font-grey-cascade'> <h3>Under Construction</h3> </div>"+
                                                             "</div>"+
                                                         "</div>"+
                                                         "<div class='mt-element-step'>"+
@@ -344,24 +325,20 @@
                                                                         "<i class='"+ scc_icon +"'></i>"+
                                                                     "</div>"+
                                                                     "<div class='mt-step-title uppercase font-grey-cascade'>SCC</div>"+
-                                                                    "<div class='mt-step-content font-grey-cascade uppercase'>"+ scc_text +"</div>"+
+                                                                    "<div class='mt-step-content font-grey-cascade uppercase'>"+ 
+                                                                        "<select class='form-control input-sm' id='status' style='text-align-last:center;' onchange='getvalue(this);'>"+
+                                                                            "<option value='1'>FOR REVIEW</option>"+
+                                                                            "<option value='2'>WITH COMMENTS</option>"+
+                                                                            "<option value='3'>APPROVE</option>"+
+                                                                        "</select>"+
+                                                                    "</div>"+
                                                                 "</div>"+
-                                                                "<div id='icon_status' class='col-md-2 mt-step-col "+sadu_status+" '>"+
-                                                                    "<div id='initial_icons' style='display: block;'> "+
-                                                                        "<div class='mt-step-number bg-white'>"+
-                                                                            "<i class='"+ sadu_icon +"'></i>"+
-                                                                        "</div>"+
-                                                                    "</div>"+
-                                                                    "<div id='dynamic_icons' style='display: none;'> "+
-                                                                        "<div id='content'></div>"+
-                                                                    "</div>"+
+                                                                "<div class='col-md-2 mt-step-col "+ sadu_status +"'>"+
+                                                                    "<div class='mt-step-number bg-white'>"+
+                                                                        "<i class='"+ sadu_icon +"'></i>"+
+                                                                    " </div>"+
                                                                     "<div class='mt-step-title uppercase font-grey-cascade'>SADU</div>"+
-                                                                    "<select class='form-control input-sm' id='status' style='text-align-last:center;' onchange='getvalue(this);'>"+
-                                                                        "<option value='"+sadu_val+"'>"+sadu_text+"</option>"+
-                                                                        "<option value='1'>FOR REVIEW</option>"+
-                                                                        "<option value='2'>WITH COMMENTS</option>"+
-                                                                        "<option value='3'>APPROVE</option>"+
-                                                                    "</select>"+
+                                                                    "<div class='mt-step-content font-grey-cascade'>"+ sadu_text +"</div>"+
                                                                 "</div>"+
                                                                 "<input type='hidden' value='"+ result['details'][i].prop_id +"' id='proposal_id'>"+
                                                                 "<div class='col-md-2 mt-step-col "+ sdas_status +"'>"+
@@ -412,7 +389,8 @@
                     {        
                         document.getElementById('org_name_div').style.display = "none";
                         document.getElementById('result_div').style.display = "block";
-                    } 
+                    }
+                       
                 }
             })
             $('#div_list').toggle(900)
@@ -427,61 +405,18 @@
 
     function getvalue(value)
     {
-        $('#content').empty();
         var value = document.getElementById('status').value;
-        
 
-        if(value == 1)
+        if(value == 2)
         {
-            var content = "<div class='mt-step-number bg-white'>"+
-                                "<i class='fa fa-commenting-o'></i>"+
-                          "</div>";
-        
-            var d = document.getElementById("icon_status");
-            d.className += " active";
-            $("#icon_status").removeClass("done");
-            $("#icon_status").removeClass("error");
-            
-            document.getElementById('dynamic_icons').style.display  = "block";
-            document.getElementById('initial_icons').style.display  = "none";
-            $('#content').append(content);
-            
-        }
-        else if(value == 2)
-        {
-            var content = "<div class='mt-step-number bg-white'>"+
-                                "<i class='fa fa-exclamation-triangle'></i>"+
-                          "</div>";
-
-            var d = document.getElementById("icon_status");
-            d.className += " error";
-            $("#icon_status").removeClass("done");
-            $("#icon_status").removeClass("active");
-
-            document.getElementById('comments').style.display       = "block";
-            document.getElementById('savebtn').style.display        = "none";
-
-            document.getElementById('dynamic_icons').style.display  = "block";
-            document.getElementById('initial_icons').style.display  = "none";
-            $('#content').append(content);
+            document.getElementById('comments').style.display = "block";
+            document.getElementById('savebtn').style.display = "none";
         }
         else
         {
-            var content = "<div class='mt-step-number bg-white'>"+
-                                "<i class='fa fa-check'></i>"+
-                          "</div>";
-
-            var d = document.getElementById("icon_status");
-            d.className += " done";
-            $("#icon_status").removeClass("error");
-            $("#icon_status").removeClass("active");
-
-            document.getElementById('comments').style.display       = "none";
-            document.getElementById('savebtn').style.display        = "block";
-            
-            document.getElementById('dynamic_icons').style.display  = "block";
-            document.getElementById('initial_icons').style.display  = "none";
-            $('#content').append(content);
+            document.getElementById('comments').style.display = "none";
+            document.getElementById('savebtn').style.display = "block";
+            var sadu_status = "done";
         }
     }
 
@@ -503,6 +438,8 @@
         var author  = document.getElementById('hidden_user_id').value;
         var comment = document.getElementById('comment_section').value;
         var prop_id = document.getElementById('proposal_id').value;
+        // alert(value);
+        // alert(prop_id);
         $.ajax({
             url:"<?php echo base_url() . 'SADU/Proposal/Save_Proposal_Comment'?>",
             dataType:'json',
@@ -511,14 +448,7 @@
             success: function(result)    
             {
                 console.log(result);
-                 if(result == true)
-                {
-                    toastr.success('Changes has been successfully saved');
-                }
-                else
-                {
-                    toastr.error('Oopss! Something went wrong. Your comment has already been saved.');
-                }
+                toastr.success('Changes has been successfully saved');
             }
         });
     }
@@ -527,6 +457,8 @@
     {
         var value   = document.getElementById('status').value;
         var prop_id = document.getElementById('proposal_id').value;
+        alert(value);
+        alert(prop_id);
         $.ajax({
             url:"<?php echo base_url() . 'SADU/Proposal/Save_Proposal_Status'?>",
             dataType:'json',
@@ -535,21 +467,15 @@
             success: function(result)
             {
                 console.log(result);
-
-                if(result == true)
-                {
-                    toastr.success('Changes has been successfully saved');
-                }
-                else
-                {
-                    toastr.error('Oopss! Something went wrong.');
-                }
+                toastr.success('Changes has been successfully saved');
             }
         });
     }
 
     function getcomments(proposalID)
     {
+        // var proposalID =  document.getElementById('commentbtn').value;
+        // alert(proposalID);
         $('#display_comment').empty();
         $('#author').empty();
         $.ajax({
@@ -572,31 +498,9 @@
         })
         $('#view_comment').modal('show');
     }
-
-    function displayproposal()
-    {
-        $('#list_proposals').empty();
-        // var proposals = document.getElementById('proposals').value;
-        var prop      = document.getElementById('proposals').value;;
-        var all_prop  = prop.split(',');
-        // console.log(all_prop);
-        // console.log(all_prop.length);
-        for(var x = 0 ; x < all_prop.length ; x++)
-        {
-            // alert(all_prop[x]);
-            var content = "<div class='col-lg-6 col-md-4 col-sm-6 col-xs-12'>"+
-                              "<div class='caption'>"+
-                                  "<font size='5px'><i class='fa fa-file-word-o'></i></font>&nbsp;"+
-                                  "<a href=<?=base_url(). 'files/proposals/"+all_prop[x]+"'?> target='_blank'><span class='caption-subject font-dark bold uppercase'>"+all_prop[x]+"</span></a>"+
-                              "</div>"+
-                          "</div>";
-            $('#list_proposals').append(content);
-        }
-        $('#view_proposals').modal('show');
-    }
 </script>
 
-<!-- Modal for activity proposal comment -->
+
 <div class="modal fade" id="view_comment" tabindex="-1" role="basic" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -609,7 +513,7 @@
                     <tbody>
                         <tr>
                             <td><p><b>Comment from: &nbsp;</b></p></td>
-                            <td><div id="author"></div> </td>
+                            <td><div id="author"></div></td>
                         </tr>
                     </tbody>
                 </table>
@@ -623,29 +527,9 @@
                 </table>
             </div>
             <div class="modal-footer">
+                <!--<button type="submit" class="btn green">Register</button>-->
                 <button type="button" class="btn dark btn-outline" data-dismiss="modal">Close</button>
             </div>
         </div>
     </div>
 </div>
-
-<!-- Modal for activity proposal files -->
-<div class="modal fade" id="view_proposals" tabindex="-1" role="basic" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
-                <h4 class="caption-subject font-dark sbold"> Uploaded Activity Proposals</h4>
-            </div>
-            <div class="modal-body">
-                <div class='row'>
-                    <div id='list_proposals'></div>
-                </div>   
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn dark btn-outline" data-dismiss="modal">Close</button>
-            </div>
-        </div>
-    </div>
-</div>
-

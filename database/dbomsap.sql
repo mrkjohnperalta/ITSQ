@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: May 04, 2017 at 08:26 AM
+-- Generation Time: May 05, 2017 at 06:18 AM
 -- Server version: 5.6.25
 -- PHP Version: 5.6.11
 
@@ -41,14 +41,14 @@ CREATE TABLE IF NOT EXISTS `activity_proposals` (
   `sdas_status` int(11) NOT NULL DEFAULT '0',
   `accounting_status` int(11) NOT NULL DEFAULT '0',
   `edo_status` int(11) NOT NULL DEFAULT '0'
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `activity_proposals`
 --
 
 INSERT INTO `activity_proposals` (`prop_id`, `proposal`, `proposal_title`, `general_objective`, `specific_objective`, `proposed_budget`, `sent_by`, `date_sent`, `date_approved`, `scc_approve`, `sadu_status`, `sdas_status`, `accounting_status`, `edo_status`) VALUES
-(2, 'CSCVersion.txt', '', '', '', 0, '201310871', '2017-04-30', NULL, 1, 0, 0, 0, 0),
+(2, 'CSCVersion.txt', '', '', '', 0, '201310871', '2017-04-30', NULL, 2, 0, 0, 0, 0),
 (3, 'SW_Configuration.xml', '', '', '', 0, '201310871', '2017-05-01', NULL, 1, 0, 0, 0, 0),
 (4, 'SW_Configuration.xml', '', '', '', 0, '201310871', '2017-05-01', NULL, 1, 0, 0, 0, 0),
 (5, 'CSCVersion.txt', '', '', '', 0, '201310871', '2017-05-01', NULL, 1, 0, 0, 0, 0),
@@ -57,7 +57,9 @@ INSERT INTO `activity_proposals` (`prop_id`, `proposal`, `proposal_title`, `gene
 (8, 'SW_Configuration.xml', '', '', '', 0, '201310871', '2017-05-01', NULL, 1, 0, 0, 0, 0),
 (9, 'SW_Configuration.xml', '', '', '', 0, '201310871', '2017-05-01', NULL, 1, 0, 0, 0, 0),
 (10, 'SW_Configuration.xml', '', '', '', 0, '201310871', '2017-05-01', NULL, 1, 0, 0, 0, 0),
-(11, 'abc.docx', '', 'Objective is cheness', 'Specific Objective is cheness', 2500, '1', '2017-05-04', NULL, 1, 0, 0, 0, 0);
+(11, 'abc.docx', 'Unang Title', 'Objective is cheness', 'Specific Objective is cheness', 2500, '1', '2017-05-04', NULL, 3, 1, 0, 0, 0),
+(12, 'hello.txt', 'Title Ito Bes', 'Objective ulit', 'Specific Objective Ulit', 15000, '1', '2017-05-04', NULL, 3, 0, 0, 0, 0),
+(13, 'Aces Proposal Title', 'Title ACES', 'Hello Hello Hello Hello Hello Hello Hello Hello Hello Hello Hello Hello Hello Hello Hello', 'Good Good Good Good Good Good Good Good Good Good Good Good Good Good Good ', 8000, '2', '2017-05-05', NULL, 3, 1, 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -346,7 +348,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `activity_proposals`
 --
 ALTER TABLE `activity_proposals`
-  MODIFY `prop_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=12;
+  MODIFY `prop_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=14;
 --
 -- AUTO_INCREMENT for table `comments`
 --
