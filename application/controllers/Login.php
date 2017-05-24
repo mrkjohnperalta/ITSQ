@@ -11,7 +11,7 @@ class Login extends CI_Controller
 		if ( isset( $_SESSION['logged_in'] ) )
 		{
 			redirect('SADU/Dashboard', 'refresh');
-	    }     
+	    }
 	}
 
 	function index()

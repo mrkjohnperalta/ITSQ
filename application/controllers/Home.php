@@ -24,7 +24,7 @@ class Home extends CI_Controller {
 		session_destroy();
 		redirect('Login', 'refresh');
 	}
- 
+
 }
  
 ?>
