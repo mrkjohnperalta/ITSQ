@@ -12,6 +12,7 @@
     <meta content="Preview page of Metronic Admin Theme #4 for statistics, charts, recent events and reports" name="description" />
     <meta content="" name="author" />
     <!-- BEGIN GLOBAL MANDATORY STYLES -->
+    
     <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&amp;subset=all" rel="stylesheet" type="text/css" />
     <link href="<?php echo base_url() . 'css/fonts/font-awesome.css'?>"      rel="stylesheet" type="text/css" />
     <link href="<?php echo base_url() . 'css/simple-line-icons.min.css' ?>" rel="stylesheet" type="text/css" />
@@ -20,10 +21,20 @@
     <!-- END GLOBAL MANDATORY STYLES -->
     <!-- BEGIN PAGE LEVEL PLUGINS -->
     <link href="<?php echo base_url() . 'css/fullcalendar.min.css'?>" rel="stylesheet" type="text/css" />
+    <link href="<?php echo base_url() . 'css/component.css'?>" rel="stylesheet" type="text/css" />
+    <link href="<?php echo base_url() . 'css/demo.css'?>" rel="stylesheet" type="text/css" />
+    <link href="<?php echo base_url() . 'css/normalize.css'?>" rel="stylesheet" type="text/css" />
+    <link href="<?php echo base_url() . 'css/toastr.min.css'?>" rel="stylesheet" type="text/css" />
+    <link href="<?php echo base_url() . 'css/dropzone.min.css'?>" rel="stylesheet" type="text/css" />
+    <link href="<?php echo base_url() . 'css/basic.min.css'?>" rel="stylesheet" type="text/css" />
+    <link href="<?php echo base_url() . 'css/bootstrap-fileinput.css'?>" rel="stylesheet" type="text/css" />
+    <link href="<?php echo base_url() . 'css/basic.css'?>" rel="stylesheet">
+    <link href="<?php echo base_url() . 'css/dropzone.css'?>" rel="stylesheet">
     <!-- END PAGE LEVEL PLUGINS -->
     <!-- BEGIN THEME GLOBAL STYLES -->
     <link href="<?php echo base_url() . 'css/components.min.css' ?>" rel="stylesheet" id="style_components" type="text/css" />
     <link href="<?php echo base_url() . 'css/plugins.min.css'?>"    rel="stylesheet" type="text/css" />
+    <link href="<?php echo base_url() . 'css/pnotify.css'?>" media="all" rel="stylesheet" type="text/css" />
     <!-- END THEME GLOBAL STYLES -->
     <!-- BEGIN THEME LAYOUT STYLES -->
     <link href="<?php echo base_url() . 'css/layout.min.css'?>" rel="stylesheet" type="text/css" />
@@ -36,10 +47,8 @@
 
 
 <?php 
-    // echo "<pre>";
-    // echo print_r($_SESSION['logged_in']);
-    // echo "</pre>";
-    $user_abbreviation = $_SESSION['logged_in']['user_abbreviation'];
+    $user_abbreviation  = $_SESSION['logged_in']['user_abbreviation'];
+    $user_picture       = $_SESSION['logged_in']['user_picture'];
 ?>
 
 <body class="page-container-bg-solid page-header-fixed page-sidebar-closed-hide-logo">
@@ -57,23 +66,10 @@
             </div>
             <!-- END LOGO -->
             <!-- BEGIN RESPONSIVE MENU TOGGLER -->
-            <a href="javascript:;" class="menu-toggler responsive-toggler icon-diamond" data-toggle="collapse" data-target=".navbar-collapse"> </a>
+            <a href="javascript:;" class="menu-toggler responsive-toggler" data-toggle="collapse" data-target=".navbar-collapse"> </a>
             <!-- END RESPONSIVE MENU TOGGLER -->
             <!-- BEGIN PAGE TOP -->
             <div class="page-top">
-                <!-- BEGIN HEADER SEARCH BOX -->
-                <!-- DOC: Apply "search-form-expanded" right after the "search-form" class to have half expanded search box -->
-                <!-- <form class="search-form" action="http://keenthemes.com/preview/metronic/theme/admin_4/page_general_search_2.html" method="GET">
-                    <div class="input-group">
-                        <input type="text" class="form-control input-sm" placeholder="Search..." name="query">
-                        <span class="input-group-btn">
-                            <a href="javascript:;" class="btn submit">
-                                <i class="icon-magnifier"></i>
-                            </a>
-                        </span>
-                    </div>
-                </form> -->
-                <!-- END HEADER SEARCH BOX -->
                 <!-- BEGIN TOP NAVIGATION MENU -->
                 <div class="top-menu">
                     <ul class="nav navbar-nav pull-right">
@@ -113,69 +109,6 @@
                                                     </span> Server #12 overloaded. </span>
                                             </a>
                                         </li>
-                                        <li>
-                                            <a href="javascript:;">
-                                                <span class="time">10 mins</span>
-                                                <span class="details">
-                                                    <span class="label label-sm label-icon label-warning">
-                                                        <i class="fa fa-bell-o"></i>
-                                                    </span> Server #2 not responding. </span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="javascript:;">
-                                                <span class="time">14 hrs</span>
-                                                <span class="details">
-                                                    <span class="label label-sm label-icon label-info">
-                                                        <i class="fa fa-bullhorn"></i>
-                                                    </span> Application error. </span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="javascript:;">
-                                                <span class="time">2 days</span>
-                                                <span class="details">
-                                                    <span class="label label-sm label-icon label-danger">
-                                                        <i class="fa fa-bolt"></i>
-                                                    </span> Database overloaded 68%. </span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="javascript:;">
-                                                <span class="time">3 days</span>
-                                                <span class="details">
-                                                    <span class="label label-sm label-icon label-danger">
-                                                        <i class="fa fa-bolt"></i>
-                                                    </span> A user IP blocked. </span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="javascript:;">
-                                                <span class="time">4 days</span>
-                                                <span class="details">
-                                                    <span class="label label-sm label-icon label-warning">
-                                                        <i class="fa fa-bell-o"></i>
-                                                    </span> Storage Server #4 not responding dfdfdfd. </span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="javascript:;">
-                                                <span class="time">5 days</span>
-                                                <span class="details">
-                                                    <span class="label label-sm label-icon label-info">
-                                                        <i class="fa fa-bullhorn"></i>
-                                                    </span> System Error. </span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="javascript:;">
-                                                <span class="time">9 days</span>
-                                                <span class="details">
-                                                    <span class="label label-sm label-icon label-danger">
-                                                        <i class="fa fa-bolt"></i>
-                                                    </span> Storage server failed. </span>
-                                            </a>
-                                        </li>
                                     </ul>
                                 </li>
                             </ul>
@@ -206,50 +139,6 @@
                                                     <span class="time">Just Now </span>
                                                 </span>
                                                 <span class="message"> Vivamus sed auctor nibh congue nibh. auctor nibh auctor nibh... </span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <span class="photo">
-                                                    <img src="../assets/layouts/layout3/img/avatar3.jpg" class="img-circle" alt=""> </span>
-                                                <span class="subject">
-                                                    <span class="from"> Richard Doe </span>
-                                                    <span class="time">16 mins </span>
-                                                </span>
-                                                <span class="message"> Vivamus sed congue nibh auctor nibh congue nibh. auctor nibh auctor nibh... </span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <span class="photo">
-                                                    <img src="../assets/layouts/layout3/img/avatar1.jpg" class="img-circle" alt=""> </span>
-                                                <span class="subject">
-                                                    <span class="from"> Bob Nilson </span>
-                                                    <span class="time">2 hrs </span>
-                                                </span>
-                                                <span class="message"> Vivamus sed nibh auctor nibh congue nibh. auctor nibh auctor nibh... </span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <span class="photo">
-                                                    <img src="../assets/layouts/layout3/img/avatar2.jpg" class="img-circle" alt=""> </span>
-                                                <span class="subject">
-                                                    <span class="from"> Lisa Wong </span>
-                                                    <span class="time">40 mins </span>
-                                                </span>
-                                                <span class="message"> Vivamus sed auctor 40% nibh congue nibh... </span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <span class="photo">
-                                                    <img src="../assets/layouts/layout3/img/avatar3.jpg" class="img-circle" alt=""> </span>
-                                                <span class="subject">
-                                                    <span class="from"> Richard Doe </span>
-                                                    <span class="time">46 mins </span>
-                                                </span>
-                                                <span class="message"> Vivamus sed congue nibh auctor nibh congue nibh. auctor nibh auctor nibh... </span>
                                             </a>
                                         </li>
                                     </ul>
@@ -286,84 +175,6 @@
                                                 </span>
                                             </a>
                                         </li>
-                                        <li>
-                                            <a href="javascript:;">
-                                                <span class="task">
-                                                    <span class="desc">Application deployment</span>
-                                                    <span class="percent">65%</span>
-                                                </span>
-                                                <span class="progress">
-                                                    <span style="width: 65%;" class="progress-bar progress-bar-danger" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100">
-                                                        <span class="sr-only">65% Complete</span>
-                                                    </span>
-                                                </span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="javascript:;">
-                                                <span class="task">
-                                                    <span class="desc">Mobile app release</span>
-                                                    <span class="percent">98%</span>
-                                                </span>
-                                                <span class="progress">
-                                                    <span style="width: 98%;" class="progress-bar progress-bar-success" aria-valuenow="98" aria-valuemin="0" aria-valuemax="100">
-                                                        <span class="sr-only">98% Complete</span>
-                                                    </span>
-                                                </span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="javascript:;">
-                                                <span class="task">
-                                                    <span class="desc">Database migration</span>
-                                                    <span class="percent">10%</span>
-                                                </span>
-                                                <span class="progress">
-                                                    <span style="width: 10%;" class="progress-bar progress-bar-warning" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100">
-                                                        <span class="sr-only">10% Complete</span>
-                                                    </span>
-                                                </span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="javascript:;">
-                                                <span class="task">
-                                                    <span class="desc">Web server upgrade</span>
-                                                    <span class="percent">58%</span>
-                                                </span>
-                                                <span class="progress">
-                                                    <span style="width: 58%;" class="progress-bar progress-bar-info" aria-valuenow="58" aria-valuemin="0" aria-valuemax="100">
-                                                        <span class="sr-only">58% Complete</span>
-                                                    </span>
-                                                </span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="javascript:;">
-                                                <span class="task">
-                                                    <span class="desc">Mobile development</span>
-                                                    <span class="percent">85%</span>
-                                                </span>
-                                                <span class="progress">
-                                                    <span style="width: 85%;" class="progress-bar progress-bar-success" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100">
-                                                        <span class="sr-only">85% Complete</span>
-                                                    </span>
-                                                </span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="javascript:;">
-                                                <span class="task">
-                                                    <span class="desc">New UI release</span>
-                                                    <span class="percent">38%</span>
-                                                </span>
-                                                <span class="progress progress-striped">
-                                                    <span style="width: 38%;" class="progress-bar progress-bar-important" aria-valuenow="18" aria-valuemin="0" aria-valuemax="100">
-                                                        <span class="sr-only">38% Complete</span>
-                                                    </span>
-                                                </span>
-                                            </a>
-                                        </li>
                                     </ul>
                                 </li>
                             </ul>
@@ -375,17 +186,13 @@
                             <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
                                 <span class="username username-hide-on-mobile"> Welcome, <?= $user_abbreviation; ?> </span>
                                 <!-- DOC: Do not remove below empty space(&nbsp;) as its purposely used -->
-                                <img alt="" class="img-circle" src="<?php echo base_url() .'img/avatars/sadu_logo.png'?>" /> </a>
+                                <img alt="" class="img-circle" src="<?php echo base_url() .'img/avatars/'. $user_picture ?>" /> </a>
                             <ul class="dropdown-menu dropdown-menu-default">
                                 <li>
                                     <a href="page_user_profile_1.html">
                                         <i class="icon-user"></i> My Profile </a>
                                 </li>
                                 <li class="divider"> </li>
-                                <!-- <li>
-                                    <a href="<?=base_url() .'Home/lock_screen'?>">
-                                        <i class="icon-lock"></i> Lock Screen </a>
-                                </li> -->
                                 <li>
                                     <a href="<?php echo base_url() .'Home/logout'?>">
                                         <i class="icon-key"></i> Log Out </a>
@@ -410,23 +217,28 @@
         <!-- BEGIN SIDEBAR -->
         <div class="page-sidebar-wrapper">
             <!-- BEGIN SIDEBAR -->
-            <!-- DOC: Set data-auto-scroll="false" to disable the sidebar from auto scrolling/focusing -->
-            <!-- DOC: Change data-auto-speed="200" to adjust the sub menu slide up/down speed -->
             <div class="page-sidebar navbar-collapse collapse">
                 <!-- BEGIN SIDEBAR MENU -->
-                <!-- DOC: Apply "page-sidebar-menu-light" class right after "page-sidebar-menu" to enable light sidebar menu style(without borders) -->
-                <!-- DOC: Apply "page-sidebar-menu-hover-submenu" class right after "page-sidebar-menu" to enable hoverable(hover vs accordion) sub menu mode -->
-                <!-- DOC: Apply "page-sidebar-menu-closed" class right after "page-sidebar-menu" to collapse("page-sidebar-closed" class must be applied to the body element) the sidebar sub menu mode -->
-                <!-- DOC: Set data-auto-scroll="false" to disable the sidebar from auto scrolling/focusing -->
-                <!-- DOC: Set data-keep-expand="true" to keep the submenues expanded -->
-                <!-- DOC: Set data-auto-speed="200" to adjust the sub menu slide up/down speed -->
-                <ul class="page-sidebar-menu page-sidebar-menu-hover-submenu" data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200">
-                    <li class="nav-item start active open">
-                        <a href="<?=base_url().'SADU/Dashboard'?>" class="nav-link nav-toggle">
+                <ul class="page-sidebar-menu " data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200">
+                    <li class="nav-item start">
+                        <?php 
+                            if($_SESSION['logged_in']['id'] == 2)
+                            {
+                                $dashboard_url = base_url().'SADU/Dashboard';
+                            }
+                            else if($_SESSION['logged_in']['id'] == 3)
+                            {
+                                $dashboard_url = base_url().'SCC/Scc_dashboard';
+                            }
+                            else
+                            {
+                                $dashboard_url = "#";
+                            }
+                        ?>
+                        <a href="<?=$dashboard_url?>" class="nav-link nav-toggle">
                             <i class="icon-home"></i>
                             <span class="title">Dasboard</span>
                             <span class="selected"></span>
-                            <span class="arrow open"></span>
                         </a>
                     </li>
                     <li class="heading">
@@ -434,29 +246,81 @@
 
                     </li>
                     <li class="nav-item">
-                        <a href="<?php echo base_url() . 'SADU/Listoforg'?>" class="nav-link nav-toggle">
+                        <?php 
+                            if($_SESSION['logged_in']['id'] == 2)
+                            {
+                                $Listoforg = base_url().'SADU/Listoforg';
+                            }
+                            else if($_SESSION['logged_in']['id'] == 3)
+                            {
+                                $Listoforg = base_url().'SCC/Scc_listoforg';
+                            }
+                            else
+                            {
+                                $Listoforg = "#";
+                            }
+                        ?>
+                        <a href="<?php echo $Listoforg?>" class="nav-link nav-toggle">
                             <i class="icon-list"></i>
                             <span class="title">List of Organizations</span>
-                        </a>
-                       <!--  <ul class="sub-menu">
-                            <li class="nav-item  ">
-                                <a href="ui_metronic_grid.html" class="nav-link ">
-                                    <span class="title">Metronic Grid System</span>
-                                </a>
-                            </li>
-                        </ul> -->
-                    </li>
-                    <li>
-                        <a href="<?php echo base_url() . 'SADU/Proposal'?>" class="nav-link nav-toggle">
-                            <i class="icon-doc"></i>
-                            <span class="title">Proposals</span>
                         </a>
                     </li>
                     <li>
                         <a href="#" class="nav-link nav-toggle">
-                            <i class="icon-list"></i>
-                            <span class="title">List of Organizations</span>
+                            <i class="icon-doc"></i>
+                            <span class="title">Proposals</span>
+                            <span class="arrow open"></span>
                         </a>
+                          <ul class="sub-menu">
+                            <li class="nav-item  ">
+                                <?php 
+                                    if($_SESSION['logged_in']['id'] == 2)
+                                    {
+                                        $Pending = base_url() . 'SADU/Proposal';
+                                    }
+                                    else if($_SESSION['logged_in']['id'] == 3)
+                                    {
+                                        $Pending = base_url() . 'SCC/Scc_proposal/';
+                                    }
+                                    else
+                                    {
+                                        $Pending = "#";
+                                    }
+                                ?>
+                                <a href="<?php echo $Pending?>" class="nav-link ">
+                                    <span class="title">Pending</span>
+                                </a>
+                            </li>
+                            <li class="nav-item  ">
+                                <?php 
+                                    if($_SESSION['logged_in']['id'] == 2)
+                                    {
+                                        $Summary_Status = base_url() . 'SADU/Proposal/proposal_summary';
+                                    }
+                                    else if($_SESSION['logged_in']['id'] == 3)
+                                    {
+                                        $Summary_Status = base_url() . 'SCC/Scc_proposal/proposal_summary';
+                                    }
+                                    else
+                                    {
+                                        $Summary_Status = "#";
+                                    }
+                                ?>
+                                <a href="<?php echo $Summary_Status?>" class="nav-link ">
+                                    <span class="title">Summary Status</span>
+                                </a>
+                            </li>
+                              <?php 
+                                    if($_SESSION['logged_in']['id'] == 2)
+                                    {
+                              ?>
+                                        <li class="nav-item  ">
+                                            <a href="<?php echo base_url() . 'SADU/Proposal_template'?>" class="nav-link ">
+                                                <span class="title">Proposal Template</span>
+                                            </a>
+                                        </li>
+                             <?php } ?>
+                        </ul> 
                     </li>
                 </ul>
                 <!-- END SIDEBAR MENU -->
