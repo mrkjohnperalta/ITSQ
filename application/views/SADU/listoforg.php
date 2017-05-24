@@ -241,7 +241,7 @@
                     <div class="col-lg-8 col-md-4 col-sm-6 col-xs-12">
                         <div class="form-group form-md-line-input has-success form-md-floating-label">
                             <div class="input-icon right">
-                                <input type="text" class="form-control" name="org_name">
+                                <input type="text" class="form-control" name="org_name" id="org_name" onkeyup="validate()">
                                 <label for="form_control_1">Organization Name</label>
                                 <span class="help-block"></span>
                                 <i class="icon-credit-card"></i>
@@ -251,7 +251,7 @@
                     <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
                         <div class="form-group form-md-line-input has-success form-md-floating-label">
                             <div class="input-icon right">
-                                <input type="text" class="form-control" name="org_abbreviation">
+                                <input type="text" class="form-control" name="org_abbreviation" id="org_abbreviation" onkeyup="validate()">
                                 <label for="form_control_1">Abbreviation</label>
                                 <span class="help-block"></span>
                                 <i class="icon-credit-card"></i>
@@ -274,7 +274,7 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="submit" class="btn green">Register</button>
+                <button type="submit" class="btn green" id="registerbtn" disabled>Register</button>
                 <button type="button" class="btn dark btn-outline" data-dismiss="modal">Cancel</button>
             </div>
             <?php echo form_close();?>
@@ -284,3 +284,21 @@
     <!-- /.modal-dialog -->
 </div>
 <!-- /.modal -->
+
+<script>
+    function validate()
+    {
+        // alert('hello');
+        var orgname = document.getElementById('org_name').value;
+        var abbr    = document.getElementById('org_abbreviation').value;
+
+        if(orgname != "" && abbr != "")
+        {
+            document.getElementById('registerbtn').disabled = false;
+        }
+        else
+        {
+            document.getElementById('registerbtn').disabled = true;
+        }
+    }
+</script>

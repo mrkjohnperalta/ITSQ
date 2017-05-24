@@ -111,7 +111,6 @@
 <script type="text/javascript">
     function get_organization(value)
     {
-        var user_id = <?php $_SESSION['logged_in']['id'] ?>
         // var content = "";
         $('#SampleID').empty();
         var value = document.getElementById('listoforg').value;
@@ -155,8 +154,23 @@
                             {
                                  var btn_status = "";
                             }
-                            var prop      = result['details'][i].proposal;
-                            var all_prop  = prop.split(',');
+
+                            if(result['details'][i].proposal != "")
+                            {
+                                var filesbtn = "<button class='btn dark' id='proposals' value='"+result['details'][i].proposal+"' onclick='displayproposal()'> View Proposal </button>";
+                            }
+                            else
+                            {
+                                var filesbtn = "";
+                            }
+                            
+
+                            // for(var x = 0 ; x < 2 ; x++)
+                            // {
+                            //     // document.getElementById('uploaded_files').innerHTML = "prop";
+                            //     // $('#uploaded_files')append(prop);
+                            //     var testing = "<button class='btn red' id='commentbtn' onclick='getcomments("+result['details'][i].prop_id+")'> View Comment </button>";
+                            // }
 
                             // SCC STEPS
                                 if(result['details'][i].scc_approve == 0)
@@ -320,7 +334,7 @@
                                                             "</div>"+
                                                             "<div class='col-lg-4 col-xs-12 col-sm-12'>"+
                                                                 "<p> <b> UPLOADED ACTIVITY PROPOSAL </b> </p>"+
-                                                                "<div class='caption-desc font-grey-cascade'>"+result['details'][i].proposal+"</div>"+
+                                                                "<div class='caption-desc font-grey-cascade'>"+filesbtn+"</div>"+
                                                             "</div>"+
                                                         "</div>"+
                                                         "<div class='mt-element-step'>"+
@@ -428,8 +442,8 @@
             $("#icon_status").removeClass("done");
             $("#icon_status").removeClass("error");
             
-            document.getElementById('dynamic_icons').style.display = "block";
-            document.getElementById('initial_icons').style.display = "none";
+            document.getElementById('dynamic_icons').style.display  = "block";
+            document.getElementById('initial_icons').style.display  = "none";
             $('#content').append(content);
             
         }
@@ -444,11 +458,11 @@
             $("#icon_status").removeClass("done");
             $("#icon_status").removeClass("active");
 
-            document.getElementById('comments').style.display = "block";
-            document.getElementById('savebtn').style.display = "none";
+            document.getElementById('comments').style.display       = "block";
+            document.getElementById('savebtn').style.display        = "none";
 
-            document.getElementById('dynamic_icons').style.display = "block";
-            document.getElementById('initial_icons').style.display = "none";
+            document.getElementById('dynamic_icons').style.display  = "block";
+            document.getElementById('initial_icons').style.display  = "none";
             $('#content').append(content);
         }
         else
@@ -462,13 +476,12 @@
             $("#icon_status").removeClass("error");
             $("#icon_status").removeClass("active");
 
-            document.getElementById('comments').style.display = "none";
-            document.getElementById('savebtn').style.display = "block";
+            document.getElementById('comments').style.display       = "none";
+            document.getElementById('savebtn').style.display        = "block";
             
-            document.getElementById('dynamic_icons').style.display = "block";
-            document.getElementById('initial_icons').style.display = "none";
+            document.getElementById('dynamic_icons').style.display  = "block";
+            document.getElementById('initial_icons').style.display  = "none";
             $('#content').append(content);
-            // var sadu_status = "done";
         }
     }
 
@@ -489,7 +502,7 @@
     {
         var author  = document.getElementById('hidden_user_id').value;
         var comment = document.getElementById('comment_section').value;
-        var prop_id = document.getElementById('proposal_id').value;x
+        var prop_id = document.getElementById('proposal_id').value;
         $.ajax({
             url:"<?php echo base_url() . 'SADU/Proposal/Save_Proposal_Comment'?>",
             dataType:'json',
@@ -559,9 +572,31 @@
         })
         $('#view_comment').modal('show');
     }
+
+    function displayproposal()
+    {
+        $('#list_proposals').empty();
+        // var proposals = document.getElementById('proposals').value;
+        var prop      = document.getElementById('proposals').value;;
+        var all_prop  = prop.split(',');
+        // console.log(all_prop);
+        // console.log(all_prop.length);
+        for(var x = 0 ; x < all_prop.length ; x++)
+        {
+            // alert(all_prop[x]);
+            var content = "<div class='col-lg-6 col-md-4 col-sm-6 col-xs-12'>"+
+                              "<div class='caption'>"+
+                                  "<font size='5px'><i class='fa fa-file-word-o'></i></font>&nbsp;"+
+                                  "<a href=<?=base_url(). 'files/proposals/"+all_prop[x]+"'?> target='_blank'><span class='caption-subject font-dark bold uppercase'>"+all_prop[x]+"</span></a>"+
+                              "</div>"+
+                          "</div>";
+            $('#list_proposals').append(content);
+        }
+        $('#view_proposals').modal('show');
+    }
 </script>
 
-
+<!-- Modal for activity proposal comment -->
 <div class="modal fade" id="view_comment" tabindex="-1" role="basic" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -574,7 +609,7 @@
                     <tbody>
                         <tr>
                             <td><p><b>Comment from: &nbsp;</b></p></td>
-                            <td><div id="author"></div></td>
+                            <td><div id="author"></div> </td>
                         </tr>
                     </tbody>
                 </table>
@@ -593,3 +628,24 @@
         </div>
     </div>
 </div>
+
+<!-- Modal for activity proposal files -->
+<div class="modal fade" id="view_proposals" tabindex="-1" role="basic" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                <h4 class="caption-subject font-dark sbold"> Uploaded Activity Proposals</h4>
+            </div>
+            <div class="modal-body">
+                <div class='row'>
+                    <div id='list_proposals'></div>
+                </div>   
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn dark btn-outline" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+

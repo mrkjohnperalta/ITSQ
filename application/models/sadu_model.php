@@ -23,9 +23,9 @@ class Sadu_model extends CI_Model
 		INNER JOIN proposal_status
 		ON activity_proposals.sent_by = organizations.org_id
 		AND activity_proposals.scc_approve = proposal_status.id_status
-		WHERE activity_proposals.sent_by =".$selected."
-		AND activity_proposals.sadu_status = '2'
-		OR activity_proposals.sadu_status = '1'
+		WHERE activity_proposals.sent_by = $selected 
+		AND activity_proposals.sadu_status = 2
+		OR activity_proposals.sadu_status = 1
 		");
 
         return $query->result_array();

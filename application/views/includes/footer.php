@@ -1,12 +1,12 @@
-<!-- BEGIN FOOTER -->
-<div class="page-footer">
-    <div class="page-footer-inner"> 2017 &copy; FEU Institute of Technology &nbsp;|&nbsp; Activity Proposal Monitoring System
+    <!-- BEGIN FOOTER -->
+    <div class="page-footer">
+        <div class="page-footer-inner"> 2017 &copy; FEU Institute of Technology &nbsp;|&nbsp; Activity Proposal Monitoring System
+        </div>
+        <div class="scroll-to-top">
+            <button class="btn dark btn-lg"><span class="icon-arrow-up"></span></button>
+        </div>
     </div>
-    <div class="scroll-to-top">
-        <button class="btn dark btn-lg"><span class="icon-arrow-up"></span></button>
-    </div>
-</div>
-<!-- END FOOTER -->
+    <!-- END FOOTER -->
 
     <!-- BEGIN CORE PLUGINS -->
     <script src="<?php echo base_url() . 'js/jquery.min.js'?>" type="text/javascript"></script>
@@ -39,10 +39,7 @@
     <script src="<?php echo base_url() . 'js/quick-nav.min.js'?>" type="text/javascript"></script>
     <!-- END THEME LAYOUT SCRIPTS -->
     <!-- DROPZONE -->
-    <script src="<?php echo base_url() . 'js/dropzone.js'?>"></script>
-
-
-
+    <script src="<?php echo base_url() . 'js/dropzone.js'?>"></script>\
     <script>
         $(document).ready(function()
         {
@@ -52,84 +49,63 @@
             });
         })
     </script>
-    <!--<script type="text/javascript">
-        $(function(){
-            var x = true;
-            if(x == true)
-            {
-                var myStack = {"dir1":"down", "dir2":"right", "push":"top"};
-                new PNotify({
-                title: "Successful",
-                text: "Changes has been successfully saved",
-                type:"error",
-                addclass: "customsuccess",
-                stack: myStack
-                })
-            }
+    <script>
+        $(document).ready(function() {
+
+            $.ajax({
+                url: '../process.php',
+                type: 'POST',
+                data: 'type=fetch',
+                async: false,
+                success: function(response){
+                    json_events = response;
+                    console.log(json_events);
+                }
+            });
+
+            /* initialize the calendar
+            -----------------------------------------------------------------*/
+            var date = new Date();
+            var d = date.getDate();
+            var m = date.getMonth();
+            var y = date.getFullYear();
+
+            $('#calendar').fullCalendar({
+                header: {
+                    left: 'prev,next today',
+                    center: 'title',
+                    right: 'month,agendaWeek,agendaDay'
+                },
+                editable: false,
+                events: JSON.parse(json_events),
+                eventClick: function(event, jsEvent, view) {
+                    
+                    // $.ajax({
+                    //     url: 'process.php',
+                    //     data: 'type=changetitle&title='+title+'&eventid='+event.id,
+                    //     type: 'POST',
+                    //     dataType: 'json',
+                    //     success: function(response){	
+                    //         if(response.status == 'success')			    			
+                    //             $('#calendar').fullCalendar('updateEvent',event);
+                    //     },
+                    //     error: function(e){
+                    //         alert('Error processing your request: '+e.responseText);
+                    //     }
+                    // });
+                    
+                    // alert(event.title);
+                    // document.getElementById('modal-title').innerHTML     = event.title + " details";
+                    document.getElementById('event-organizer').innerHTML = event.org;
+                    document.getElementById('event-title').innerHTML     = event.title;
+                    document.getElementById('event-startdate').innerHTML     = event.start;
+                    document.getElementById('event-enddate').innerHTML     = event.end;
+                    $('#event_details').modal('show');
+                },
+            });
+
+
         });
-    </script>-->
-
-
-
-<script>
-
-    $(document).ready(function() {
-
-        $.ajax({
-            url: '../process.php',
-            type: 'POST',
-            data: 'type=fetch',
-            async: false,
-            success: function(response){
-                json_events = response;
-                console.log(json_events);
-            }
-        });
-
-        /* initialize the calendar
-         -----------------------------------------------------------------*/
-        var date = new Date();
-        var d = date.getDate();
-        var m = date.getMonth();
-        var y = date.getFullYear();
-
-        $('#calendar').fullCalendar({
-            header: {
-                left: 'prev,next today',
-                center: 'title',
-                right: 'month,agendaWeek,agendaDay'
-            },
-            editable: false,
-            events: JSON.parse(json_events),
-            eventClick: function(event, jsEvent, view) {
-		    	
-                // $.ajax({
-                //     url: 'process.php',
-                //     data: 'type=changetitle&title='+title+'&eventid='+event.id,
-                //     type: 'POST',
-                //     dataType: 'json',
-                //     success: function(response){	
-                //         if(response.status == 'success')			    			
-                //             $('#calendar').fullCalendar('updateEvent',event);
-                //     },
-                //     error: function(e){
-                //         alert('Error processing your request: '+e.responseText);
-                //     }
-                // });
-                
-                // alert(event.title);
-                // document.getElementById('modal-title').innerHTML     = event.title + " details";
-                document.getElementById('event-organizer').innerHTML = event.org;
-                document.getElementById('event-title').innerHTML     = event.title;
-                document.getElementById('event-startdate').innerHTML     = event.start;
-                document.getElementById('event-enddate').innerHTML     = event.end;
-                $('#event_details').modal('show');
-			},
-        });
-
-
-    });
-
-</script>
+    </script>
 </body>
 </html>
