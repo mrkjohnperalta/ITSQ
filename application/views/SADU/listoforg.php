@@ -23,10 +23,16 @@
                 <span class="active">List of Organizations</span>
             </li>
             <?php
-                if($this->session->set_flashdata("added_org"))
+                if($this->session->flashdata("added_org"))
                 {
-                    echo $this->session->set_flashdata("added_org");
+                    $message = "<br><div class='note note-info'>" . $this->session->flashdata("added_org") . "</div>";
                 }
+                else
+                {
+                    $message = "";
+                }
+
+                echo $message;
             ?>
         </ul>
         <!-- END PAGE BREADCRUMB -->
@@ -231,44 +237,44 @@
             </div>
             <?php echo form_open('SADU/Listoforg/Add_Organization');?>
             <div class="modal-body">
-                    <div class="row">
-                        <div class="col-lg-8 col-md-4 col-sm-6 col-xs-12">
-                            <div class="form-group form-md-line-input has-success form-md-floating-label">
-                                <div class="input-icon right">
-                                    <input type="text" class="form-control" name="org_name">
-                                    <label for="form_control_1">Organization Name</label>
-                                    <span class="help-block"></span>
-                                    <i class="icon-credit-card"></i>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                            <div class="form-group form-md-line-input has-success form-md-floating-label">
-                                <div class="input-icon right">
-                                    <input type="text" class="form-control" name="org_abbreviation">
-                                    <label for="form_control_1">Abbreviation</label>
-                                    <span class="help-block"></span>
-                                    <i class="icon-credit-card"></i>
-                                </div>
+                <div class="row">
+                    <div class="col-lg-8 col-md-4 col-sm-6 col-xs-12">
+                        <div class="form-group form-md-line-input has-success form-md-floating-label">
+                            <div class="input-icon right">
+                                <input type="text" class="form-control" name="org_name" id="org_name" onkeyup="validate()">
+                                <label for="form_control_1">Organization Name</label>
+                                <span class="help-block"></span>
+                                <i class="icon-credit-card"></i>
                             </div>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-lg-12 col-md-4 col-sm-6 col-xs-12">
-                            <div class="note note-info font-gray">
-                                <div class="caption">
-                                    <i class="fa fa-sticky-note-o font-green"></i>
-                                    <span class="caption-subject font-green bold uppercase">NOTE</span>
-                                </div>
-                                <p> <b> Username </b> and <b> Password </b> are automatically generate. </p>
-                                <p> <b> Username: </b> FEU_TECH_Organization Abbreviation </p>
-                                <p> <b> Password: </b> feu_tech_rso </p>
+                    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                        <div class="form-group form-md-line-input has-success form-md-floating-label">
+                            <div class="input-icon right">
+                                <input type="text" class="form-control" name="org_abbreviation" id="org_abbreviation" onkeyup="validate()">
+                                <label for="form_control_1">Abbreviation</label>
+                                <span class="help-block"></span>
+                                <i class="icon-credit-card"></i>
                             </div>
                         </div>
                     </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12 col-md-4 col-sm-6 col-xs-12">
+                        <div class="note note-info font-gray">
+                            <div class="caption">
+                                <i class="fa fa-sticky-note-o font-green"></i>
+                                <span class="caption-subject font-green bold uppercase">NOTE</span>
+                            </div>
+                            <p> <b> Username </b> and <b> Password </b> are automatically generated. </p>
+                            <p> <b> Username: </b> FEU_TECH_Organization Abbreviation </p>
+                            <p> <b> Password: </b> feu_tech_rso </p>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="modal-footer">
-                <button type="submit" class="btn green">Register</button>
+                <button type="submit" class="btn green" id="registerbtn" disabled>Register</button>
                 <button type="button" class="btn dark btn-outline" data-dismiss="modal">Cancel</button>
             </div>
             <?php echo form_close();?>
@@ -278,3 +284,21 @@
     <!-- /.modal-dialog -->
 </div>
 <!-- /.modal -->
+
+<script>
+    function validate()
+    {
+        // alert('hello');
+        var orgname = document.getElementById('org_name').value;
+        var abbr    = document.getElementById('org_abbreviation').value;
+
+        if(orgname != "" && abbr != "")
+        {
+            document.getElementById('registerbtn').disabled = false;
+        }
+        else
+        {
+            document.getElementById('registerbtn').disabled = true;
+        }
+    }
+</script>

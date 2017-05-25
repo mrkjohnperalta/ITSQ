@@ -10,7 +10,8 @@ class Listoforg extends CI_Controller
 		{
 			redirect('Login', 'refresh');
 		}
-		// $this->load->library('form_validation');
+
+		$this->load->library('form_validation');
 	   	$this->load->model('sadu_model');
 	   	
 	}
@@ -24,7 +25,7 @@ class Listoforg extends CI_Controller
 
 	function Add_Organization()
 	{
-		$this->load->library('form_validation');
+		// $this->load->library('form_validation');
   
 	    $this->form_validation->set_rules('org_name', 'Organization Name', 'required');
 	    $this->form_validation->set_rules('org_abbreviation', 'Organization Abbreviation', 'required');
@@ -38,6 +39,7 @@ class Listoforg extends CI_Controller
 	    }
 	    else
 	    {
+
 	      	//Go to private area
 
 			$org_id = sha1($_SESSION['logged_in']['id']);
@@ -46,6 +48,14 @@ class Listoforg extends CI_Controller
 			{
 				mkdir("C:/xampp/htdocs/ITSQ/files/proposals/".$org_id,0755);
 			}
+
+
+			$org_id = sha1($_SESSION['logged_in']['id']);
+	      	// to check if theres a folder of the user
+			// if (!file_exists('C:/xampp/htdocs/ITSQ/files/proposals/'.$org_id.'/')) 
+			// {
+			// 	mkdir("C:/xampp/htdocs/ITSQ/files/proposals/".$org_id,0755);
+			// }
 
 
 	    	$org_name 	= $this->input->post('org_name');
@@ -61,8 +71,9 @@ class Listoforg extends CI_Controller
 	    				  );
 
 	    	$this->sadu_model->add_organization($data);
-	    	$this->session->set_flashdata("added_org", "<font size='2px'>Successfully Added an Organization.</font>");
+	    	$this->session->set_flashdata("added_org", "You have successfully added an organization.");
 	      	
+
 
 	      	$this->load->view('includes/header');
 			$this->load->view('SADU/listoforg');
@@ -70,6 +81,8 @@ class Listoforg extends CI_Controller
 
 	      	redirect(base_url(). 'SADU/Listoforg');
 
+
+	      	redirect(base_url(). 'SADU/Listoforg');
 	    }	
 	}
 }
