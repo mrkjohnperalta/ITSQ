@@ -5,8 +5,11 @@ class user_model extends CI_Model{
 			$this->db->select('prop_id ,date_sent, proposal_title,edo_status,');
 			$this->db->from('activity_proposals');
 			$this->db->order_by('date_sent', 'ASC');
+			$this->db->where('sent_by', $_SESSION['logged_in']['id']);
 			$query = $this->db->get();
 			return $query->result_array();
+		
+			
 		}
     public function get_singleprop($singleprop){
        		$this->db->select('*');

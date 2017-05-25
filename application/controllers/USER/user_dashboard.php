@@ -157,6 +157,11 @@ public function updateorginfo($singleorg){
 	}
 
 }
+function settings(){
+			$this->load->view('includes/user_header');
+			$this->load->view('user/user_settings');
+			$this->load->view('includes/user_footer');
+}
 
 function logout()
 	{
@@ -164,6 +169,7 @@ function logout()
 		session_destroy();
 		redirect('Login', 'refresh');
 	}
+
 
 
 }
