@@ -17,7 +17,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | environments.
 |
 */
-$config['base_url'] = 'http://localhost/itsq/';
+<<<<<<< HEAD
+$config['base_url'] = 'http://localhost:8080/itsq/';
+=======
+
+$config['base_url'] = 'http://localhost:8080/itsq/';
+
+>>>>>>> 8d0e5249594cde85dff3a8b1af5e14ed5b36eb2b
 
 /*
 |--------------------------------------------------------------------------

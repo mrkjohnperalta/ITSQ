@@ -39,12 +39,24 @@ class Listoforg extends CI_Controller
 	    }
 	    else
 	    {
+
+	      	//Go to private area
+
+			$org_id = sha1($_SESSION['logged_in']['id']);
+	      	//to check if theres a folder of the user
+			if (!file_exists('C:/xampp/htdocs/ITSQ/files/proposals/'.$org_id.'/')) 
+			{
+				mkdir("C:/xampp/htdocs/ITSQ/files/proposals/".$org_id,0755);
+			}
+
+
 			$org_id = sha1($_SESSION['logged_in']['id']);
 	      	// to check if theres a folder of the user
 			// if (!file_exists('C:/xampp/htdocs/ITSQ/files/proposals/'.$org_id.'/')) 
 			// {
 			// 	mkdir("C:/xampp/htdocs/ITSQ/files/proposals/".$org_id,0755);
 			// }
+
 
 	    	$org_name 	= $this->input->post('org_name');
 	    	$org_abb 	= $this->input->post('org_abbreviation');
@@ -61,6 +73,15 @@ class Listoforg extends CI_Controller
 	    	$this->sadu_model->add_organization($data);
 	    	$this->session->set_flashdata("added_org", "You have successfully added an organization.");
 	      	
+
+
+	      	$this->load->view('includes/header');
+			$this->load->view('SADU/listoforg');
+			$this->load->view('includes/footer');
+
+	      	redirect(base_url(). 'SADU/Listoforg');
+
+
 	      	redirect(base_url(). 'SADU/Listoforg');
 	    }	
 	}
