@@ -8,7 +8,7 @@
          <h1>Organization's Profile</h1>
          <input type = "hidden" value = "<?php echo $_SESSION['logged_in']['id']; ?>">    
      <div class = "pull-right">
-         <a href = "<?php echo base_url() .'USER/user_dashboard/settings'?>"> <i class="icon-large icon-settings"> Settings</i> </a>
+         <a href = "<?php echo base_url() .'USER/user_dashboard/settings/'. $_SESSION['logged_in']['id']?>"> <i class="icon-large icon-settings"> Settings</i> </a>
      </div>                       
 </div>
    
