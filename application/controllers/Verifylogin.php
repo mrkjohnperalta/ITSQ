@@ -24,13 +24,14 @@ class VerifyLogin extends CI_Controller {
     else
     {
       //Go to private area
-      if($_SESSION['logged_in']['id'] == 2)
+      // if status 1
+      if($_SESSION['status']==1)
       {
-        redirect('SADU/Dashboard');
+          redirect('SADU/Dashboard');
       }
-      else if($_SESSION['logged_in']['id'] == 3)
+      else
       {
-        redirect('SCC/Scc_dashboard');
+        redirect('user/user_dashboard');
       }
     }
   }
@@ -48,12 +49,24 @@ class VerifyLogin extends CI_Controller {
       $sess_array = array();
       foreach($result as $row)
       {
-        $sess_array = array(
-          'id'                => $row->id,
-          'username'          => $row->username,
-          'user_abbreviation' => $row->office_abbreviation,
-          'user_picture'      => $row->user_picture
-        );
+        if($_SESSION['status'] == 1)
+        {
+          $sess_array = array(
+            'id' => $row->id,
+            'username' => $row->username,
+            'user_abbreviation' => $row->office_abbreviation
+          );
+        }
+        else
+        {
+          $sess_array = array(
+            'id' => $row->org_id,
+            'org_username' => $row->org_username,
+            'org_name' => $row->organization_name,
+            'org_abbreviation' => $row->organization_abbreviation
+         
+          );
+        }
         $this->session->set_userdata('logged_in', $sess_array);
       }
       return TRUE;

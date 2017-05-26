@@ -21,6 +21,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $config['base_url'] = 'http://localhost/itsq/';
 
 
+$config['base_url'] = 'http://localhost/itsq/';
+
+
 /*
 |--------------------------------------------------------------------------
 | Index File
