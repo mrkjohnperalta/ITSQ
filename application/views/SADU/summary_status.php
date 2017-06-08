@@ -384,7 +384,7 @@
                                                     "<div class='tab-content'>" +
                                                         "<div class='mt-element-step'>"+
                                                             "<div class='row step-line'>"+
-                                                                "<div class='col-md-3 mt-step-col first "+ scc_status +"'>"+
+                                                                "<div class='col-md-2 mt-step-col first "+ scc_status +"'>"+
                                                                     "<div class='mt-step-number bg-white'>"+
                                                                         "<i class='"+ scc_icon +"'></i>"+
                                                                     "</div>"+
@@ -414,7 +414,14 @@
                                                                     "<div class='mt-step-title uppercase font-grey-cascade'>ACCOUNTING</div>"+
                                                                     "<div class='mt-step-content font-grey-cascade'>"+ao_text+"</div>"+
                                                                 "</div>"+
-                                                                "<div class='col-md-3 mt-step-col last "+ edo_status +"''>"+
+                                                                "<div class='col-md-2 mt-step-col "+ edo_status +"''>"+
+                                                                    "<div class='mt-step-number bg-white'>"+
+                                                                        "<i class='"+ edo_icon +"'></i>"+
+                                                                    "</div>"+
+                                                                    "<div class='mt-step-title uppercase font-grey-cascade'>EDO</div>"+
+                                                                    "<div class='mt-step-content font-grey-cascade'>"+ edo_text +"</div>"+
+                                                                "</div>"+
+                                                                "<div class='col-md-2 mt-step-col last "+ edo_status +"''>"+
                                                                     "<div class='mt-step-number bg-white'>"+
                                                                         "<i class='"+ edo_icon +"'></i>"+
                                                                     "</div>"+

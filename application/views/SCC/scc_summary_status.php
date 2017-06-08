@@ -367,6 +367,32 @@
                                     var edo_icon   = "fa fa-check";
                                     var edo_text   = "APPROVED";                
                                 }
+                            
+                            // RO STEPS
+                                if(result['details'][i].ro_status == 0)
+                                {
+                                    var ro_status = "";
+                                    var ro_icon   = "fa fa-spinner";
+                                    var ro_text   = "...";                     
+                                }
+                                else if(result['details'][i].ro_status == 1)
+                                {
+                                    var ro_status = "active";
+                                    var ro_icon   = "fa fa-commenting-o";
+                                    var ro_text   = "FOR REVIEW";              
+                                }
+                                else if(result['details'][i].ro_status == 2)
+                                {
+                                    var ro_status = "error";
+                                    var ro_icon   = "fa fa-exclamation-triangle";
+                                    var ro_text   = "WITH COMMENT";            
+                                }
+                                else
+                                {
+                                    var ro_status = "done";
+                                    var ro_icon   = "fa fa-check";
+                                    var ro_text   = "APPROVED";                
+                                }
                             var content = "";
                             var sample = result['details'][i].prop_id;
                             
@@ -384,7 +410,7 @@
                                                     "<div class='tab-content'>" +
                                                         "<div class='mt-element-step'>"+
                                                             "<div class='row step-line'>"+
-                                                                "<div class='col-md-3 mt-step-col first "+ scc_status +"'>"+
+                                                                "<div class='col-md-2 mt-step-col first "+ scc_status +"'>"+
                                                                     "<div class='mt-step-number bg-white'>"+
                                                                         "<i class='"+ scc_icon +"'></i>"+
                                                                     "</div>"+
@@ -414,12 +440,19 @@
                                                                     "<div class='mt-step-title uppercase font-grey-cascade'>ACCOUNTING</div>"+
                                                                     "<div class='mt-step-content font-grey-cascade'>"+ao_text+"</div>"+
                                                                 "</div>"+
-                                                                "<div class='col-md-3 mt-step-col last "+ edo_status +"''>"+
+                                                                "<div class='col-md-2 mt-step-col "+ edo_status +"''>"+
                                                                     "<div class='mt-step-number bg-white'>"+
                                                                         "<i class='"+ edo_icon +"'></i>"+
                                                                     "</div>"+
                                                                     "<div class='mt-step-title uppercase font-grey-cascade'>EDO</div>"+
                                                                     "<div class='mt-step-content font-grey-cascade'>"+ edo_text +"</div>"+
+                                                                "</div>"+
+                                                                "<div class='col-md-2 mt-step-col last "+ ro_status +"''>"+
+                                                                    "<div class='mt-step-number bg-white'>"+
+                                                                        "<i class='"+ ro_icon +"'></i>"+
+                                                                    "</div>"+
+                                                                    "<div class='mt-step-title uppercase font-grey-cascade'>RO</div>"+
+                                                                    "<div class='mt-step-content font-grey-cascade'>"+ ro_text +"</div>"+
                                                                 "</div>"+
                                                             "</div>"+
                                                         "</div>"+

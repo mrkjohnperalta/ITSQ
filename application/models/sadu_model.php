@@ -13,6 +13,7 @@ class Sadu_model extends CI_Model
 		$this->db->insert('organizations',$data);
 	}
 
+
 	function get_Activity_Proposal($selected)
     {
 
@@ -23,9 +24,7 @@ class Sadu_model extends CI_Model
 		INNER JOIN proposal_status
 		ON activity_proposals.sent_by = organizations.org_id
 		AND activity_proposals.scc_approve = proposal_status.id_status
-		WHERE activity_proposals.sent_by = $selected 
-		AND activity_proposals.sadu_status = 2
-		OR activity_proposals.sadu_status = 1
+		WHERE activity_proposals.sent_by = $selected
 		");
 
         return $query->result_array();
@@ -116,5 +115,28 @@ class Sadu_model extends CI_Model
 			$this->db->delete('proposal_template');
 		}
 	}
+
+	function get_all_proposedby()
+    {
+        $this->db->select('activity_proposals.*, organizations.*');
+        $this->db->join('organizations', 'organizations.org_id = activity_proposals.sent_by');
+        $this->db->from('activity_proposals');
+        $this->db->group_by('sent_by');
+
+        
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+
+    function get_all_proposals($sent_by)
+    {
+        $this->db->select('activity_proposals.*, organizations.*');
+        $this->db->join('organizations', 'organizations.org_id = activity_proposals.sent_by');
+        $this->db->from('activity_proposals');
+        $this->db->where('sent_by', $sent_by);
+
+        $query = $this->db->get();
+        return $query->result_array();
+    }
 }
 ?>

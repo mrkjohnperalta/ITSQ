@@ -12,6 +12,7 @@ class Scc_proposal extends CI_Controller
 		}
 		$this->load->model('admin_model');
 		$this->load->model('sadu_model');
+		$this->load->model('scc_model');
 	}
 
 	function index()
@@ -35,6 +36,18 @@ class Scc_proposal extends CI_Controller
 		echo json_encode($activity_details);
 	}
 
+	function get_all_proposals()
+	{
+		$sent_by = $this->input->post('sent_by');
+		// echo $sent_by;
+
+		$result['details'] = $this->scc_model->get_all_proposals($sent_by);
+
+		$this->load->view('includes/header');
+		$this->load->view('SCC/list_of_proposal', $result);
+		$this->load->view('includes/footer');
+	}
+
 	function Save_Proposal_Status()
 	{
 		$status_selected = $this->input->post('selected_status');
@@ -43,19 +56,19 @@ class Scc_proposal extends CI_Controller
 		if($status_selected == 1)
 		{
 			$data = array (
-				'sadu_status' => $status_selected
+				'scc_approve' => $status_selected
 				);
 		}
 		else
 		{
 			$data = array (
-				'sadu_status' => $status_selected,
-				'sdas_status' => 1
+				'scc_approve' => 3,
+				'sadu_status' => 1
 				);
 		}
 		
 
-		$result = $this->sadu_model->Save_Prop_Status($data, $proposal_id);
+		$result = $this->scc_model->Save_Prop_Status($data, $proposal_id);
 		echo json_encode($result);
 	}
 
@@ -66,7 +79,7 @@ class Scc_proposal extends CI_Controller
 		$act_comment     = $this->input->post('activity_comment');
 		// $date_today 	 = 'Y-m-d';
 
-		$data 	 = array ('sadu_status' => 2 );
+		$data 	 = array ('scc_approve' => 2 );
 		$comment = 
 		array (
 		'author' 	 => $author,
@@ -75,7 +88,7 @@ class Scc_proposal extends CI_Controller
 		'actprop_id' => $proposal_id
 		);
 
-		$result = $this->sadu_model->Save_Prop_Comment($data, $comment);
+		$result = $this->scc_model->Save_Prop_Comment($data, $comment);
 		if($result == true)
 		{
 			$this->session->set_flashdata("status_change", "Changes has been saved");

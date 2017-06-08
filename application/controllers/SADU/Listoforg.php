@@ -80,9 +80,6 @@ class Listoforg extends CI_Controller
 			$this->load->view('includes/footer');
 
 	      	redirect(base_url(). 'SADU/Listoforg');
-
-
-	      	redirect(base_url(). 'SADU/Listoforg');
 	    }	
 	}
 }

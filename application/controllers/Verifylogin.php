@@ -24,14 +24,84 @@ class VerifyLogin extends CI_Controller {
     else
     {
       //Go to private area
-      if($_SESSION['logged_in']['id'] == 2)
+      // var_dump($_SESSION);
+       if($this->session->userdata('status') == 1)
+       {
+          if($_SESSION['logged_in']['id'] == 2)
+          {
+            redirect('SADU/Dashboard');
+          }
+          else if($_SESSION['logged_in']['id'] == 3)
+          {
+            redirect('SCC/Scc_dashboard');
+          }
+          else if($_SESSION['logged_in']['id'] == 4)
+          {
+            redirect('FO/Dashboard');
+          }
+          else if($_SESSION['logged_in']['id'] == 5)
+          {
+            redirect('RO/Dashboard');
+          }
+          else if($_SESSION['logged_in']['id'] == 6)
+          {
+            redirect('SDAS/Sdas_dashboard');
+          }
+          else if($_SESSION['logged_in']['id'] == 7)
+          {
+            redirect('AO/Ao_dashboard');
+          }
+          else if($_SESSION['logged_in']['id'] == 8)
+          {
+            redirect('EDO/Edo_dashboard');
+          }
+          
+       }
+       else
+       {
+          redirect('user/user_dashboard');
+       }
+    }
+  }
+
+  function bagay()
+  {
+    $result = $this->login_model->login('feu_tech_sadu','sadu_1234');
+    var_dump($result);
+    var_dump($_SESSION);
+
+    if($result)
+    {
+      
+      $sess_array = array();
+      foreach($result as $row)
       {
-        redirect('SADU/Dashboard');
+        if($this->session->userdata('status') == 1)
+        {
+          $sess_array = array(
+            'id'                => $row->id,
+            'username'          => $row->username,
+            'user_abbreviation' => $row->office_abbreviation,
+            'user_picture'      => $row->user_picture
+          );
+        }
+        else
+        {
+          $sess_array = array(
+            'id'                => $row->org_id,
+            'org_username'      => $row->org_username,
+            'org_name'          => $row->organization_name,
+            'org_abbreviation'  => $row->organization_abbreviation
+          );
+        }
+        $this->session->set_userdata('logged_in', $sess_array);
       }
-      else if($_SESSION['logged_in']['id'] == 3)
-      {
-        redirect('SCC/Scc_dashboard');
-      }
+      return TRUE;
+    }
+    else
+    {
+      $this->form_validation->set_message('check_database', 'Invalid username or password');
+      return false;
     }
   }
  
@@ -45,15 +115,28 @@ class VerifyLogin extends CI_Controller {
   
     if($result)
     {
+      
       $sess_array = array();
       foreach($result as $row)
       {
-        $sess_array = array(
-          'id'                => $row->id,
-          'username'          => $row->username,
-          'user_abbreviation' => $row->office_abbreviation,
-          'user_picture'      => $row->user_picture
-        );
+        if($this->session->userdata('status') == 1)
+        {
+          $sess_array = array(
+            'id'                => $row->id,
+            'username'          => $row->username,
+            'user_abbreviation' => $row->office_abbreviation,
+            'user_picture'      => $row->user_picture
+          );
+        }
+        else
+        {
+          $sess_array = array(
+            'id'                => $row->org_id,
+            'org_username'      => $row->org_username,
+            'org_name'          => $row->organization_name,
+            'org_abbreviation'  => $row->organization_abbreviation
+          );
+        }
         $this->session->set_userdata('logged_in', $sess_array);
       }
       return TRUE;

@@ -48,12 +48,20 @@
         <div class="nav-collapse collapse navbar-collapse navbar-responsive-collapse">
           <ul class="nav navbar-nav">
             <li class="dropdown dropdown-fw dropdown-fw-disabled  active open selected">
-              <a href="http://localhost/itsq/Userd" class="text-uppercase">
-             <!--  <i class="icon-home"></i> --> Equipment Reservation </a>
+              <a href= "<?php echo site_url('USER/user_dashboard/index');?>"  class="text-uppercase">
+                <i class="icon-home" ></i> Home </a>
+            </li>
+            <li class="dropdown dropdown-fw dropdown-fw-disabled active open selected" >
+              <a href= "<?php echo site_url('USER/user_dashboard/sendproposal');?>" class="text-uppercase">
+                <i class="icon-puzzle" ></i> Activity Proposal </a>
             </li>
             <li class="dropdown dropdown-fw dropdown-fw-disabled  active open selected">
-              <a href="http://localhost/itsq/Userd/displayReservations" class="text-uppercase">
-              <!-- <i class="icon-home"></i>  --> View all reservation </a>
+              <a href="<?= base_url();?>Userd" class="text-uppercase">
+              <!-- <i class="icon-home"></i> --> Equipment Reservation </a>
+            </li>
+            <li class="dropdown dropdown-fw dropdown-fw-disabled">
+              <a href="<?= base_url();?>Userd/displayReservations" class="text-uppercase">
+              <!-- <i class="icon-home"></i> -->  View all reservation </a>
             </li>
           </ul>
         </div>

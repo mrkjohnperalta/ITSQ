@@ -37,7 +37,7 @@
         <!-- BEGIN THEME LAYOUT STYLES -->
         <link href="<?php echo base_url();?>assets/layouts/layout5/css/layout.min.css" rel="stylesheet" type="text/css" />
         <link href="<?php echo base_url();?>assets/layouts/layout5/css/custom.min.css" rel="stylesheet" type="text/css" />
-         <link href="<?php echo base_url();?>assets/global/plugins/clockface/css/clockface.css" rel="stylesheet" type="text/css" />
+        <link href="<?php echo base_url();?>assets/global/plugins/clockface/css/clockface.css" rel="stylesheet" type="text/css" />
         
         <link href="<?php echo base_url();?>/assets/global/plugins/bootstrap-daterangepicker/daterangepicker.min.css" rel="stylesheet" type="text/css" />
         <link href="<?php echo base_url();?>assets/global/plugins/bootstrap-datepicker/css/bootstrap-datepicker3.min.css" rel="stylesheet" type="text/css" />
@@ -64,7 +64,7 @@
     // echo "<pre>";
     // echo print_r($_SESSION['logged_in']);
     // echo "</pre>";
-    $org_abbreviation= $_SESSION['logged_in']['org_abbreviation'];
+    $org_abbreviation = $_SESSION['logged_in']['org_abbreviation'];
 ?>
     <body class="page-header-fixed page-sidebar-closed-hide-logo">
         <!-- BEGIN CONTAINER -->

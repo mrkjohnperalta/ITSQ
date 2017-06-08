@@ -30,6 +30,7 @@
     <link href="<?php echo base_url() . 'css/bootstrap-fileinput.css'?>" rel="stylesheet" type="text/css" />
     <link href="<?php echo base_url() . 'css/basic.css'?>" rel="stylesheet">
     <link href="<?php echo base_url() . 'css/dropzone.css'?>" rel="stylesheet">
+    <link href="<?php echo base_url() . 'css/datepicker3.css'?>" rel="stylesheet">
     <!-- END PAGE LEVEL PLUGINS -->
     <!-- BEGIN THEME GLOBAL STYLES -->
     <link href="<?php echo base_url() . 'css/components.min.css' ?>" rel="stylesheet" id="style_components" type="text/css" />
@@ -58,7 +59,7 @@
         <div class="page-header-inner ">
             <!-- BEGIN LOGO -->
             <div class="page-logo">
-                <a href="index.html">
+                <a href="<?php echo base_url()?>">
                     <img src="<?php echo base_url() .'img/logo_white.png'?>" alt="logo" height="90px" /> </a>
                 <div class="menu-toggler sidebar-toggler">
                     <!-- DOC: Remove the above "hide" to enable the sidebar toggler button on header -->
@@ -223,54 +224,116 @@
                     <li class="nav-item start">
                         <?php 
                             if($_SESSION['logged_in']['id'] == 2)
-                            {
-                                $dashboard_url = base_url().'SADU/Dashboard';
-                            }
+                            { ?>
+                                <a href="<?=base_url().'SADU/Dashboard'?>" class="nav-link nav-toggle">
+                                    <i class="icon-home"></i>
+                                    <span class="title">Dasboard</span>
+                                    <span class="selected"></span>
+                                </a>
+                        <?php }
                             else if($_SESSION['logged_in']['id'] == 3)
-                            {
-                                $dashboard_url = base_url().'SCC/Scc_dashboard';
-                            }
+                            {?>
+                                <a href="<?=base_url().'SCC/Scc_dashboard'?>" class="nav-link nav-toggle">
+                                    <i class="icon-home"></i>
+                                    <span class="title">Dasboard</span>
+                                    <span class="selected"></span>
+                                </a>
+                        <?php }
+                            else if($_SESSION['logged_in']['id'] == 4)
+                            {?>
+                                <a href="<?=base_url().'FO/Dashboard'?>" class="nav-link nav-toggle">
+                                    <i class="icon-home"></i>
+                                    <span class="title">Dasboard</span>
+                                    <span class="selected"></span>
+                                </a>
+                        <?php }
+                            else if($_SESSION['logged_in']['id'] == 5)
+                            {?>
+                                <a href="<?=base_url().'RO/Dashboard'?>" class="nav-link nav-toggle">
+                                    <i class="icon-home"></i>
+                                    <span class="title">Dasboard</span>
+                                    <span class="selected"></span>
+                                </a>
+                        <?php }
+                            else if($_SESSION['logged_in']['id'] == 6)
+                            {?>
+                                <a href="<?=base_url().'SDAS/sdas_Dashboard'?>" class="nav-link nav-toggle">
+                                    <i class="icon-home"></i>
+                                    <span class="title">Dasboard</span>
+                                    <span class="selected"></span>
+                                </a>
+                        <?php }
+                            else if($_SESSION['logged_in']['id'] == 7)
+                            {?>
+                                <a href="<?=base_url().'AO/Ao_Dashboard'?>" class="nav-link nav-toggle">
+                                    <i class="icon-home"></i>
+                                    <span class="title">Dasboard</span>
+                                    <span class="selected"></span>
+                                </a>
+                        <?php }
+                            else if($_SESSION['logged_in']['id'] == 8)
+                            {?>
+                                <a href="<?=base_url().'EDO/Edo_Dashboard'?>" class="nav-link nav-toggle">
+                                    <i class="icon-home"></i>
+                                    <span class="title">Dasboard</span>
+                                    <span class="selected"></span>
+                                </a>
+                        <?php }
                             else
                             {
-                                $dashboard_url = "#";
+                                echo "";
                             }
                         ?>
-                        <a href="<?=$dashboard_url?>" class="nav-link nav-toggle">
-                            <i class="icon-home"></i>
-                            <span class="title">Dasboard</span>
-                            <span class="selected"></span>
-                        </a>
                     </li>
-                    <li class="heading">
-                        <h3 class="uppercase">OTHER NAVIGATIONS</h3>
-
-                    </li>
+                    <?php if($_SESSION['logged_in']['id'] == 2 || $_SESSION['logged_in']['id'] == 3 )
+                              {?>
+                                <li class="heading">
+                                    <h3 class="uppercase">OTHER NAVIGATIONS</h3>
+                                </li>
+                        <?php }
+                              else
+                              {
+                                  echo "";
+                              }
+                        
+                        ?>
                     <li class="nav-item">
                         <?php 
                             if($_SESSION['logged_in']['id'] == 2)
-                            {
-                                $Listoforg = base_url().'SADU/Listoforg';
-                            }
+                            { ?>
+                                <a href="<?php echo base_url().'SADU/Listoforg'?>" class="nav-link nav-toggle">
+                                    <i class="icon-list"></i>
+                                    <span class="title">List of Organizations</span>
+                                </a>
+                        <?php }
                             else if($_SESSION['logged_in']['id'] == 3)
-                            {
-                                $Listoforg = base_url().'SCC/Scc_listoforg';
-                            }
+                            { ?>
+                                <a href="<?php echo base_url().'SCC/Scc_listoforg'?>" class="nav-link nav-toggle">
+                                    <i class="icon-list"></i>
+                                    <span class="title">List of Organizations</span>
+                                </a>
+                        <?php }
                             else
                             {
-                                $Listoforg = "#";
+                                echo "";
                             }
                         ?>
-                        <a href="<?php echo $Listoforg?>" class="nav-link nav-toggle">
-                            <i class="icon-list"></i>
-                            <span class="title">List of Organizations</span>
-                        </a>
                     </li>
                     <li>
-                        <a href="#" class="nav-link nav-toggle">
-                            <i class="icon-doc"></i>
-                            <span class="title">Proposals</span>
-                            <span class="arrow open"></span>
-                        </a>
+                        <?php if($_SESSION['logged_in']['id'] == 2 || $_SESSION['logged_in']['id'] == 3 )
+                              {?>
+                                <a href="#" class="nav-link nav-toggle">
+                                    <i class="icon-doc"></i>
+                                    <span class="title">Proposals</span>
+                                    <span class="arrow open"></span>
+                                </a>
+                        <?php }
+                              else
+                              {
+                                  echo "";
+                              }
+                        
+                        ?>
                           <ul class="sub-menu">
                             <li class="nav-item  ">
                                 <?php 

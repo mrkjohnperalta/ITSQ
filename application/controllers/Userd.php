@@ -12,13 +12,8 @@ Class Userd extends CI_Controller
 
 	public function index()
 	{
-		$query = $this->M_reserve->getEquipments();
-		$data['EQUIPMENTS'] = null;
-		if($query)
-		{
-   			$data['EQUIPMENTS'] =  $query;
-  		}
-		$this->load->view('userdashboard', $data);
+
+		$this->load->view('userdashboard');
 	}
 
 	public function reserved()
@@ -30,13 +25,8 @@ Class Userd extends CI_Controller
 
  	public function displayReservations()
  	{
- 		$query = $this->M_reserve->display();
-		$data['REQUIPMENTS'] = null;
-		if($query)
-		{
-   			$data['REQUIPMENTS'] =  $query;
-  		}
-		$this->load->view('Displayreservation', $data);
+
+		$this->load->view('Displayreservation');
 
  	}
 

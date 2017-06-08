@@ -3,6 +3,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class User_dashboard extends CI_Controller
 {
+	function __construct()
+	{
+		parent::__construct();
+		if(!isset($_SESSION['logged_in']))
+		{
+			redirect('Login', 'refresh');
+		}
+	}
+
 	public function index()
 	{
 		$this->load->view('includes/user_header');
@@ -110,7 +119,7 @@ class User_dashboard extends CI_Controller
 	
 
 		$this->user_model->insertroomreserve($finalroom,$data2,$data5);
-		// redirect(base_url()."user/user_dashboard/sendproposal");
+		redirect(base_url()."Userd");
 		}
 	}
 
@@ -133,16 +142,18 @@ class User_dashboard extends CI_Controller
 		$this->load->view('includes/user_footer');
 	}
 
-public function editorginfo($singleorg){
+	public function editorginfo($singleorg)
+	{
 
 		$this->load->model('user_model');
 		$data['organizations'] = $this->user_model->get_profile($singleorg);
 		$this->load->view('includes/user_header');
 		$this->load->view('user/user_editorginfo',$data);
 		$this->load->view('includes/user_footer');
-}
+	}
 
-public function updateorginfo($singleorg){
+	public function updateorginfo($singleorg)
+	{
 		$this->load->model('user_model');
 			if(isset($_POST['btnUpdate'])){
 				

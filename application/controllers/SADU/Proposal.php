@@ -35,6 +35,18 @@ class Proposal extends CI_Controller
 		echo json_encode($activity_details);
 	}
 
+	function get_all_proposals()
+	{
+		$sent_by = $this->input->post('sent_by');
+		// echo $sent_by;
+
+		$result['details'] = $this->sadu_model->get_all_proposals($sent_by);
+
+		$this->load->view('includes/header');
+		$this->load->view('SADU/list_of_proposal', $result);
+		$this->load->view('includes/footer');
+	}
+
 	function Save_Proposal_Status()
 	{
 		$status_selected = $this->input->post('selected_status');

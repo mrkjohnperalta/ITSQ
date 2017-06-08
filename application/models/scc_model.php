@@ -40,7 +40,7 @@ class Scc_model extends CI_Model
 
 	function Save_Prop_Comment($data, $comment)
 	{
-		if($data['sadu_status'] == 2)
+		if($data['scc_approve'] == 2)
 		{
 			$this->db->insert('comments', $comment);
 
@@ -77,5 +77,28 @@ class Scc_model extends CI_Model
         $query = $this->db->get();
         return $query->result_array();
 	}
+
+	function get_all_proposedby()
+    {
+        $this->db->select('activity_proposals.*, organizations.*');
+        $this->db->join('organizations', 'organizations.org_id = activity_proposals.sent_by');
+        $this->db->from('activity_proposals');
+        $this->db->group_by('sent_by');
+
+        
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+
+    function get_all_proposals($sent_by)
+    {
+        $this->db->select('activity_proposals.*, organizations.*');
+        $this->db->join('organizations', 'organizations.org_id = activity_proposals.sent_by');
+        $this->db->from('activity_proposals');
+        $this->db->where('sent_by', $sent_by);
+
+        $query = $this->db->get();
+        return $query->result_array();
+    }
 }
 ?>

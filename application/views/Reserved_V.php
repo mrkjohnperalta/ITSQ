@@ -52,7 +52,7 @@
         <div class="nav-collapse collapse navbar-collapse navbar-responsive-collapse">
           <ul class="nav navbar-nav">
             <li class="dropdown dropdown-fw dropdown-fw-disabled  active open selected">
-              <a href="http://localhost/itsq/Userd" class="text-uppercase">
+              <a href="<?= base_url() . 'Userd'?>" class="text-uppercase">
               <i class="icon-home"></i> Equipment Reservation </a>
             </li>
           </ul>

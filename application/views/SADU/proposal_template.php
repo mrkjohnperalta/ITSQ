@@ -143,7 +143,7 @@
                                            <div class='col-lg-6 col-md-4 col-sm-6 col-xs-12'>
                                                 <div class="mt-checkbox-list">
                                                     <label class="mt-checkbox mt-checkbox-outline uppercase"><b> <?=$template_details['file_name']?> </b>
-                                                        <input type="checkbox" value=<?=$template_details['template_id']?> name="activity_file[]" id="activity_file" />
+                                                        <input type="checkbox" value=<?=$template_details['template_id']?> name="activity_file" id="activity_file" />
                                                         <span></span>
                                                     </label>
                                                 </div>

@@ -48,15 +48,23 @@
         <!-- END LOGO -->
       </div>
       <!-- BEGIN HEADER MENU -->
-        <div class="nav-collapse collapse navbar-collapse navbar-responsive-collapse">
+        <div class="nav-collapse collapse navbar-collapse navbar-responsive-collapse ">
           <ul class="nav navbar-nav">
-            <li class="dropdown dropdown-fw dropdown-fw-disabled  active open selected">
-              <a href="http://localhost/itsq/Userd" class="text-uppercase">
-             <!--  <i class="icon-home"></i> --> Equipment Reservation </a>
+           <!-- <li class="dropdown dropdown-fw dropdown-fw-disabled  active open selected">
+              <a href= "<?php echo site_url('USER/user_dashboard/index');?>"  class="text-uppercase">
+                <i class="icon-home" ></i> Home </a>
             </li>
+            <li class="dropdown dropdown-fw dropdown-fw-disabled active open selected" >
+              <a href= "<?php echo site_url('USER/user_dashboard/sendproposal');?>" class="text-uppercase">
+                <i class="icon-puzzle" ></i> Activity Proposal </a>
+            </li> -->
             <li class="dropdown dropdown-fw dropdown-fw-disabled  active open selected">
-              <a href="http://localhost/itsq/Userd/displayReservations" class="text-uppercase">
-              <!-- <i class="icon-home"></i>  --> View all reservation </a>
+              <a href="<?= base_url();?>Userd" class="text-uppercase">
+              <!-- <i class="icon-home"></i> --> Equipment Reservation </a>
+            </li>
+            <li class="dropdown dropdown-fw dropdown-fw-disabled active open selected" >
+              <a href="<?= base_url();?>Userd/displayReservations" class="text-uppercase">
+              <!-- <i class="icon-home"></i> -->  View all reservation </a>
             </li>
           </ul>
         </div>
@@ -66,7 +74,7 @@
 
   <div class="container-fluid">
     <div class="page-content">
-      <table class="table">
+      <table class="table" style="width: 100%;">
         <tr align="center">  
             <!-- <td>Reservation Id</td> -->  
             <td>Equipment Name</td>
@@ -78,7 +86,10 @@
             <td>Reservation Status</td>
             <td>Action</td>
           </tr>
-    <?php foreach($REQUIPMENTS as $requipments){?>
+    <?php 
+    $REQUIPMENTS = $this->M_reserve->display();
+
+    foreach($REQUIPMENTS as $requipments){?>
      <tr align="center">
       <!-- <td><?=$requipments->reservation_id;?></td> -->
       <td><?=$requipments->equipment_name;?></td>
@@ -92,9 +103,28 @@
         <a href="<?php echo base_url() . "Userd/editReservations/" .$requipments->reservation_id; ?>">  
         <button type="button" class="btn btn-primary">Edit Reservation</button>
         </a>
-         <a href="<?php echo base_url() . "Userd/delete/" . $requipments->reservation_id; ?>">
-          <button type="button" class="btn btn-danger">Delete Reservation</button></a>
-      </td> 
+         
+          <button type="button" class="btn btn-danger" data-toggle="modal" href="#basic">Delete Reservation</button>
+      </td>
+          <div class="modal fade" id="basic" tabindex="-1" role="basic" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                    <h4 class="modal-title">Delete Reservation</h4>
+                </div>
+              <div class="modal-body"> Do you want to delete the reservation? </div>
+              <div class="modal-footer">
+                  <button type="button" class="btn dark btn-outline" data-dismiss="modal">Close</button>
+                  <a href="<?php echo base_url() . "Userd/delete/" . $requipments->reservation_id; ?>">
+                    <button type="button" class="btn green">Delete</button></a>
+                </div>
+              </div>
+                                            
+            </div>
+                                        
+          </div>
+
       <?php }?> 
     </table>
     <br><br>

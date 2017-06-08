@@ -23,6 +23,4 @@ if($type == 'fetch')
 	}
 	echo json_encode($events);
 }
-
-
 ?>

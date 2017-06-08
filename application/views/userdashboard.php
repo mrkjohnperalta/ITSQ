@@ -11,24 +11,24 @@
   <!-- END LAYOUT FIRST STYLES -->
   <!-- BEGIN GLOBAL MANDATORY STYLES -->
         <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&amp;subset=all" rel="stylesheet" type="text/css" />
-        <link href="assets/global/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
-        <link href="assets/global/plugins/simple-line-icons/simple-line-icons.min.css" rel="stylesheet" type="text/css" />
-        <link href="assets/global/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-        <link href="assets/global/plugins/bootstrap-switch/css/bootstrap-switch.min.css" rel="stylesheet" type="text/css" />
+        <link href="<?= base_url();?>assets/global/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+        <link href="<?= base_url();?>assets/global/plugins/simple-line-icons/simple-line-icons.min.css" rel="stylesheet" type="text/css" />
+        <link href="<?= base_url();?>assets/global/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+        <link href="<?= base_url();?>assets/global/plugins/bootstrap-switch/css/bootstrap-switch.min.css" rel="stylesheet" type="text/css" />
   <!-- END GLOBAL MANDATORY STYLES -->
   <!-- BEGIN PAGE LEVEL PLUGINS -->
-        <link href="assets/global/plugins/bootstrap-daterangepicker/daterangepicker.min.css" rel="stylesheet" type="text/css" />
-        <link href="assets/global/plugins/morris/morris.css" rel="stylesheet" type="text/css" />
-        <link href="assets/global/plugins/fullcalendar/fullcalendar.min.css" rel="stylesheet" type="text/css" />
-        <link href="assets/global/plugins/jqvmap/jqvmap/jqvmap.css" rel="stylesheet" type="text/css" />
+        <link href="<?= base_url();?>assets/global/plugins/bootstrap-daterangepicker/daterangepicker.min.css" rel="stylesheet" type="text/css" />
+        <link href="<?= base_url();?>assets/global/plugins/morris/morris.css" rel="stylesheet" type="text/css" />
+        <link href="<?= base_url();?>assets/global/plugins/fullcalendar/fullcalendar.min.css" rel="stylesheet" type="text/css" />
+        <link href="<?= base_url();?>assets/global/plugins/jqvmap/jqvmap/jqvmap.css" rel="stylesheet" type="text/css" />
   <!-- END PAGE LEVEL PLUGINS -->
   <!-- BEGIN THEME GLOBAL STYLES -->
-        <link href="assets/global/css/components.min.css" rel="stylesheet" id="style_components" type="text/css" />
-        <link href="assets/global/css/plugins.min.css" rel="stylesheet" type="text/css" />
+        <link href="<?= base_url();?>assets/global/css/components.min.css" rel="stylesheet" id="style_components" type="text/css" />
+        <link href="<?= base_url();?>assets/global/css/plugins.min.css" rel="stylesheet" type="text/css" />
         <!-- END THEME GLOBAL STYLES -->
   <!-- BEGIN THEME LAYOUT STYLES -->
-        <link href="assets/layouts/layout5/css/layout.min.css" rel="stylesheet" type="text/css" />
-        <link href="assets/layouts/layout5/css/custom.min.css" rel="stylesheet" type="text/css" />
+        <link href="<?= base_url();?>assets/layouts/layout5/css/layout.min.css" rel="stylesheet" type="text/css" />
+        <link href="<?= base_url();?>assets/layouts/layout5/css/custom.min.css" rel="stylesheet" type="text/css" />
   <!-- END THEME LAYOUT STYLES -->
         <link rel="shortcut icon" href="favicon.ico" />
   <!-- <link rel="stylesheet" href="/resources/demos/style.css"> -->
@@ -50,11 +50,19 @@
       <!-- BEGIN HEADER MENU -->
         <div class="nav-collapse collapse navbar-collapse navbar-responsive-collapse">
           <ul class="nav navbar-nav">
+           <!-- <li class="dropdown dropdown-fw dropdown-fw-disabled  active open selected">
+              <a href= "<?php echo site_url('USER/user_dashboard/index');?>"  class="text-uppercase">
+                <i class="icon-home" ></i> Home </a>
+            </li>
+            <li class="dropdown dropdown-fw dropdown-fw-disabled active open selected" >
+              <a href= "<?php echo site_url('USER/user_dashboard/sendproposal');?>" class="text-uppercase">
+                <i class="icon-puzzle" ></i> Activity Proposal </a>
+            </li> -->
             <li class="dropdown dropdown-fw dropdown-fw-disabled  active open selected">
               <a href="<?= base_url();?>Userd" class="text-uppercase">
               <!-- <i class="icon-home"></i> --> Equipment Reservation </a>
             </li>
-            <li class="dropdown dropdown-fw dropdown-fw-disabled  active open selected">
+            <li class="dropdown dropdown-fw dropdown-fw-disabled active open selected">
               <a href="<?= base_url();?>Userd/displayReservations" class="text-uppercase">
               <!-- <i class="icon-home"></i> -->  View all reservation </a>
             </li>
@@ -66,7 +74,7 @@
 
   <div class="container-fluid">
     <div class="page-content">
-      <table class="table">
+      <table class="table" style="width: 100%;">
         <form name="myForm" action="<?= base_url();?>Userd/reserved" method="POST" onsubmit="return checkValues()">
           <tr>Reservation Date: <input type="text" id="datepicker" name="datepicker" required >
             <td>
@@ -130,9 +138,16 @@
     <?php 
       $a = 1;
      ?>
-     <?php foreach($EQUIPMENTS as $equipments){?>
+
+     <?php 
+     $equipments_list = $this->M_reserve->getEquipments();
+
+     foreach($equipments_list as $equipments){?>
      <tr>
-      <td><?=$equipments->office_name;?></td>
+      <td>
+        <?=$equipments->office_name;?> 
+        <input type="hidden" name="office_id[<?php echo $a ?>]" value="<?=$equipments->office_id?>">
+      </td>
         <td>
           <input type="checkbox" name="equipment[<?php echo $a ?>]" class="css-checkbox" 
           id="equipment[<?php echo $a ?>]" value="<?=$equipments->equipment_name;?>" 
@@ -145,7 +160,7 @@
         echo '3';
         } else {
           echo $equipments->equipment_quantity;
-        } ?>" required onkeyup="checknum(this.value,'<?php echo $a ?>')" onclick="checknum(this.value,'<?php echo $a ?>')"
+        } ?>" required onkeyup="checknum(this.value,'<?php echo $a ?>')" onclick="checknum(this.value,'<?php echo $a ?>')">
         <!--<?=$equipments->equipment_quantity;?>-->
       </td>
       <td>
@@ -210,12 +225,18 @@
     var end_time = $("#Record_End_Time").val();
     console.log("Time1: " + start_time + " Time2: " + end_time);
 
-    if (start_time > end_time) {
+    if (start_time = end_time) {
         console.log( $("#Record_Start_Time"));
         $("#Record_Start_Time").after(alert('Start-time must be smaller then End-time.'));
         $("#Record_End_Time").after(alety('End-time must be bigger then Start-time.'));
         return false;
-    } else {
+    }/*else if(start_time = end_time){
+        console.log( $("#Record_Start_Time"));
+        $("#Record_Start_Time").after(alert('Start and End time should not be the same.'));
+        $("#Record_End_Time").after(alety('Start and End time should not be the same.'));
+        return false;
+    }*/
+     else {
         $('.error').remove();
       }
     };

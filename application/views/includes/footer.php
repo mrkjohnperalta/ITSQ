@@ -21,6 +21,7 @@
     <script src="<?php echo base_url() . 'js/fullcalendar.min.js'?>" type="text/javascript"></script>
     <script src="<?php echo base_url() . 'js/jquery-ui.min.js'?>" type="text/javascript"></script>
     <script src="<?php echo base_url() . 'js/toastr.min.js'?>" type="text/javascript"></script>
+    <script src="<?php echo base_url() . 'js/bootstrap-datepicker.js'?>"></script>
     <!-- END PAGE LEVEL PLUGINS -->
     <!-- BEGIN THEME GLOBAL SCRIPTS -->
     <script src="<?php echo base_url() . 'js/app.min.js'?>" type="text/javascript"></script>
@@ -39,7 +40,7 @@
     <script src="<?php echo base_url() . 'js/quick-nav.min.js'?>" type="text/javascript"></script>
     <!-- END THEME LAYOUT SCRIPTS -->
     <!-- DROPZONE -->
-    <script src="<?php echo base_url() . 'js/dropzone.js'?>"></script>\
+    <script src="<?php echo base_url() . 'js/dropzone.js'?>"></script>
     <script>
         $(document).ready(function()
         {
@@ -48,6 +49,15 @@
                 $('#radio1003').attr('checked', 'checked');
             });
         })
+
+        $('#data_1 .input-group.date').datepicker({
+            todayBtn: "linked",
+            format: "yyyy-mm-dd",
+            keyboardNavigation: false,
+            forceParse: false,
+            minDate: 0,
+            autoclose: true
+        });
     </script>
     <script>
         $(document).ready(function() {
@@ -79,27 +89,11 @@
                 editable: false,
                 events: JSON.parse(json_events),
                 eventClick: function(event, jsEvent, view) {
-                    
-                    // $.ajax({
-                    //     url: 'process.php',
-                    //     data: 'type=changetitle&title='+title+'&eventid='+event.id,
-                    //     type: 'POST',
-                    //     dataType: 'json',
-                    //     success: function(response){	
-                    //         if(response.status == 'success')			    			
-                    //             $('#calendar').fullCalendar('updateEvent',event);
-                    //     },
-                    //     error: function(e){
-                    //         alert('Error processing your request: '+e.responseText);
-                    //     }
-                    // });
-                    
-                    // alert(event.title);
-                    // document.getElementById('modal-title').innerHTML     = event.title + " details";
-                    document.getElementById('event-organizer').innerHTML = event.org;
-                    document.getElementById('event-title').innerHTML     = event.title;
-                    document.getElementById('event-startdate').innerHTML     = event.start;
-                    document.getElementById('event-enddate').innerHTML     = event.end;
+                 
+                    document.getElementById('event-organizer').innerHTML    = event.org;
+                    document.getElementById('event-title').innerHTML        = event.title;
+                    document.getElementById('event-startdate').innerHTML    = event.start;
+                    document.getElementById('event-enddate').innerHTML      = event.end;
                     $('#event_details').modal('show');
                 },
             });

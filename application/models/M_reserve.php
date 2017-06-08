@@ -13,6 +13,7 @@ class M_reserve extends CI_Model {
  	if($this->input->post('submit')){
  		$equip = $_POST['equipment'];
  		$quantity = $_POST['quantity'];
+ 		$offid = $_POST['office_id'];
  		
 
  			foreach ($equip as $index => $value) {
@@ -21,30 +22,32 @@ class M_reserve extends CI_Model {
 		 				'equipment_quantity'=>$quantity[$index],
 		 				'date_reserved'=>$_POST['datepicker'],
 		 				'time_start'=>$_POST['Record_Start_Time'],
-		 				'time_end'=>$_POST['Record_End_Time']
-
+		 				'time_end'=>$_POST['Record_End_Time'],
+						'reserved_by' => $_SESSION['logged_in']['id'],
+		 				'office_name'=>$offid[$index]
+		 				/*'reserved_by=>'$_POST['']*/
 		 			);
  			}
  			$this->db->insert_batch('reservation_equipments', $query);
 			
 
 
-			foreach ($equip as $index => $value){
-				$sql="select equipment_quantity from equipments WHERE equipment_name = '".$equip[$index]."'";
-				$query1=$this->db->query($sql)->row()->equipment_quantity;
+		// 	foreach ($equip as $index => $value){
+		// 		$sql="select equipment_quantity from equipments WHERE equipment_name = '".$equip[$index]."'";
+		// 		$query1=$this->db->query($sql)->row()->equipment_quantity;
 				
 				
-				$total = $query1 - $quantity[$index]; 
+		// 		$total = $query1 - $quantity[$index]; 
 				
 				
-				$array[] = array(
-						'equipment_name' => $equip[$index],
-						'equipment_quantity' => $total
+		// 		$array[] = array(
+		// 				'equipment_name' => $equip[$index],
+		// 				'equipment_quantity' => $total
 
-					);
+		// 			);
 
-		}
-		$this->db->update_batch('equipments', $array, 'equipment_name');
+		// }
+		// $this->db->update_batch('equipments', $array, 'equipment_name');
 
  }
 }
@@ -94,6 +97,14 @@ class M_reserve extends CI_Model {
   		$query = $this->db->get();
   		return $query->result();
 	}
+
+ function getAvailableStocks($date){
+ 	$query = $this->db->query('select b.*, b.equipment_quantity - sum(a.equipment_quantity) available_stocks from reservation_equipments a join equipments b on a.equipment_id = b.equipment_id where a.date_reserved = DATE("'.$date.'") GROUP BY a.date_reserved, a.equipment_id');
+ 	return $query->result();
+
+
+ }
+
 
 }
 
