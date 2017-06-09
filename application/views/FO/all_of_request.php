@@ -55,7 +55,9 @@
                                         <?php
                                             
                                                 foreach($details as $equipments)
-                                                { ?> <input type="hidden" name="reservation_id" value="<?= $equipments['reservation_id'] ?>">
+                                                { 
+                                                    $prop_id = $equipments['actprop_id'];
+                                                ?> <input type="hidden" name="reservation_id" value="<?= $equipments['reservation_id'] ?>">
                                                     <tr>
                                                         <td> <div class="mt-checkbox-list">
                                                                 <label class="mt-checkbox mt-checkbox-outline"> <?= $equipments['equipment_name'] ?>
@@ -77,11 +79,36 @@
                                         
                                      </tbody>
                                     </table>
-                                </div>
+                                 </div>
+                                 <input type="hidden" name="proposal_id" value="<?= $prop_id ?>">
                                  <button type="submit" class="btn green" name="statusBTN" value="2" >Approve</button>
                                  <button type="submit" class="btn red" name="statusBTN" value="1" >Undo</button>
-                                 <button type="submit" class="btn red" name="statusBTN" value="3"  >Decline</button>
-                                 <button type="button" class="btn blue-madison pull-right" id="add_comment" name="add_comment" value="3">Add Comment</button>
+                                 <button type="button" class="btn red" name="decline" data-toggle="modal" href="#decline_request">Decline</button>
+                                 <!--BEGIN OF MODAL for Add Organization-->
+                                    <div class="modal fade" id="decline_request" tabindex="-1" role="basic" aria-hidden="true" style="margin-top: 10%;">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-body">
+                                                    <h4>Do you really want to decline this request?</h4>
+                                                    <div class="row">
+                                                        <div class='col-lg-12 col-xs-12 col-sm-12'>
+                                                            <p><b>Enter your comment below:</b></p>
+                                                            <textarea class='form-control' rows='3' name="comment_section" id='comment_section' onkeyup='comment_func()'></textarea>
+                                                            <input type='hidden' id='hidden_user_id' name="hidden_user_id" value='<?php echo $_SESSION['logged_in']['id']?>'>
+                                                        </div>
+                                                    </div>
+                                                    
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="submit" id="declineBTN" name="statusBTN" value="3" class="btn red" disabled>Yes</button>
+                                                    <button type="button" class="btn dark btn-outline" data-dismiss="modal">Close</button>
+                                                </div>
+                                            </div>
+                                            <!-- /.modal-content -->
+                                        </div>
+                                        <!-- /.modal-dialog -->
+                                    </div>
+                                    <!-- /.modal -->
                                 <?php echo form_close();?>
                             </div>
                         </div>

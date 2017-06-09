@@ -80,7 +80,7 @@ class Fo_model extends CI_Model
         }
     }
 
-    function decline($id, $data, $resID)
+    function decline($id, $data, $resID, $comment)
     {
         for($x = 0 ; $x < sizeof($resID) ; $x++)
         {
@@ -88,7 +88,8 @@ class Fo_model extends CI_Model
             $this->db->where('reservation_id', $resID[$x]);
             $this->db->update('reservation_equipments', $data);
         }
+        
+        $this->db->insert('comments', $comment);
     }
-    
 }
 ?>

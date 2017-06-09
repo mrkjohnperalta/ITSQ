@@ -25,8 +25,18 @@ class Dashboard extends CI_Controller
         $btn 		= $this->input->post('statusBTN');
         $id  		= $this->input->post('reservation_id');
 		$resID 		= $this->input->post('reservationID');
-		$data 		= array('reservation_status' => NULL);
+		$comments 	= $this->input->post('comment_section');
+		$prop_id 	= $this->input->post('proposal_id');
+		$user_id 	= $this->input->post('hidden_user_id');
 
+		$data 		= array('reservation_status' => NULL);
+		$comment = 
+		array (
+		'author' 	 => $user_id,
+		'comment'	 => $comments,
+		'date'    	 => date('Y-m-d'),
+		'actprop_id' => $prop_id
+		);
 		
 		if($btn == 1)
 		{
@@ -42,7 +52,7 @@ class Dashboard extends CI_Controller
 		else
 		{
 			// echo $btn;
-			$this->fo_model->decline($id, $data, $resID);
+			$this->fo_model->decline($id, $data, $resID, $comment);
 		}
         
         redirect(base_url(). 'FO/Dashboard');

@@ -55,7 +55,9 @@
                                         <?php
                                             
                                                 foreach($details as $room)
-                                                { ?> <input type="hidden" name="reservation_id" value="<?= $room['room_reserve_id'] ?>">
+                                                { 
+                                                    $prop_id = $room['prop_id'];
+                                                ?> <input type="hidden" name="reservation_id" value="<?= $room['room_reserve_id'] ?>">
                                                     <tr>
                                                         <td> <div class="mt-checkbox-list">
                                                                 <label class="mt-checkbox mt-checkbox-outline"> <?= $room['room_number'] ?>
@@ -72,22 +74,13 @@
                                                         
                                                         <!--<td width="8%"><button class="btn red" data-toggle="modal" href="#decline_request<?= $room['reservation_id'] ?>">Decline</button></td>-->
                                                        
-                                        <?php       if($room['room_reserve_id'] == 1)
-                                                    {
-                                                        $pending_count = 'Pending';
-                                                        echo $pending_count;
-                                                    }
-                                                    else
-                                                    {
-                                                        $pending_count = 'Failed';
-                                                        echo $pending_count;
-                                                    }
-                                                }?>
+                                        <?php   }?>
                                         
                                      </tbody>
                                     </table>
                                 </div>
                                 <!--<?= $pending_count;?>-->
+                                <input type="hidden" name="proposal_id" value="<?= $prop_id ?>">
                                  <button type="submit" class="btn green" name="statusBTN" value="2" >Approve</button>
                                  <button type="submit" class="btn red" name="statusBTN" value="1" >Undo</button>
                                  <button type="button" class="btn red" name="decline" data-toggle="modal" href="#decline_request">Decline</button>
@@ -95,17 +88,13 @@
                                     <div class="modal fade" id="decline_request" tabindex="-1" role="basic" aria-hidden="true" style="margin-top: 10%;">
                                         <div class="modal-dialog">
                                             <div class="modal-content">
-                                                <!--<div class="modal-header green">
-                                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
-                                                    <center><h4 class="caption-subject font-dark sbold"> EVENT DETAILS </h4></center>
-                                                </div>-->
                                                 <div class="modal-body">
                                                     <h4>Do you really want to decline this request?</h4>
                                                     <div class="row">
                                                         <div class='col-lg-12 col-xs-12 col-sm-12'>
                                                             <p><b>Enter your comment below:</b></p>
-                                                            <textarea class='form-control' rows='3' id='comment_section' onkeyup='comment_func()'></textarea>
-                                                            <input type='hidden' id='hidden_user_id' value='<?php echo $_SESSION['logged_in']['id']?>'>
+                                                            <textarea class='form-control' rows='3' name="comment_section" id='comment_section' onkeyup='comment_func()'></textarea>
+                                                            <input type='hidden' id='hidden_user_id' name="hidden_user_id" value='<?php echo $_SESSION['logged_in']['id']?>'>
                                                         </div>
                                                     </div>
                                                     
