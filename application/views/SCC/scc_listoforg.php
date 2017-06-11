@@ -96,7 +96,7 @@
                                 <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
                                     <div class="mt-card-item">
                                         <div class="mt-card-avatar mt-overlay-3">
-                                            <img src="<?= base_url() . 'img/Org_Logos/ACES.jpg'?>" />
+                                            <img src="<?= base_url() . 'img/Org_Logos/ACES.png'?>" />
                                             <div class="mt-overlay">
                                                 <h2>ACES</h2>
                                                 <div class="mt-info ">

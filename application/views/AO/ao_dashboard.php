@@ -42,7 +42,8 @@
                                     <thead>
                                         <tr>
                                             <th> Proposed By </th>
-                                            <th> Action</th>
+                                            <th width="15%"> Pending Proposals </th>
+                                            <th width="10%"> Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -50,16 +51,25 @@
                                             $proposals = $this->ao_model->get_all_proposedby();
 
                                             foreach($proposals as $list)
-                                            {   
+                                            {
+                                                $cnt_pending = $this->ao_model->count_pending_proposals($list['sent_by']);
+                                                if($cnt_pending != 0)
+                                                {
                                         ?>
                                                 <tr>
                                                     <td><?= $list['organization_name'] ?></td>
+                                                    <td><center><b><?= $cnt_pending; ?></b></center></td>
                                                     <?php echo form_open('AO/Ao_dashboard/get_all_proposals');?>
                                                         <input type="hidden" name="sent_by" value="<?= $list['sent_by'] ?>">
                                                         <td><button class="btn red">View</button></td>
                                                     <?php echo form_close();?>
                                                 </tr>
                                         <?php
+                                                }
+                                                else
+                                                {
+                                                    echo "";
+                                                }
                                             }
                                         ?>
                                      </tbody>

@@ -27,6 +27,12 @@ class Scc_model extends CI_Model
 
 	function Save_Prop_Status($data, $proposal_id)
 	{
+		//Query to change the comment status
+		$this->db->where('author', $comment['author']);
+		$this->db->where('actprop_id', $comment['actprop_id']);
+		$this->db->update('comments', array('comments_status' => $comment['comment_status']));
+
+		//Query to change status of SCC
 		$this->db->where('prop_id', $proposal_id);
 		if($this->db->update('activity_proposals', $data))
 		{
@@ -100,5 +106,18 @@ class Scc_model extends CI_Model
         $query = $this->db->get();
         return $query->result_array();
     }
+
+	function count_pending_proposals($sent_by)
+	{
+		$this->db->select('*');
+		$this->db->from('activity_proposals');
+		$this->db->where('sent_by', $sent_by);
+		$this->db->where('scc_approve', 1);
+
+		$query = $this->db->get();
+		$rowcount = $query->num_rows();
+
+		return $rowcount;
+	}
 }
 ?>

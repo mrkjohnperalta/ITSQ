@@ -36,6 +36,7 @@ class Sdas_dashboard extends CI_Controller
 	{
 		$status_selected = $this->input->post('selected_status');
 		$proposal_id 	 = $this->input->post('proposal_id');
+		$user_id 		 = $_SESSION['logged_in']['id'];
 
 		if($status_selected == 1)
 		{
@@ -46,15 +47,22 @@ class Sdas_dashboard extends CI_Controller
 		}
 		else
 		{
-			$data = 
+			$data =
 			array (
 			'sdas_status' => 3,
 			'accounting_status' => 1
 			);
+
+			$comment =
+			array (
+			'author' 	  	 => $user_id,
+			'actprop_id' 	 => $proposal_id,
+			'comment_status' => 0
+			);
 		}
 		
 
-		$result = $this->sdas_model->Save_Prop_Status($data, $proposal_id);
+		$result = $this->sdas_model->Save_Prop_Status($data, $proposal_id, $comment);
 		echo json_encode($result);
 	}
 

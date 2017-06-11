@@ -51,17 +51,25 @@
                                             $proposals = $this->sadu_model->get_all_proposedby();
 
                                             foreach($proposals as $list)
-                                            {   
+                                            {
+                                                $cnt_pending = $this->sadu_model->count_pending_proposals($list['sent_by']);
+                                                if($cnt_pending != 0)
+                                                {
                                         ?>
                                                 <tr>
                                                     <td><?= $list['organization_name'] ?></td>
-                                                    <td></td>
+                                                    <td><center><b><?= $cnt_pending; ?></b></center></td>
                                                     <?php echo form_open('SADU/Proposal/get_all_proposals');?>
                                                         <input type="hidden" name="sent_by" value="<?= $list['sent_by'] ?>">
                                                         <td><button class="btn red">View</button></td>
                                                     <?php echo form_close();?>
                                                 </tr>
                                         <?php
+                                                }
+                                                else
+                                                {
+                                                    echo "";
+                                                }
                                             }
                                         ?>
                                      </tbody>

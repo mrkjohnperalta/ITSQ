@@ -42,27 +42,34 @@
                                     <thead>
                                         <tr>
                                             <th> Activity Proposal Title </th>
-                                            <th width="10%"> Qty </th>
+                                            <th width="12%"> No. of Request </th>
                                             <th width="10%"> Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <?php 
-                                                // $reservations = $this->fo_model->get_all_reservation();
-                                                // var_dump($reservations);
                                                 foreach($details as $equipments)
                                                 {
+                                                    $cnt_reservation = $this->ro_model->count_request($equipments['prop_id']);
+                                                    if($cnt_reservation != 0)
+                                                    {
                                         ?>          
-                                                    <tr>
-                                                        <td> <?= $equipments['proposal_title'] ?> </td>
-                                                        <td> </td>
-                                                        <?php echo form_open('RO/Dashboard/get_list_of_request');?>
-                                                        <input type="hidden" name="reserved_by" value="<?= $equipments['reserved_by'] ?>">
-                                                        <input type="hidden" name="actprop_id" value="<?= $equipments['prop_id'] ?>">
-                                                        <td><button class="btn red">View</button></td>
-                                                        <?php echo form_close();?>
-                                                    </tr>
-                                        <?php   }
+                                                        <tr>
+                                                            <td> <?= $equipments['proposal_title'] ?> </td>
+                                                            <td> <center><span class="badge badge-danger"><b><font size="2px"> <?=  $cnt_reservation ?> </font></b></span></center> </td>
+                                                            <?php echo form_open('RO/Dashboard/get_list_of_request');?>
+                                                            <input type="hidden" name="reserved_by" value="<?= $equipments['reserved_by'] ?>">
+                                                            <input type="hidden" name="actprop_id" value="<?= $equipments['prop_id'] ?>">
+                                                            <td><button class="btn red">View</button></td>
+                                                            <?php echo form_close();?>
+                                                        </tr>
+                                        <?php   
+                                                    }
+                                                    else
+                                                    {
+                                                        echo "";
+                                                    }
+                                                }
                                             ?>
                                      </tbody>
                                     </table>

@@ -87,9 +87,27 @@ class Ro_model extends CI_Model
             $data['reservation_status'] = 3;
             $this->db->where('room_reserve_id', $resID[$x]);
             $this->db->update('room_reservation', $data);
+
+            $res['room_reserve_id'] = $resID[$x];
+            $this->db->where('room_reserve_id', $resID[$x]);
+            $this->db->delete('room_reservation', $res);
         }
+
+
 
         $this->db->insert('comments', $comment);
     }
+
+    function count_request($actprop_id)
+	{
+		$this->db->select('*');
+		$this->db->from('room_reservation');
+		$this->db->where('prop_id', $actprop_id);
+
+		$query = $this->db->get();
+		$rowcount = $query->num_rows();
+
+		return $rowcount;
+	}
 }
 ?>

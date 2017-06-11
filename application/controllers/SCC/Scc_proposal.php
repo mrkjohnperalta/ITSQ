@@ -39,7 +39,6 @@ class Scc_proposal extends CI_Controller
 	function get_all_proposals()
 	{
 		$sent_by = $this->input->post('sent_by');
-		// echo $sent_by;
 
 		$result['details'] = $this->scc_model->get_all_proposals($sent_by);
 
@@ -52,23 +51,32 @@ class Scc_proposal extends CI_Controller
 	{
 		$status_selected = $this->input->post('selected_status');
 		$proposal_id 	 = $this->input->post('proposal_id');
+		$user_id 		 = $_SESSION['logged_in']['id'];
 
 		if($status_selected == 1)
 		{
-			$data = array (
-				'scc_approve' => $status_selected
-				);
+			$data =
+			array (
+			'scc_approve' 	 => $status_selected
+			);
 		}
 		else
 		{
-			$data = array (
-				'scc_approve' => 3,
-				'sadu_status' => 1
-				);
-		}
-		
+			$data =
+			array (
+			'scc_approve' 	 => 3,
+			'sadu_status' 	 => 1
+			);
 
-		$result = $this->scc_model->Save_Prop_Status($data, $proposal_id);
+			$comment =
+			array (
+			'author' 	  	 => $user_id,
+			'actprop_id' 	 => $proposal_id,
+			'comment_status' => 0
+			);
+		}
+
+		$result = $this->scc_model->Save_Prop_Status($data, $proposal_id, $comment);
 		echo json_encode($result);
 	}
 
@@ -77,22 +85,23 @@ class Scc_proposal extends CI_Controller
 		$author 		 = $this->input->post('author');
 		$proposal_id 	 = $this->input->post('proposal_id');
 		$act_comment     = $this->input->post('activity_comment');
-		// $date_today 	 = 'Y-m-d';
 
-		$data 	 = array ('scc_approve' => 2 );
-		$comment = 
+		$data 	 		 = array ('scc_approve' => 2 );
+		$comment 		 = 
 		array (
-		'author' 	 => $author,
-		'comment'	 => $act_comment,
-		'date'    	 => date('Y-m-d'),
-		'actprop_id' => $proposal_id
+		'author' 	 	 => $author,
+		'comment'	 	 => $act_comment,
+		'date'    	 	 => date('Y-m-d'),
+		'actprop_id' 	 => $proposal_id
 		);
 
 		$result = $this->scc_model->Save_Prop_Comment($data, $comment);
+
 		if($result == true)
 		{
 			$this->session->set_flashdata("status_change", "Changes has been saved");
 		}
+
 		echo json_encode($result);
 	}
 
@@ -100,6 +109,7 @@ class Scc_proposal extends CI_Controller
 	{
 		$id 		   		  	  = $this->input->post('proposal_id');
 		$act_comments['comments'] = $this->sadu_model->get_All_Proposal_Comment($id);
+
 		echo json_encode($act_comments);
 	}
 
@@ -107,6 +117,7 @@ class Scc_proposal extends CI_Controller
 	{
 		$selected = $this->input->post('selected_value');
 		$activity_details['details'] = $this->sadu_model->get_All_Proposal($selected);
+		
 		echo json_encode($activity_details);
 	}
 }

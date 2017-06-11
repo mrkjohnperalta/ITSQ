@@ -205,4 +205,17 @@ $('#checkBoxID').click(function(){
     }
 
 });
+
+function comment_func(event)
+{
+    var comment_text = document.getElementById('comment_section').value;
+    if( comment_text != "")
+    {
+        document.getElementById('declineBTN').disabled = false;
+    }
+    else
+    {
+        document.getElementById('declineBTN').disabled = true;
+    }
+}
 </script>

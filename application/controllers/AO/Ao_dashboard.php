@@ -35,6 +35,7 @@ class Ao_dashboard extends CI_Controller
 	{
 		$status_selected = $this->input->post('selected_status');
 		$proposal_id 	 = $this->input->post('proposal_id');
+		$user_id 		 = $_SESSION['logged_in']['id'];
 
 		if($status_selected == 1)
 		{
@@ -50,9 +51,16 @@ class Ao_dashboard extends CI_Controller
 			'accounting_status' => 3,
 			'edo_status' => 1
 			);
+
+			$comment =
+			array (
+			'author' 	  	 => $user_id,
+			'actprop_id' 	 => $proposal_id,
+			'comment_status' => 0
+			);
 		}
 		
-		$result = $this->ao_model->Save_Prop_Status($data, $proposal_id);
+		$result = $this->ao_model->Save_Prop_Status($data, $proposal_id, $comment);
 		echo json_encode($result);
 	}
 
