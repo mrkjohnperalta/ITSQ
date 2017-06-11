@@ -13,6 +13,14 @@ class Sadu_model extends CI_Model
 		$this->db->insert('organizations',$data);
 	}
 
+	function get_orgdetials()
+	{
+		$this->db->select('*');
+		$this->db->from('organizations');
+
+		$query = $this->db->get();
+        return $query->result_array();
+	}
 
 	function get_Activity_Proposal($selected)
     {

@@ -11,6 +11,8 @@
     <meta content="width=device-width, initial-scale=1" name="viewport" />
     <meta content="Preview page of Metronic Admin Theme #4 for statistics, charts, recent events and reports" name="description" />
     <meta content="" name="author" />
+
+    <link rel="shortcut icon" href="<?php echo base_url() . 'img/favicon.png'?>" />
     <!-- BEGIN GLOBAL MANDATORY STYLES -->
     
     <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&amp;subset=all" rel="stylesheet" type="text/css" />
@@ -38,11 +40,12 @@
     <link href="<?php echo base_url() . 'css/pnotify.css'?>" media="all" rel="stylesheet" type="text/css" />
     <!-- END THEME GLOBAL STYLES -->
     <!-- BEGIN THEME LAYOUT STYLES -->
+    <link href="<?php echo base_url() . 'css/profile-2.min.css'?>" rel="stylesheet" type="text/css" />
     <link href="<?php echo base_url() . 'css/layout.min.css'?>" rel="stylesheet" type="text/css" />
     <link href="<?php echo base_url() . 'css/default.min.css'?>" rel="stylesheet" type="text/css" id="style_color" />
     <link href="<?php echo base_url() . 'css/custom.min.css'?>" rel="stylesheet" type="text/css" />
     <!-- END THEME LAYOUT STYLES -->
-    <link rel="shortcut icon" href="<?php echo base_url() . 'img/favicon_two.ico'?>" />
+    
 </head>
 <!-- END HEAD -->
 
@@ -60,7 +63,7 @@
             <!-- BEGIN LOGO -->
             <div class="page-logo">
                 <a href="<?php echo base_url()?>">
-                    <img src="<?php echo base_url() .'img/logo_white.png'?>" alt="logo" height="90px" /> </a>
+                    <img src="<?php echo base_url() .'img/logo_v2.png'?>" alt="logo" height="90px" /> </a>
                 <div class="menu-toggler sidebar-toggler">
                     <!-- DOC: Remove the above "hide" to enable the sidebar toggler button on header -->
                 </div>

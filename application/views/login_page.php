@@ -11,9 +11,10 @@
         <meta charset="utf-8" />
         <title>Activity Proposal Monitoring System</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta content="width=device-width, initial-scale=1" name="viewport" />
+        <meta content="width=device-width, initial-scale=1.0" name="viewport" />
         <meta content="Preview page of Metronic Admin Theme #4 for " name="description" />
         <meta content="" name="author" />
+        <link rel="shortcut icon" href="<?php echo base_url() . 'img/favicon.png'?>" />
         <!-- BEGIN GLOBAL MANDATORY STYLES -->
         <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&amp;subset=all" rel="stylesheet" type="text/css" />
         <link href="<?php echo base_url() . 'css/font-awesome.min.css' ?>"      rel="stylesheet" type="text/css" />
@@ -30,37 +31,65 @@
         <!-- END PAGE LEVEL STYLES -->
         <!-- BEGIN THEME LAYOUT STYLES -->
         <!-- END THEME LAYOUT STYLES -->
-        <link rel="shortcut icon" href="favicon.ico" /> </head>
     <!-- END HEAD -->
 
     <body class="login">
         <!-- BEGIN LOGO -->
-        <div class="logo" style="margin-bottom: -30px;">
+        <!--<div class="logo" style="margin-bottom: -30px;">
             <img src="<?php echo base_url() .'img/login/FEUTECH_yellow.png'?>" alt="" height="70px" />
+            
             <h3><font color="white">Activity Proposal Monitoring System</font></h3>
-        </div>
+        </div>-->
         <!-- END LOGO -->
+        <style>
+            @media all and (max-width: 1026px) {
+                #fadeshow1 {
+                    display: none;
+                }
+
+                #fadeshow2 {
+                    display: block;
+                }
+            }
+
+        </style>
         <!-- BEGIN LOGIN -->
-        <div class="content">
-            <!-- BEGIN LOGIN FORM -->
-            <?php echo validation_errors(); ?>
-            <?php echo form_open('VerifyLogin')?>
-                <h3 class="form-title">Login to your account</h3>
-                <div class="alert alert-danger display-hide">
-                    <button class="close" data-close="alert"></button>
-                    <span> Enter any username and password. </span>
-                </div>
-                <div class="form-group">
-                    <input class="form-control" type="text" placeholder="Username" name="username" value="" />
-                </div>
-                <div class="form-group">
-                    <input class="form-control" type="password" placeholder="Password" name="password" value="" />
-                </div>
-                <div class="form-actions">
-                    <button type="submit" class="btn dark btn-block"> Login </button>
-                </div>
-            <?php echo form_close()?>
-            <!-- END LOGIN FORM -->
+        <div class="row" style="margin-top:9%;">
+            <div id="fadeshow1" class='col-lg-6 col-xs-12 col-sm-12'>
+                <center>
+                    <img src="<?php echo base_url() .'img/landing_page_logo.png'?>" alt="logo" height="440px" />
+                </center>
+            </div>
+            <!--<div id="fadeshow2" style="display: none;" class='col-lg-6 col-xs-12 col-sm-12'>
+                <center>
+                    <img src="<?php echo base_url() .'img/landing_page_logo.png'?>" alt="logo" height="90px" />
+                </center>
+            </div>-->
+            <div class='col-lg-6 col-xs-12 col-sm-12'>
+                <center>
+                    <div class="content">
+                        <!-- BEGIN LOGIN FORM -->
+                        <?php echo validation_errors(); ?>
+                        <?php echo form_open('VerifyLogin')?>
+                            <h3 class="form-title">Login your account</h3>
+                            <div class="alert alert-danger display-hide">
+                                <button class="close" data-close="alert"></button>
+                                <span> Enter any username and password. </span>
+                            </div>
+                            <div class="form-group">
+                                <input class="form-control" type="text" placeholder="Username" name="username" value="" />
+                            </div>
+                            <div class="form-group">
+                                <input class="form-control" type="password" placeholder="Password" name="password" value="" />
+                            </div>
+                            <div class="form-actions">
+                                <button type="submit" class="btn dark btn-block"> Login </button>
+                            </div>
+                        <?php echo form_close()?>
+                        <!-- END LOGIN FORM -->
+                    </div>
+                </center>
+            </div>
         </div>
         <!-- END LOGIN -->
         <!-- BEGIN COPYRIGHT -->

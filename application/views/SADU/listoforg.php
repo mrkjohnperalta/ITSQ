@@ -54,166 +54,35 @@
                         </div>
                         <div class="mt-element-card mt-element-overlay">
                             <div class="row">
-                                <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
-                                    <div class="mt-card-item">
-                                        <div class="mt-card-avatar mt-overlay-3">
-                                            <img src="<?= base_url() . 'img/Org_Logos/AAA.png'?>" />
-                                            <div class="mt-overlay">
-                                                <h2>AAA</h2>
-                                                <div class="mt-info ">
-                                                    <div class="mt-card-content">
-                                                        <p class="mt-card-desc font-white">Aspirants and Achievers' Association</p>
-                                                        
-                                                        <a class="btn default btn-outline" href="javascript:;">
-                                                            View More
-                                                        </a>
-                                                               
+                                <?php
+                                    $org_details = $this->sadu_model->get_orgdetials();
+                                    // var_dump($org_details);
+
+                                    foreach($org_details as $details)
+                                    {
+                                ?>
+                                        <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                                            <div class="mt-card-item">
+                                                <div class="mt-card-avatar mt-overlay-3">
+                                                    <img src="<?= base_url() . 'img/Org_Logos/'. $details['org_photo']?>" />
+                                                    <div class="mt-overlay">
+                                                        <h2><?=$details['organization_abbreviation'] ?></h2>
+                                                        <div class="mt-info ">
+                                                            <div class="mt-card-content">
+                                                                <p class="mt-card-desc font-white"><?= $details['organization_name'] ?></p>
+                                                                
+                                                                <a class="btn default btn-outline" href="<?php echo base_url() . 'Organization_profile/org_profile/'.$details['org_id'] ?>">
+                                                                    View More
+                                                                </a>
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
-                                    <div class="mt-card-item">
-                                        <div class="mt-card-avatar mt-overlay-3">
-                                            <img src="<?= base_url() . 'img/Org_Logos/ac.png'?>"/>
-                                            <div class="mt-overlay">
-                                                <h2>AC</h2>
-                                                <div class="mt-info ">
-                                                    <div class="mt-card-content">
-                                                        <p class="mt-card-desc font-white">Artist Connection</p>
-                                                        
-                                                        <a class="btn default btn-outline" href="javascript:;">
-                                                            View More
-                                                        </a>
-                                                               
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
-                                    <div class="mt-card-item">
-                                        <div class="mt-card-avatar mt-overlay-3">
-                                            <img src="<?= base_url() . 'img/Org_Logos/ACES.png'?>" />
-                                            <div class="mt-overlay">
-                                                <h2>ACES</h2>
-                                                <div class="mt-info ">
-                                                    <div class="mt-card-content">
-                                                        <p class="mt-card-desc font-white">Association of Civil Engineering Students</p>
-                                                        
-                                                        <a class="btn default btn-outline" href="javascript:;">
-                                                            View More
-                                                        </a>
-                                                               
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
-                                    <div class="mt-card-item">
-                                        <div class="mt-card-avatar mt-overlay-3">
-                                            <img src="<?= base_url() . 'img/Org_Logos/AITS.png'?>" />
-                                            <div class="mt-overlay">
-                                                <h2>AITS</h2>
-                                                <div class="mt-info ">
-                                                    <div class="mt-card-content" >
-                                                        <p class="mt-card-desc font-white">Alliance of Information Technology Students</p>
-                                                        
-                                                        <a class="btn default btn-outline" href="javascript:;">
-                                                            View More
-                                                        </a>
-                                                               
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
-                                    <div class="mt-card-item">
-                                        <div class="mt-card-avatar mt-overlay-3">
-                                            <img src="<?= base_url() . 'img/Org_Logos/CpEO.jpg'?>" />
-                                            <div class="mt-overlay">
-                                                <h2>CpEO</h2>
-                                                <div class="mt-info ">
-                                                    <div class="mt-card-content">
-                                                        <p class="mt-card-desc font-white">Computer Engineering Organization</p>
-                                                        
-                                                        <a class="btn default btn-outline" href="javascript:;">
-                                                            View More
-                                                        </a>
-                                                               
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
-                                    <div class="mt-card-item">
-                                        <div class="mt-card-avatar mt-overlay-3">
-                                            <img src="<?= base_url() . 'img/Org_Logos/ECESS.png'?>" />
-                                            <div class="mt-overlay">
-                                                <h2>ECESS</h2>
-                                                <div class="mt-info ">
-                                                    <div class="mt-card-content">
-                                                        <p class="mt-card-desc font-white">Electronics Engineering Student Organiazation</p>
-                                                        
-                                                        <a class="btn default btn-outline" href="javascript:;">
-                                                            View More
-                                                        </a>
-                                                               
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
-                                    <div class="mt-card-item">
-                                        <div class="mt-card-avatar mt-overlay-3">
-                                            <img src="<?= base_url() . 'img/Org_Logos/SCC.png'?>" />
-                                            <div class="mt-overlay">
-                                                <h2>SCC</h2>
-                                                <div class="mt-info ">
-                                                    <div class="mt-card-content">
-                                                        <p class="mt-card-desc font-white">Student Coordinating Council</p>
-                                                        
-                                                        <a class="btn default btn-outline" href="javascript:;">
-                                                            View More
-                                                        </a>
-                                                               
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
-                                    <div class="mt-card-item">
-                                        <div class="mt-card-avatar mt-overlay-3">
-                                            <img src="<?= base_url() . 'img/Org_Logos/AAA.png'?>" />
-                                            <div class="mt-overlay">
-                                                <h2>AAA</h2>
-                                                <div class="mt-info ">
-                                                    <div class="mt-card-content">
-                                                        <p class="mt-card-desc font-white">Aspirants and Achievers' Association</p>
-                                                        
-                                                        <a class="btn default btn-outline" href="javascript:;">
-                                                            View More
-                                                        </a>
-                                                               
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                <?php
+                                    }
+                                ?>
                             </div>
                         </div>
                     </div>
