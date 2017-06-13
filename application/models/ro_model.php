@@ -34,6 +34,18 @@ class Ro_model extends CI_Model
         return $query->result_array();
     }
 
+    function count_reservedby($reserved_by)
+    {
+        $this->db->select('prop_id');
+        $this->db->from('room_reservation');
+        $this->db->where('reserved_by', $reserved_by);
+        $this->db->group_by('prop_id');
+
+        $query = $this->db->get();
+		return $query->num_rows();
+
+    }
+
     function get_all_reservations($reserved_by)
     {
         $this->db->select('room_reservation.*, activity_proposals.*');

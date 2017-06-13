@@ -55,53 +55,16 @@ class VerifyLogin extends CI_Controller {
           {
             redirect('EDO/Edo_dashboard');
           }
+          else if($_SESSION['logged_in']['is_user'] == 9)
+          {
+            redirect('USER/User_dashboard');
+          }
           
        }
        else
        {
-          redirect('user/user_dashboard');
+          redirect('USER/user_dashboard');
        }
-    }
-  }
-
-  function bagay()
-  {
-    $result = $this->login_model->login('feu_tech_sadu','sadu_1234');
-    var_dump($result);
-    var_dump($_SESSION);
-
-    if($result)
-    {
-      
-      $sess_array = array();
-      foreach($result as $row)
-      {
-        if($this->session->userdata('status') == 1)
-        {
-          $sess_array = array(
-            'id'                => $row->id,
-            'username'          => $row->username,
-            'user_abbreviation' => $row->office_abbreviation,
-            'user_picture'      => $row->user_picture
-          );
-        }
-        else
-        {
-          $sess_array = array(
-            'id'                => $row->org_id,
-            'org_username'      => $row->org_username,
-            'org_name'          => $row->organization_name,
-            'org_abbreviation'  => $row->organization_abbreviation
-          );
-        }
-        $this->session->set_userdata('logged_in', $sess_array);
-      }
-      return TRUE;
-    }
-    else
-    {
-      $this->form_validation->set_message('check_database', 'Invalid username or password');
-      return false;
     }
   }
  
@@ -124,6 +87,7 @@ class VerifyLogin extends CI_Controller {
           $sess_array = array(
             'id'                => $row->id,
             'username'          => $row->username,
+            'password'          => $password,
             'user_abbreviation' => $row->office_abbreviation,
             'user_picture'      => $row->user_picture
           );
@@ -133,8 +97,10 @@ class VerifyLogin extends CI_Controller {
           $sess_array = array(
             'id'                => $row->org_id,
             'org_username'      => $row->org_username,
+            'org_password'      => $row->org_password,
             'org_name'          => $row->organization_name,
-            'org_abbreviation'  => $row->organization_abbreviation
+            'org_abbreviation'  => $row->organization_abbreviation,
+            'is_user'           => '9'
           );
         }
         $this->session->set_userdata('logged_in', $sess_array);

@@ -57,12 +57,12 @@
         <div class="row" style="margin-top:9%;">
             <div id="fadeshow1" class='col-lg-6 col-xs-12 col-sm-12'>
                 <center>
-                    <img src="<?php echo base_url() .'img/landing_page_logo.png'?>" alt="logo" height="440px" />
+                    <img src="<?php echo base_url() .'img/landing_page_logo_02.png'?>" alt="logo" height="440px" />
                 </center>
             </div>
             <!--<div id="fadeshow2" style="display: none;" class='col-lg-6 col-xs-12 col-sm-12'>
                 <center>
-                    <img src="<?php echo base_url() .'img/landing_page_logo.png'?>" alt="logo" height="90px" />
+                    <img src="<?php echo base_url() .'img/landing_page_logo_02.png'?>" alt="logo" height="90px" />
                 </center>
             </div>-->
             <div class='col-lg-6 col-xs-12 col-sm-12'>
@@ -77,7 +77,7 @@
                                 <span> Enter any username and password. </span>
                             </div>
                             <div class="form-group">
-                                <input class="form-control" type="text" placeholder="Username" name="username" value="" />
+                                <input class="form-control" type="text" placeholder="Username" name="username" value="<?=$this->input->post('username');?>" />
                             </div>
                             <div class="form-group">
                                 <input class="form-control" type="password" placeholder="Password" name="password" value="" />

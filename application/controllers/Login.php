@@ -38,6 +38,10 @@ class Login extends CI_Controller
 			{
 				redirect('EDO/Edo_dashboard', 'refresh');
 			}
+			elseif($_SESSION['logged_in']['id'] == 9)
+			{
+				redirect('USER/User_dashboard', 'refresh');
+			}
 	    }
 	}
 

@@ -33,6 +33,18 @@ class Fo_model extends CI_Model
         $query = $this->db->get();
         return $query->result_array();
     }
+    
+    function count_reservedby($reserved_by)
+    {
+        $this->db->select('actprop_id');
+        $this->db->from('reservation_equipments');
+        $this->db->where('reserved_by', $reserved_by);
+        $this->db->group_by('actprop_id');
+
+        $query = $this->db->get();
+		return $query->num_rows();
+
+    }
 
     function get_all_reservations($reserved_by)
     {
@@ -91,5 +103,17 @@ class Fo_model extends CI_Model
         
         $this->db->insert('comments', $comment);
     }
+
+    function count_request($actprop_id)
+	{
+		$this->db->select('*');
+		$this->db->from('reservation_equipments');
+		$this->db->where('actprop_id', $actprop_id);
+
+		$query = $this->db->get();
+		$rowcount = $query->num_rows();
+
+		return $rowcount;
+	}
 }
 ?>

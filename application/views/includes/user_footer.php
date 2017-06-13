@@ -1,3 +1,22 @@
+
+
+
+ </div>
+                                </div>
+                                <!-- END PAGE BASE CONTENT -->
+                            </div>
+                        </div>
+                    </div>
+                    <!-- END SIDEBAR CONTENT LAYOUT -->
+                </div>
+            
+            </div>
+
+
+
+
+
+
   <div class="copyright"> 2017 &copy; FEU Institute of Technology</div>
               </div>
               </div>     
@@ -572,16 +591,41 @@
 <script src="../assets/global/plugins/excanvas.min.js"></script> 
 <script src="../assets/global/plugins/ie8.fix.min.js"></script> 
 <![endif]-->
-        <script src="<?php echo base_url();?>assets/global/plugins/jquery.min.js" type="text/javascript"></script>
-        <script src="<?php echo base_url();?>assets/global/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+
+
+    
+        <!-- END PAGE LEVEL PLUGINS -->
+        <!-- BEGIN THEME GLOBAL SCRIPTS -->
+                <script src="<?php echo base_url();?>assets/global/plugins/jquery.min.js" type="text/javascript"></script>
+
+        <script src="<?php echo base_url();?>assets/global/scripts/app.min.js" type="text/javascript"></script>
+                <script src="<?php echo base_url();?>assets/global/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+                        <script src="<?php echo base_url();?>assets/global/plugins/clockface/js/clockface.js" type="text/javascript"></script>
+
+        <!-- END THEME GLOBAL SCRIPTS -->
+        <!-- BEGIN PAGE LEVEL SCRIPTS -->
+        <script src="<?php echo base_url();?>assets/pages/scripts/dashboard.min.js" type="text/javascript"></script>
+        <!-- END PAGE LEVEL SCRIPTS -->
+        <!-- BEGIN THEME LAYOUT SCRIPTS -->
+        <script src="<?php echo base_url();?>assets/layouts/layout5/scripts/layout.min.js" type="text/javascript"></script>
+        <script src="<?php echo base_url();?>assets/layouts/global/scripts/quick-sidebar.min.js" type="text/javascript"></script>
+        <script src="<?php echo base_url();?>assets/layouts/global/scripts/quick-nav.min.js" type="text/javascript"></script>
+          <script src="<?php echo base_url();?>assets/js/jquery.js" type="text/javascript"></script>
+        <!-- END THEME LAYOUT SCRIPTS -->
+                <script src="<?php echo base_url();?>assets/global/plugins/moment.min.js" type="text/javascript"></script>
+
+        <script src = "<?php echo base_url();?>assets/js/jquery.timepicker.js" type="text/javascript"></script>
+           <script src="<?php echo base_url();?>assets/global/plugins/jquery.min.js" type="text/javascript"></script>
         <script src="<?php echo base_url();?>assets/global/plugins/js.cookie.min.js" type="text/javascript"></script>
         <script src="<?php echo base_url();?>assets/global/plugins/jquery-slimscroll/jquery.slimscroll.min.js" type="text/javascript"></script>
         <script src="<?php echo base_url();?>assets/global/plugins/jquery.blockui.min.js" type="text/javascript"></script>
         <script src="<?php echo base_url();?>assets/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js" type="text/javascript"></script>
         <!-- END CORE PLUGINS -->
         <!-- BEGIN PAGE LEVEL PLUGINS -->
-        <script src="<?php echo base_url();?>assets/global/plugins/moment.min.js" type="text/javascript"></script>
         <script src="<?php echo base_url();?>assets/global/plugins/bootstrap-daterangepicker/daterangepicker.min.js" type="text/javascript"></script>
+                <script src="<?php echo base_url();?>assets/global/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js" type="text/javascript"></script>
+        <script src="<?php echo base_url();?>assets/global/plugins/bootstrap-timepicker/js/bootstrap-timepicker.min.js" type="text/javascript"></script>
+
         <script src="<?php echo base_url();?>assets/global/plugins/morris/morris.min.js" type="text/javascript"></script>
         <script src="<?php echo base_url();?>assets/global/plugins/morris/raphael-min.js" type="text/javascript"></script>
         <script src="<?php echo base_url();?>assets/global/plugins/counterup/jquery.waypoints.min.js" type="text/javascript"></script>
@@ -591,6 +635,8 @@
         <script src="<?php echo base_url();?>assets/global/plugins/amcharts/amcharts/pie.js" type="text/javascript"></script>
         <script src="<?php echo base_url();?>assets/global/plugins/amcharts/amcharts/radar.js" type="text/javascript"></script>
         <script src="<?php echo base_url();?>assets/global/plugins/amcharts/amcharts/themes/light.js" type="text/javascript"></script>
+              
+
         <script src="<?php echo base_url();?>assets/global/plugins/amcharts/amcharts/themes/patterns.js" type="text/javascript"></script>
         <script src="<?php echo base_url();?>assets/global/plugins/amcharts/amcharts/themes/chalk.js" type="text/javascript"></script>
         <script src="<?php echo base_url();?>assets/global/plugins/amcharts/ammap/ammap.js" type="text/javascript"></script>
@@ -610,29 +656,17 @@
         <script src="<?php echo base_url();?>assets/global/plugins/jqvmap/jqvmap/maps/jquery.vmap.germany.js" type="text/javascript"></script>
         <script src="<?php echo base_url();?>assets/global/plugins/jqvmap/jqvmap/maps/jquery.vmap.usa.js" type="text/javascript"></script>
         <script src="<?php echo base_url();?>assets/global/plugins/jqvmap/jqvmap/data/jquery.vmap.sampledata.js" type="text/javascript"></script>
-    <script src="<?php echo base_url();?>js/dropzone.js"></script>
-     <!-- Latest compiled and minified CSS -->
+        <script src="<?php echo base_url();?>assets/js/dropzone.js"></script>
+            <script src="<?php echo base_url();?>assets/global/scripts/datatable.js" type="text/javascript"></script>
+        <script src="<?php echo base_url();?>assets/global/plugins/datatables/datatables.min.js" type="text/javascript"></script>
+        <script src="<?php echo base_url();?>assets/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.js" type="text/javascript"></script>
+        <script src="<?php echo base_url();?>assets/pages/scripts/table-datatables-buttons.min.js" type="text/javascript"></script>
+        <script src="<?php echo base_url();?>assets/pages/scripts/table-datatables-managed.min.js" type="text/javascript"></script>
 
-     
-    <script>
-            <!--<!--src="https://code.jquery.com/jquery-1.7.1.min.js"-->
-          </script>
-       
-        <!-- END PAGE LEVEL PLUGINS -->
-        <!-- BEGIN THEME GLOBAL SCRIPTS -->
-        <script src="<?php echo base_url();?>assets/global/scripts/app.min.js" type="text/javascript"></script>
-        <!-- END THEME GLOBAL SCRIPTS -->
-        <!-- BEGIN PAGE LEVEL SCRIPTS -->
-        <script src="<?php echo base_url();?>assets/pages/scripts/dashboard.min.js" type="text/javascript"></script>
-        <!-- END PAGE LEVEL SCRIPTS -->
-        <!-- BEGIN THEME LAYOUT SCRIPTS -->
-        <script src="<?php echo base_url();?>assets/layouts/layout5/scripts/layout.min.js" type="text/javascript"></script>
-        <script src="<?php echo base_url();?>assets/layouts/global/scripts/quick-sidebar.min.js" type="text/javascript"></script>
-        <script src="<?php echo base_url();?>assets/layouts/global/scripts/quick-nav.min.js" type="text/javascript"></script>
-          <script src="<?php echo base_url();?>assets/js/jquery.js" type="text/javascript"></script>
-        <!-- END THEME LAYOUT SCRIPTS -->
-        <script src = "<?php echo base_url();?>assets/js/jquery.timepicker.js" type="text/javascript"></script>
-                <script src = "<?php echo base_url();?>assets/js/jquery.timepicker.min.js" type="text/javascript"></script>
+     <!-- Latest compiled and minified CSS -->
+             <script src="<?php echo base_url();?>assets/global/plugins/jquery-validation/js/jquery.validate.min.js" type="text/javascript"></script>
+        <script src="<?php echo base_url();?>assets/global/plugins/jquery-validation/js/additional-methods.min.js" type="text/javascript"></script>
+
         <!--<script type="text/javascript">bkLib.onDomLoaded(nicEditors.allTextAreas);</script>-->
         <!--<script src="https://cloud.tinymce.com/stable/tinymce.min.js"></script>
          <script>tinymce.init({ selector:'textarea' });</script>-->
@@ -646,6 +680,103 @@
                 });
             })
         </script>
+        <script type="text/javascript">
+            
+            $(function () {
+     $('.timepicker').timepicker();
+});
+
+        </script>
+        <script type="text/javascript">
+            $(document).on("keyup change", "#startdate", function(event){
+            var txt = $(this).val();
+            $("#startdate2").html(txt);
+
+            });
+             $(document).on("keyup change", "#enddate", function(event){
+            var txt = $(this).val();
+            $("#enddate2").html(txt);
+
+            });
+          $(document).on("keyup change", "#timestart", function(event){
+            var txt2 = $(this).val();
+            $("#timestart2").html(txt2);
+
+            });
+           $(document).on("keyup change", "#timeend", function(event){
+            var txt1 = $(this).val();
+            $("#timeend2").html(txt1);
+
+            });
+        </script>
+
+        <script type="text/javascript">
+        $(document).ready(function(){
+            $("#modalbutton").click(function(){
+
+                var startdate2 = $('#startdate2').text();
+                var enddate2 = $('#enddate2').text();
+                var timestart2 = $('#timestart2').text();
+                var timeend2 = $('#timeend2').text();
+                $('#rooms').empty();
+
+
+                $.ajax({
+                    url: '<?php echo base_url().'user/user_dashboard/searchAvailableRooms';?>',
+                    data: {'dateStart': startdate2 , 'dateEnd':enddate2 ,'timeStart':timestart2,'timeEnd':timeend2},
+                    dataType: 'json', 
+                    type: "POST",
+                    success: function(response)
+                    {
+                        data = response; 
+                        console.log(data);
+                        
+                         $.each(data, function (index, object) {
+                            $('#rooms').append('<tr><td><input type="hidden" name="roomid'+index+'"  value="'+object['room_id']+'">' + object['room_number'] + '</td>' + 
+                                                    '<td><button type="button" data-dismiss="modal" value="'+object['room_id']+','+object['room_number']+'" id="btnreserve'+index+'" class="btn green">Reserve</button></td></tr>' )
+                        }) 
+                          var last_click = '';
+
+                        $("button").click(function() {
+                            last_click = $(this).attr('value');
+                            var result = last_click.split(',');
+                            $('#roomid').val(result[0]);
+                            $('#modalbutton').val(result[1]);
+
+                        });
+                    },
+                    error: function(response)
+                    {
+                        alert('error');
+                    }     
+                });
+            });
+        });
+
+        </script>
+
+        <script>
+     
+
+        </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     <!-- Google Code for Universal Analytics -->
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){

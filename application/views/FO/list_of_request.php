@@ -52,17 +52,26 @@
                                                 // var_dump($reservations);
                                                 foreach($details as $equipments)
                                                 {
+                                                    
+                                                    $cnt_reservation = $this->fo_model->count_request($equipments['prop_id']);
+                                                    if($cnt_reservation != 0)
+                                                    {
                                         ?>          
-                                                    <tr>
-                                                        <td> <?= $equipments['proposal_title'] ?> </td>
-                                                        <td> </td>
-                                                        <?php echo form_open('FO/Dashboard/get_list_of_request');?>
-                                                        <input type="hidden" name="reserved_by" value="<?= $equipments['reserved_by'] ?>">
-                                                        <input type="hidden" name="actprop_id" value="<?= $equipments['actprop_id'] ?>">
-                                                        <td><button class="btn red">View</button></td>
-                                                        <?php echo form_close();?>
-                                                    </tr>
-                                        <?php   }
+                                                        <tr>
+                                                            <td> <?= $equipments['proposal_title'] ?> </td>
+                                                            <td> <center><span class="badge badge-danger"><b><font size="2px"> <?=  $cnt_reservation ?> </font></b></span></center> </td>
+                                                            <?php echo form_open('FO/Dashboard/get_list_of_request');?>
+                                                            <input type="hidden" name="reserved_by" value="<?= $equipments['reserved_by'] ?>">
+                                                            <input type="hidden" name="actprop_id" value="<?= $equipments['actprop_id'] ?>">
+                                                            <td><button class="btn red">View</button></td>
+                                                            <?php echo form_close();?>
+                                                        </tr>
+                                        <?php       }
+                                                    else
+                                                    {
+                                                        echo "";
+                                                    }
+                                                }
                                             ?>
                                      </tbody>
                                     </table>

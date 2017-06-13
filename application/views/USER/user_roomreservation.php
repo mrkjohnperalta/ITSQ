@@ -1,4 +1,4 @@
-                    
+           <?php $prop_id = $this->uri->segment(4);?>         
 <div class="container-fluid">
     <div class="page-content">
         <?php foreach($proposals as $proposal): ?>
@@ -6,6 +6,7 @@
        
             <div class="input-icon right">
                 <label for="form_control_1">Activity Title: </label>
+               <input type="text" class="form-control" disabled name="proposal_id"  value = "<?php echo $this->uri->segment(4)?>"  >
                 <input type="text" class="form-control" disabled name="prop_title"  value = "<?php echo $proposal->proposal_title?>"  >
                 <span class="help-block"></span>
             </div>
@@ -40,35 +41,126 @@
                                     <span></span>
                                     <span class="check"></span>
                                     <span class="box"></span> MPR (17th) </label>
-                            </div>
+                                      <div class = "row" >
+                              
+                                    <div class=  "col-lg-2 col-md-2 col-sm-2 col-xs-6">
+                                        <label class="control-label col-md-3">Start Time:</label>
+                                    </div>
+                                         <div class=  "col-lg-2 col-md-2 col-sm-2 col-xs-6">
+                                        <input type="time"  name = "start_time" id = "timepicker1"  class="form-control input-small" name="time">
+                                    </div>
+                              
+                                   
+                                    <div class=  "col-lg-2 col-md-2 col-sm-2 col-xs-6" style ="margin-left: 5%;">
+                                        <label class="control-label col-md-3">End Time:</label>
+                                    </div>
+                                    
+                                    <div class=  "col-lg-2 col-md-2 col-sm-2 col-xs-6">
+                                        <input type="time"  name = "end_time" id = "timepicker2"  class="form-control input-small" name="time">    
+                                    </div>
+                           </div>
+                           </div>
                             <div class="md-checkbox">
                                 <input type="checkbox"  value = "Gymnasium" name = "other_room[]" id="checkbox2" class="md-check" >
                                 <label for="checkbox2">
                                     <span></span>
                                     <span class="check"></span>
                                     <span class="box"></span> Gymnasium (17th) </label>
-                            </div>
+                                         <div class = "row" >
+                              
+                                    <div class=  "col-lg-2 col-md-2 col-sm-2 col-xs-6">
+                                        <label class="control-label col-md-3">Start Time:</label>
+                                    </div>
+                                         <div class=  "col-lg-2 col-md-2 col-sm-2 col-xs-6">
+                                        <input type="time"  name = "start_time" id = "timepicker1"  class="form-control input-small" name="time">
+                                    </div>
+                              
+                                   
+                                    <div class=  "col-lg-2 col-md-2 col-sm-2 col-xs-6" style ="margin-left: 5%;">
+                                        <label class="control-label col-md-3">End Time:</label>
+                                    </div>
+                                    
+                                    <div class=  "col-lg-2 col-md-2 col-sm-2 col-xs-6">
+                                        <input type="time"  name = "end_time" id = "timepicker2"  class="form-control input-small" name="time">    
+                                    </div>
+                           </div>
+                           </div>
+                          
                             <div class="md-checkbox">
                                 <input type="checkbox" value = "Swimming Pool" name = "other_room[]" id="checkbox3" class="md-check">
                                 <label for="checkbox3">
                                     <span></span>
                                     <span class="check"></span>
                                     <span class="box"></span> Swimming Pool</label>
-                            </div>
+                                <div class = "row" >
+                              
+                                    <div class=  "col-lg-2 col-md-2 col-sm-2 col-xs-6">
+                                        <label class="control-label col-md-3">Start Time:</label>
+                                    </div>
+                                         <div class=  "col-lg-2 col-md-2 col-sm-2 col-xs-6">
+                                        <input type="time"  name = "start_time" id = "timepicker1"  class="form-control input-small" name="time">
+                                    </div>
+                              
+                                   
+                                    <div class=  "col-lg-2 col-md-2 col-sm-2 col-xs-6" style ="margin-left: 5%;">
+                                        <label class="control-label col-md-3">End Time:</label>
+                                    </div>
+                                    
+                                    <div class=  "col-lg-2 col-md-2 col-sm-2 col-xs-6">
+                                        <input type="time"  name = "end_time" id = "timepicker2"  class="form-control input-small" name="time">    
+                                    </div>
+                           </div>
+                           </div>
                             <div class="md-checkbox">
                                 <input type="checkbox" value = "Roof Deck" name = "other_room[]" id="checkbox4" class="md-check">
                                 <label for="checkbox4">
                                     <span></span>
                                     <span class="check"></span>
                                     <span class="box"></span> Roof Deck</label>
-                            </div>
+                                <div class = "row" >
+                              
+                                    <div class=  "col-lg-2 col-md-2 col-sm-2 col-xs-6">
+                                        <label class="control-label col-md-3">Start Time:</label>
+                                    </div>
+                                         <div class=  "col-lg-2 col-md-2 col-sm-2 col-xs-6">
+                                        <input type="time"  name = "start_time" id = "timepicker1"  class="form-control input-small" name="time">
+                                    </div>
+                              
+                                   
+                                    <div class=  "col-lg-2 col-md-2 col-sm-2 col-xs-6" style ="margin-left: 5%;">
+                                        <label class="control-label col-md-3">End Time:</label>
+                                    </div>
+                                    
+                                    <div class=  "col-lg-2 col-md-2 col-sm-2 col-xs-6">
+                                        <input type="time"  name = "end_time" id = "timepicker2"  class="form-control input-small" name="time">    
+                                    </div>
+                           </div>
+                           </div>
                                 <div class="md-checkbox">
                                     <input type="checkbox" value= "Student Plaza" name = "other_room[]" id="checkbox5" class="md-check">
                                     <label for="checkbox5">
                                     <span></span>
                                     <span class="check"></span>
                                     <span class="box"></span> Student Plaza</label>
-                                 </div>
+                                    <div class = "row" >
+                              
+                                    <div class=  "col-lg-2 col-md-2 col-sm-2 col-xs-6">
+                                        <label class="control-label col-md-3">Start Time:</label>
+                                    </div>
+                                         <div class=  "col-lg-2 col-md-2 col-sm-2 col-xs-6">
+                                        <input type="time"  name = "start_time" id = "timepicker1"  class="form-control input-small" name="time">
+                                    </div>
+                              
+                                   
+                                    <div class=  "col-lg-2 col-md-2 col-sm-2 col-xs-6" style ="margin-left: 5%;">
+                                        <label class="control-label col-md-3">End Time:</label>
+                                    </div>
+                                    
+                                    <div class=  "col-lg-2 col-md-2 col-sm-2 col-xs-6">
+                                        <input type="time"  name = "end_time" id = "timepicker2"  class="form-control input-small" name="time">    
+                                    </div>
+                           </div>
+                           </div>
                         </div>
                         </div>
                         </div>
@@ -124,7 +216,7 @@
                                 '<option value="7">07</option>'+
                                 '<option value="8">08</option>'+
                                 '<option value="9">09</option>'+
-                                '<option value="10" class= "fit">10</option>'+
+                                '<option value="10" class= "fit">10</option>'+  
                                 '<option value="11" class= "fit">11</option>'+
                                 '<option value="12"class= "fit">12</option>'+
                             '</select>'+
@@ -164,13 +256,13 @@
                                     '</div>'+
                                    
                                    '<label class="control-label col-md-3">Reservation Date: </label> '+ 
-                                       '<input type = "date" name = "date_picker">'+
+                                       '<input type = "text" disabled name = "date_picker" value = "<?php echo $proposal->startdate?>">'+
                                        '<span class="input-group-btn btn-right" >'+
                                         '</span>'+
                                     '<div>'+   
                   
                                         '<button class="btn red" onclick = "removeElement();"  "type="button">Remove</button>'+
-                                        
+                                       
                                         '<div class="form-group">'+
                                         '<input type="hidden"   class="form-control" name="sent_by" value="<?php echo $_SESSION['logged_in']['id']?>">'+
                                         '</div>';
@@ -198,7 +290,7 @@
                                 }
                                 else 
                                 {
-                                //    alert("Invalid input");
+                                   alert("Invalid input");
                                 }
                             }
                 

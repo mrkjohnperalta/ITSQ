@@ -48,7 +48,7 @@
                                     </thead>
                                     <tbody>
                                         <?php
-                                            $proposals = $this->sadu_model->get_all_proposedby();
+                                            $proposals = $this->scc_model->get_all_proposedby();
 
                                             foreach($proposals as $list)
                                             {
