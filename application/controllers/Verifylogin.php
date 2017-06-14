@@ -55,11 +55,6 @@ class VerifyLogin extends CI_Controller {
           {
             redirect('EDO/Edo_dashboard');
           }
-          else if($_SESSION['logged_in']['is_user'] == 9)
-          {
-            redirect('USER/User_dashboard');
-          }
-          
        }
        else
        {
